@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd
+						http://www.springframework.org/schema/task
+						http://www.springframework.org/schema/task/spring-task-4.0.xsd
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<bean id="ResourceConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/config/server.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 使用annotation @Repository,@Service自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.pos.api.controller">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	<task:executor id="executor" pool-size="5" />      
+    <task:scheduler id="scheduler" pool-size="5" />    
+    <task:annotation-driven executor="executor" scheduler="scheduler" />
+
+	<!-- 配置freeMarker视图解析器 -->
+	<!-- FreeMarker视图解析 如返回student,在这里配置后缀名ftl和视图解析器 -->
+	 <bean id="freemarkerResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="cache" value="true" />
+		<property name="suffix" value=".ftl" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="requestContextAttribute" value="request" />
+		<!-- 将请求和会话属性作为变量暴露给FreeMarker模板使用。要做到这一点，可以设置exposeRequestAttributes或者exposeSessionAttributes为true -->
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<!-- 使用这些宏，必须设置FreeMarkerViewResolver的exposeMacroHelpers属性为true -->
+		<property name="exposeSpringMacroHelpers" value="true" />
+	</bean> 
+ 
+	<!-- URL分布式缓存处理示例 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
+		<property name="order" value="100" /> <property name="urlMap"> <map> <entry 
+		key="/remoting/cacheService.html" value-ref="cacheService-hessian" /> </map> 
+		</property> </bean> -->
+
+
+
+	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 默认编码 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 文件大小最大值 -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- 内存中的最大值，默认为10K
+		<property name="maxInMemorySize" value="40960" /> -->
+	</bean>
+     <bean id="RDobjectMapper" class="com.rongdu.cashloan.core.common.util.json.mapper.RDObjectMapper" init-method="init">
+        <property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss"/>
+    </bean>
+	<mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="RDobjectMapper"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	<!--<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/api/**/*"/>
+			<mvc:exclude-mapping path="/api/qianchenNotify.htm"/>
+            <mvc:exclude-mapping path="/api/operatorCallbacktest.htm"/>
+            <mvc:exclude-mapping path="/api/operatorCallback.htm"/>
+            <mvc:exclude-mapping path="/api/operatorReturnback.htm"/>
+            <mvc:exclude-mapping path="/api/actzm/mine/zhima/AuthCallBack.htm"/>
+            <mvc:exclude-mapping path="/api/user/h5SendSms.htm"/>
+            <mvc:exclude-mapping path="/api/h5/imgCode/generate.htm"/>
+            <mvc:exclude-mapping path="/api/user/wxRegister.htm"/>
+            <mvc:exclude-mapping path="/api/user/isPhoneExists.htm"/>
+            <mvc:exclude-mapping path="/api/kn/*"/>
+            <mvc:exclude-mapping path="/api/act/borrow/juheRepay/alipay/repaymentNotify.htm"/>
+            <mvc:exclude-mapping path="/api/saiceCallback.htm"/>
+            <mvc:exclude-mapping path="/pay/jd/repaymentNotify.htm"/>
+            <mvc:exclude-mapping path="/api/archiveContract.htm"/>
+
+			<bean class="com.pos.api.interceptor.ApiInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+
+</beans>

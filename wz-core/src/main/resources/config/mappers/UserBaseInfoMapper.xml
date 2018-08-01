@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czwx.cashloan.core.mapper.UserBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.UserBaseInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="national" property="national" jdbcType="VARCHAR" />
+    <result column="id_no" property="idNo" jdbcType="VARCHAR" />
+    <result column="id_addr" property="idAddr" jdbcType="VARCHAR" />
+    <result column="living_img" property="livingImg" jdbcType="VARCHAR" />
+    <result column="front_img" property="frontImg" jdbcType="VARCHAR" />
+    <result column="back_img" property="backImg" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="register_addr" property="registerAddr" jdbcType="VARCHAR" />
+    <result column="marry_state" property="marryState" jdbcType="TINYINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, phone, real_name, age, gender, national, id_no, id_addr, living_img, 
+    front_img, back_img, education, register_addr, marry_state, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_base_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_base_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.czwx.cashloan.core.model.UserBaseInfo" >
+    insert into user_base_info (id, user_id, phone, 
+      real_name, age, gender, 
+      national, id_no, id_addr, 
+      living_img, front_img, back_img, 
+      education, register_addr, marry_state, 
+      update_time, create_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT}, #{gender,jdbcType=TINYINT}, 
+      #{national,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idAddr,jdbcType=VARCHAR}, 
+      #{livingImg,jdbcType=VARCHAR}, #{frontImg,jdbcType=VARCHAR}, #{backImg,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{registerAddr,jdbcType=VARCHAR}, #{marryState,jdbcType=TINYINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.UserBaseInfo" >
+    insert into user_base_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="national != null" >
+        national,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="idAddr != null" >
+        id_addr,
+      </if>
+      <if test="livingImg != null" >
+        living_img,
+      </if>
+      <if test="frontImg != null" >
+        front_img,
+      </if>
+      <if test="backImg != null" >
+        back_img,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="registerAddr != null" >
+        register_addr,
+      </if>
+      <if test="marryState != null" >
+        marry_state,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="national != null" >
+        #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null" >
+        #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="livingImg != null" >
+        #{livingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImg != null" >
+        #{frontImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backImg != null" >
+        #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddr != null" >
+        #{registerAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="marryState != null" >
+        #{marryState,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.UserBaseInfo" >
+    update user_base_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="national != null" >
+        national = #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null" >
+        id_addr = #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="livingImg != null" >
+        living_img = #{livingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImg != null" >
+        front_img = #{frontImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backImg != null" >
+        back_img = #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddr != null" >
+        register_addr = #{registerAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="marryState != null" >
+        marry_state = #{marryState,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.UserBaseInfo" >
+    update user_base_info
+    set user_id = #{userId,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      national = #{national,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_addr = #{idAddr,jdbcType=VARCHAR},
+      living_img = #{livingImg,jdbcType=VARCHAR},
+      front_img = #{frontImg,jdbcType=VARCHAR},
+      back_img = #{backImg,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      register_addr = #{registerAddr,jdbcType=VARCHAR},
+      marry_state = #{marryState,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

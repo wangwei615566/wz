@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czwx.cashloan.core.mapper.ProfitAgentMapper" >
+  <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.ProfitAgent" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="level_id" property="levelId" jdbcType="BIGINT" />
+    <result column="leader_id" property="leaderId" jdbcType="BIGINT" />
+    <result column="use_state" property="useState" jdbcType="TINYINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, level_id, leader_id, use_state, update_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from profit_agent
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="extensionAndGoodsCount" parameterType="java.lang.Long" resultType="java.util.Map">
+    SELECT COUNT(DISTINCT pa.user_id) extensionCount,SUM(o.goods_num) goodsCount FROM `profit_agent` pa
+      LEFT JOIN `user` u ON pa.user_id = u.id
+      LEFT JOIN `order` o ON u.id = o.user_id WHERE pa.use_state = 1 AND pa.leader_id = #{userId,jdbcType = BIGINT}
+  </select>
+  <select id="extensionList" parameterType="java.lang.Long" resultType="java.util.Map">
+    SELECT u.level_id,ubi.real_name,ubi.phone FROM `profit_agent` pa
+      LEFT JOIN `user` u ON pa.user_id = u.id
+      LEFT JOIN user_base_info ubi ON u.id = ubi.user_id WHERE pa.use_state = 1 AND pa.leader_id = #{userId,jdbcType = BIGINT}
+  </select>
+  <select id="goodsList" parameterType="java.lang.Long" resultType="java.util.Map">
+    SELECT g.id,g.name,SUM(od.goods_num) goodsNum FROM `profit_agent` pa
+      LEFT JOIN `order` o ON pa.user_id = o.user_id
+      LEFT JOIN order_detail od ON o.id = od.order_id
+      LEFT JOIN goods g ON od.goods_id = g.id WHERE  pa.use_state = 1 AND pa.leader_id = #{userId,jdbcType = BIGINT} GROUP BY g.id
+  </select>
+
+  <select id="goodsListDetailUser" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT b.phone,b.real_name,u.create_time FROM `profit_agent` pa
+      LEFT JOIN `order` o ON pa.user_id = o.user_id
+      LEFT JOIN `user` u ON u.id = pa.user_id
+      LEFT JOIN user_base_info b ON b.user_id = pa.user_id
+      LEFT JOIN order_detail od ON o.id = od.order_id
+      LEFT JOIN goods g ON od.goods_id = g.id WHERE  pa.use_state = 1 AND pa.leader_id = #{userId,jdbcType = BIGINT} AND g.id = #{goodsId,jdbcType = BIGINT};
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from profit_agent
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.czwx.cashloan.core.model.ProfitAgent" >
+    insert into profit_agent (id, user_id, level_id, 
+      leader_id, use_state, update_time, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{levelId,jdbcType=BIGINT}, 
+      #{leaderId,jdbcType=BIGINT}, #{useState,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.ProfitAgent" >
+    insert into profit_agent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="levelId != null" >
+        level_id,
+      </if>
+      <if test="leaderId != null" >
+        leader_id,
+      </if>
+      <if test="useState != null" >
+        use_state,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="levelId != null" >
+        #{levelId,jdbcType=BIGINT},
+      </if>
+      <if test="leaderId != null" >
+        #{leaderId,jdbcType=BIGINT},
+      </if>
+      <if test="useState != null" >
+        #{useState,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.ProfitAgent" >
+    update profit_agent
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="levelId != null" >
+        level_id = #{levelId,jdbcType=BIGINT},
+      </if>
+      <if test="leaderId != null" >
+        leader_id = #{leaderId,jdbcType=BIGINT},
+      </if>
+      <if test="useState != null" >
+        use_state = #{useState,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.ProfitAgent" >
+    update profit_agent
+    set user_id = #{userId,jdbcType=BIGINT},
+      level_id = #{levelId,jdbcType=BIGINT},
+      leader_id = #{leaderId,jdbcType=BIGINT},
+      use_state = #{useState,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

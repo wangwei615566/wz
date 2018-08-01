@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czwx.cashloan.core.mapper.UserInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.UserInvite" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="invite_time" property="inviteTime" jdbcType="TIMESTAMP" />
+    <result column="invite_id" property="inviteId" jdbcType="BIGINT" />
+    <result column="invite_name" property="inviteName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, invite_time, invite_id, invite_name, user_id, user_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_invite
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from user_invite
+    where invite_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_invite
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+    insert into user_invite (id, invite_time, invite_id, 
+      invite_name, user_id, user_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{inviteTime,jdbcType=TIMESTAMP}, #{inviteId,jdbcType=BIGINT}, 
+      #{inviteName,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+    insert into user_invite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="inviteTime != null" >
+        invite_time,
+      </if>
+      <if test="inviteId != null" >
+        invite_id,
+      </if>
+      <if test="inviteName != null" >
+        invite_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="inviteTime != null" >
+        #{inviteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteId != null" >
+        #{inviteId,jdbcType=BIGINT},
+      </if>
+      <if test="inviteName != null" >
+        #{inviteName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+    update user_invite
+    <set >
+      <if test="inviteTime != null" >
+        invite_time = #{inviteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteId != null" >
+        invite_id = #{inviteId,jdbcType=BIGINT},
+      </if>
+      <if test="inviteName != null" >
+        invite_name = #{inviteName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+    update user_invite
+    set invite_time = #{inviteTime,jdbcType=TIMESTAMP},
+      invite_id = #{inviteId,jdbcType=BIGINT},
+      invite_name = #{inviteName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

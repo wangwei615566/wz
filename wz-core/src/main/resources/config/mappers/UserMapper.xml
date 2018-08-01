@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czwx.cashloan.core.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.User" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+        <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
+        <result column="loginpwd_modify_time" property="loginpwdModifyTime" jdbcType="TIMESTAMP" />
+        <result column="register_client" property="registerClient" jdbcType="VARCHAR" />
+        <result column="invitation_code" property="invitationCode" jdbcType="VARCHAR" />
+        <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+        <result column="level_id" property="levelId" jdbcType="BIGINT" />
+        <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+        <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, login_name, login_pwd, loginpwd_modify_time, register_client, invitation_code,
+        channel_id, level_id, register_ip, login_ip, update_time, create_time
+    </sql>
+    <sql id="searchBy">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="id != null and id != ''">
+                id  = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="loginName !=null and loginName != ''">
+                and login_name = #{loginName,jdbcType=VARCHAR}
+            </if>
+            <if test="loginPwd !=null and loginPwd != ''">
+                and login_pwd = #{loginPwd,jdbcType=VARCHAR}
+            </if>
+            <if test="loginpwdModifyTime != null">
+                and loginpwd_modify_time = #{loginpwdModifyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="registTime != null">
+                and regist_time = #{registTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="startTime != null">
+                and regist_time &gt; #{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime  != null">
+                and regist_time &lt; #{endTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="registerClient != null and registerClient != ''">
+                and register_client = #{registerClient,jdbcType=VARCHAR}
+            </if>
+            <if test="tradePwd != null and tradePwd != ''">
+                and trade_pwd = #{tradePwd,jdbcType=VARCHAR}
+            </if>
+            <if test="tradepwdModifyTime != null">
+                and tradepwd_modify_time = #{tradepwdModifyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="invitationCode != null and invitationCode != ''">
+                and invitation_code = #{invitationCode,jdbcType=VARCHAR}
+            </if>
+            <if test="channelId != null and channelId != ''">
+                and channel_id = #{channelId,jdbcType=BIGINT}
+            </if>
+            <if test="levelId != null and level != ''">
+                and level_id = #{levelId,jdbcType=BIGINT}
+            </if>
+            <if test="registerIp != null and registerIp != ''">
+                and register_ip = #{registerIp,jdbcType=VARCHAR}
+            </if>
+            <if test="loginIp != null and loginIp != ''">
+                and login_ip = #{loginIp,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="findSelective" resultMap="BaseResultMap" parameterType="java.util.Map" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        <include refid="searchBy"/>
+    </select>
+     <select id="findLevelToUserId" resultType="java.util.Map" parameterType="java.lang.Long">
+        SELECT l.rate,l.second_rate FROM `user` u LEFT JOIN profit_level l ON u.level_id = l.id WHERE u.id = #{userId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.czwx.cashloan.core.model.User" >
+        insert into user (id, login_name, login_pwd,
+        loginpwd_modify_time, register_client, invitation_code,
+        channel_id, level_id, register_ip,
+        login_ip, update_time, create_time
+        )
+        values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR},
+        #{loginpwdModifyTime,jdbcType=TIMESTAMP}, #{registerClient,jdbcType=VARCHAR}, #{invitationCode,jdbcType=VARCHAR},
+        #{channelId,jdbcType=INTEGER}, #{levelId,jdbcType=BIGINT}, #{registerIp,jdbcType=VARCHAR},
+        #{loginIp,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.User" >
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="loginName != null" >
+                login_name,
+            </if>
+            <if test="loginPwd != null" >
+                login_pwd,
+            </if>
+            <if test="loginpwdModifyTime != null" >
+                loginpwd_modify_time,
+            </if>
+            <if test="registerClient != null" >
+                register_client,
+            </if>
+            <if test="invitationCode != null" >
+                invitation_code,
+            </if>
+            <if test="channelId != null" >
+                channel_id,
+            </if>
+            <if test="levelId != null" >
+                level_id,
+            </if>
+            <if test="registerIp != null" >
+                register_ip,
+            </if>
+            <if test="loginIp != null" >
+                login_ip,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="loginName != null" >
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPwd != null" >
+                #{loginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="loginpwdModifyTime != null" >
+                #{loginpwdModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="registerClient != null" >
+                #{registerClient,jdbcType=VARCHAR},
+            </if>
+            <if test="invitationCode != null" >
+                #{invitationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null" >
+                #{channelId,jdbcType=INTEGER},
+            </if>
+            <if test="levelId != null" >
+                #{levelId,jdbcType=BIGINT},
+            </if>
+            <if test="registerIp != null" >
+                #{registerIp,jdbcType=VARCHAR},
+            </if>
+            <if test="loginIp != null" >
+                #{loginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.User" >
+        update user
+        <set >
+            <if test="loginName != null" >
+                login_name = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPwd != null" >
+                login_pwd = #{loginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="loginpwdModifyTime != null" >
+                loginpwd_modify_time = #{loginpwdModifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="registerClient != null" >
+                register_client = #{registerClient,jdbcType=VARCHAR},
+            </if>
+            <if test="invitationCode != null" >
+                invitation_code = #{invitationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="channelId != null" >
+                channel_id = #{channelId,jdbcType=INTEGER},
+            </if>
+            <if test="levelId != null" >
+                level_id = #{levelId,jdbcType=BIGINT},
+            </if>
+            <if test="registerIp != null" >
+                register_ip = #{registerIp,jdbcType=VARCHAR},
+            </if>
+            <if test="loginIp != null" >
+                login_ip = #{loginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.User" >
+        update user
+        set login_name = #{loginName,jdbcType=VARCHAR},
+        login_pwd = #{loginPwd,jdbcType=VARCHAR},
+        loginpwd_modify_time = #{loginpwdModifyTime,jdbcType=TIMESTAMP},
+        register_client = #{registerClient,jdbcType=VARCHAR},
+        invitation_code = #{invitationCode,jdbcType=VARCHAR},
+        channel_id = #{channelId,jdbcType=INTEGER},
+        level_id = #{levelId,jdbcType=BIGINT},
+        register_ip = #{registerIp,jdbcType=VARCHAR},
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="listSelective" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `user`
+        <include refid="searchBy"/>
+    </select>
+</mapper>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czwx.cashloan.core.mapper.ConsultMapper" >
+  <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.Consult" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="consult_img" property="consultImg" jdbcType="VARCHAR" />
+    <result column="consult_url" property="consultUrl" jdbcType="VARCHAR" />
+    <result column="consult_detail" property="consultDetail" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="top_state" property="topState" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, consult_img, consult_url, consult_detail, state, type, top_state ,create_time, update_time
+  </sql>
+  <sql id="searchBy">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="consultImg != null" >
+        and consult_img = #{consultImg,jdbcType=VARCHAR}
+      </if>
+      <if test="consultUrl != null" >
+        and consult_url = #{consultUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="consultDetail != null" >
+        and consult_detail = #{consultDetail,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null" >
+        and state = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="topState != null" >
+        and top_state = #{topState,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null" >
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createTime != null" >
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from consult
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="listSelect" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from consult
+    <include refid="searchBy"/>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from consult
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.czwx.cashloan.core.model.Consult" >
+    insert into consult (id, consult_img, consult_url, 
+      consult_detail, state, type, top_state,
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{consultImg,jdbcType=VARCHAR}, #{consultUrl,jdbcType=VARCHAR}, 
+      #{consultDetail,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{topState,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.Consult" >
+    insert into consult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="consultImg != null" >
+        consult_img,
+      </if>
+      <if test="consultUrl != null" >
+        consult_url,
+      </if>
+      <if test="consultDetail != null" >
+        consult_detail,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="topState != null" >
+        top_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="consultImg != null" >
+        #{consultImg,jdbcType=VARCHAR},
+      </if>
+      <if test="consultUrl != null" >
+        #{consultUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="consultDetail != null" >
+        #{consultDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="topState != null" >
+        #{topState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.Consult" >
+    update consult
+    <set >
+      <if test="consultImg != null" >
+        consult_img = #{consultImg,jdbcType=VARCHAR},
+      </if>
+      <if test="consultUrl != null" >
+        consult_url = #{consultUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="consultDetail != null" >
+        consult_detail = #{consultDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.Consult" >
+    update consult
+    set consult_img = #{consultImg,jdbcType=VARCHAR},
+      consult_url = #{consultUrl,jdbcType=VARCHAR},
+      consult_detail = #{consultDetail,jdbcType=VARCHAR},
+      state = #{state,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
