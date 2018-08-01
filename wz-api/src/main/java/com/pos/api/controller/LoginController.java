@@ -249,7 +249,7 @@ public class LoginController {
 	}
 
 	/**
-	 * 修改密码接口(pos-新)
+	 * 修改密码接口(wz-新)
 	 * @param request
 	 * @param response
 	 * @param phone

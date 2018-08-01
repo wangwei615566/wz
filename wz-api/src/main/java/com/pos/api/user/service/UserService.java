@@ -71,7 +71,6 @@ public class UserService {
      * @param signMsg
      * @param channelCode
      * @param markChannel
-     * @param drainageId
      * @param registration 注册方式
      * @param passWord 登陆密码（未加密）
      * @return
@@ -87,22 +86,7 @@ public class UserService {
                 ret.put("msg", "参数有误");
                 return ret;
             }
-            ClSmsService clSmsService = (ClSmsService)BeanUtil.getBean("clSmsService");
-            int results = clSmsService.verifySms(phone, SmsModel.SMS_TYPE_REGISTER, vcode);
-            String vmsg;
-            if (results == 1) {
-            	vmsg = null;
-    		}else if(results == -1){
-    			vmsg="验证码已过期";
-    		}else {
-    			vmsg="手机号码或验证码错误";
-    		}
-            if (vmsg != null) {
-                Map ret = new LinkedHashMap();
-                ret.put("success", false);
-                ret.put("msg", vmsg);
-                return ret;
-            }
+
             Map invitor = null;
             if (!StringUtil.isEmpty(invitationCode)) {
                 invitor = mybatisService.queryRec("usr.queryUserByInvitation", invitationCode);
@@ -123,7 +107,7 @@ public class UserService {
             }
 
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-            long userId = dbService.insert(SqlUtil.buildInsertSqlMap("cl_user", new Object[][]{
+            long userId = dbService.insert(SqlUtil.buildInsertSqlMap("user", new Object[][]{
                 {"login_name", phone},
                 {"login_pwd", pwd},
                 {"invitation_code", randomInvitationCode(6)},
@@ -134,42 +118,8 @@ public class UserService {
                 {"mark_channel", markChannel}
             }));
 
-            dbService.insert(SqlUtil.buildInsertSqlMap("cl_user_base_info", new Object[][]{
-                {"user_id", userId},
-                {"phone", phone},
-                {"register_coordinate", registerCoordinate},
-                {"register_addr", registerAddr},
-                {"third_auth", "0"},
-            }));
-
-            dbService.insert(SqlUtil.buildInsertSqlMap("arc_credit", new Object[][]{
-            		{"user_id", userId},
-            		{"consumer_no", userId},
-                {"total", Global.getDouble("init_credit")},
-                {"unuse", Global.getDouble("init_credit")},
-                {"state", 10}
-            }));
-            dbService.insert(SqlUtil.buildInsertSqlMap("cl_profit_amount", new Object[][]{
-                {"user_id", userId},
-                {"state", "10"}
-            }));
-
-            dbService.insert(SqlUtil.buildInsertSqlMap("cl_user_auth", new Object[][]{
-                {"user_id", userId},
-                {"id_state", 10},
-                {"zhima_state", 10},
-                {"alipay_state", 30},
-                {"phone_state", 10},
-                {"phone_consistent", "true"},
-                {"alipay_consistent", "true"},
-                {"contact_state", 10},
-                {"bank_card_state", 10},
-                {"work_info_state", 10},
-                {"other_info_state", 10},
-            }));
-
             if (invitor != null) {
-                dbService.insert(SqlUtil.buildInsertSqlMap("cl_user_invite", new Object[][]{
+                dbService.insert(SqlUtil.buildInsertSqlMap("user_invite", new Object[][]{
                     {"invite_time", new Date()},
                     {"invite_id", userId},
                     {"invite_name", phone},
@@ -177,23 +127,18 @@ public class UserService {
                     {"user_name", invitor.get("login_name")},
                 }));
             }
-
+            dbService.insert(SqlUtil.buildInsertSqlMap("user_amount", new Object[][]{
+                    {"user_id", userId},
+                    {"total", 0.0},
+                    {"update_time", new Date()},
+                    {"create_time", new Date()},
+            }));
             //2017.5.6 仅用于demo演示环境
 //            demoUser(userId);
 
             Map result = new LinkedHashMap();
             result.put("success", true);
             result.put("msg", "注册成功");
-            if ("sms".equals(registration)){//是否短信注册，即自动生成密码   是则发短信通知用户密码
-                try{
-                    //注册成功发送密码
-                    Map<String, Object> data = new HashMap<String, Object>();
-                    data.put("registerPass",passWord);
-                    clSmsService.sendSmsAsyncron("registerPassword", data, phone);
-                }catch (Exception e){
-                    logger.error("初始化密码发送失败", e);
-                }
-            }
             return result;
         } catch (Exception e) {
             logger.error("注册失败", e);
@@ -270,8 +215,6 @@ public class UserService {
             String dbPwd = (String) user.get("login_pwd");
             if (dbPwd.equalsIgnoreCase(loginPwd)) {
                 AppSessionBean session = appDbSession.create(request, loginName);
-                Date loginTime = new Date();
-                dbService.update("update cl_user set login_time=? where login_name=?", loginTime, loginName);//设置当前时间为登录时间
                 Map ret = new LinkedHashMap();
                 ret.put("success", true);
                 ret.put("msg", "登录成功");

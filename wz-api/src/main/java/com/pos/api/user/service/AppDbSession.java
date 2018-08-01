@@ -124,7 +124,7 @@ public class AppDbSession {
 			int loginType) {
 
 		Map<String, Object> user = dbService.queryRec(
-				"select * from cl_user where login_name=?", loginname);
+				"select * from user where login_name=?", loginname);
 		long userId = Long.parseLong(user.get("id").toString());
 
 		// Map customer =
