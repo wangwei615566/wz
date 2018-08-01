@@ -120,8 +120,6 @@ public class ApiInterceptor implements HandlerInterceptor {
 			return false;
 		}
 		flag =  MD5.verify(paramsString(requestMap),signMsg, "oQIhAP24Kb3Bsf7IE14wpl751bQc9VAPsFZ+LdB4riBgg2TDAiEAsSomOO1v8mK2VWhEQh6mttgN");
-			// 不需要登录的地址可能没有token
-		// 根据地址是否带/act/生成的_signMsg，校验
 		if (!flag) {
 			rec.put("code", 400);
 			rec.put("msg", "验签不通过");
