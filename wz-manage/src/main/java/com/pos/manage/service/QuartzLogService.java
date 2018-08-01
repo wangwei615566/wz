@@ -5,7 +5,7 @@ import java.util.Map;
 import com.github.pagehelper.Page;
 import com.pos.manage.domain.QuartzLog;
 import com.pos.manage.model.QuartzLogModel;
-import com.rongdu.cashloan.core.common.service.BaseService;
+import com.wz.cashloan.core.common.service.BaseService;
 
 /**
  * 定时任务记录Service

@@ -1,4 +1,4 @@
-package com.pos.api.service.impl;
+/*package com.pos.api.service.impl;
 
 
 import java.util.ArrayList;
@@ -26,12 +26,12 @@ import com.pos.api.bean.SmsTpl;
 import com.pos.api.mapper.SmsMapper;
 import com.pos.api.mapper.SmsTplMapper;
 import com.pos.api.service.ClSmsService;
-import com.rongdu.cashloan.core.common.context.Global;
-import com.rongdu.cashloan.core.common.mapper.BaseMapper;
-import com.rongdu.cashloan.core.common.service.impl.BaseServiceImpl;
-import com.rongdu.cashloan.core.common.util.DateUtil;
-import com.rongdu.cashloan.core.common.util.HttpUtil;
-import com.rongdu.cashloan.core.common.util.StringUtil;
+import com.wz.cashloan.core.common.context.Global;
+import com.wz.cashloan.core.common.mapper.BaseMapper;
+import com.wz.cashloan.core.common.service.impl.BaseServiceImpl;
+import com.wz.cashloan.core.common.util.DateUtil;
+import com.wz.cashloan.core.common.util.HttpUtil;
+import com.wz.cashloan.core.common.util.StringUtil;
 
 import credit.Header;
 import smscredit.BatchSmsCreditRequest;
@@ -190,10 +190,10 @@ public class ClSmsServiceImpl extends BaseServiceImpl<Sms, Long> implements ClSm
 			code = resultJson.getInteger("code");
 			Sms sms = new Sms();
 			if (code == 200) {
-				/*JSONObject resJson = JSONObject.parseObject(StringUtil.isNull(resultJson.get("res")));
+				JSONObject resJson = JSONObject.parseObject(StringUtil.isNull(resultJson.get("res")));
 				JSONObject tempJson = JSONObject.parseObject(StringUtil.isNull(resultJson.get("tempParame")));
 				String orderNo = StringUtil.isNull(resultJson.get("orderNo"));
-				Integer tempCode = tempJson.getInteger("code");*/
+				Integer tempCode = tempJson.getInteger("code");
                 JSONObject data = resultJson.getJSONObject("data");
                 String orderNo = StringUtil.isNull(data.getString("orderNo"));
                 JSONObject params = data.getJSONObject("params");
@@ -230,7 +230,7 @@ public class ClSmsServiceImpl extends BaseServiceImpl<Sms, Long> implements ClSm
 
 	}
 
-    /*private int result(String result,String phone,String type){
+    private int result(String result,String phone,String type){
         JSONObject resultJson = JSONObject.parseObject(result);
 
         Integer code;
@@ -244,7 +244,7 @@ public class ClSmsServiceImpl extends BaseServiceImpl<Sms, Long> implements ClSm
         }
         return msg;
 
-    }*/
+    }
 
 
 	
@@ -288,7 +288,7 @@ public class ClSmsServiceImpl extends BaseServiceImpl<Sms, Long> implements ClSm
 			return 1;
 		}
 
-		/*Map<String, Object> search = new HashMap<>();
+		Map<String, Object> search = new HashMap<>();
 		search.put("type", type);
 		search.put("state", "10");
 		SmsTpl tpl = smsTplMapper.findSelective(search);
@@ -305,7 +305,7 @@ public class ClSmsServiceImpl extends BaseServiceImpl<Sms, Long> implements ClSm
 			}
 
 		}
-		return 0;*/
+		return 0;
 
 		boolean isSendVcode =  "overdue".equals(type) || "repayInform".equals(type) || "checkPass".equals(type) || "advanceFiveDayInform".equals(type) || "registerPassword".equals(type);
 		if (!isSendVcode) {
@@ -555,4 +555,4 @@ public class ClSmsServiceImpl extends BaseServiceImpl<Sms, Long> implements ClSm
 		
 		return mostTime - times;
 	}
-}
+}*/

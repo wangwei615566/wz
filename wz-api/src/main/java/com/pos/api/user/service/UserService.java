@@ -10,8 +10,6 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.czwx.cashloan.core.mapper.UserMapper;
-import com.czwx.cashloan.core.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pos.api.model.SmsModel;
 import com.pos.api.service.ClSmsService;
 import com.pos.api.user.bean.AppSessionBean;
-import com.rongdu.cashloan.core.common.context.Global;
-import com.rongdu.cashloan.core.common.util.MapUtil;
-import com.rongdu.cashloan.core.common.util.SqlUtil;
-import com.rongdu.cashloan.core.common.util.StringUtil;
-import com.rongdu.cashloan.core.service.CloanUserService;
+import com.wz.cashloan.core.common.context.Global;
+import com.wz.cashloan.core.common.util.MapUtil;
+import com.wz.cashloan.core.common.util.SqlUtil;
+import com.wz.cashloan.core.common.util.StringUtil;
+import com.wz.cashloan.core.mapper.User;
+import com.wz.cashloan.core.mapper.UserMapper;
 
 import tool.util.BeanUtil;
 
@@ -88,20 +87,6 @@ public class UserService {
                 ret.put("msg", "参数有误");
                 return ret;
             }
-
-            CloanUserService cloanUserService = (CloanUserService) BeanUtil.getBean("cloanUserService");
-            long todayCount = cloanUserService.todayCount();
-            String dayRegisterMax_ = Global.getValue("day_register_max");
-            if(StringUtil.isNotBlank(dayRegisterMax_)){
-            	int dayRegisterMax = Integer.parseInt(dayRegisterMax_);
-            	if(dayRegisterMax > 0 && todayCount >= dayRegisterMax){
-            		 Map ret = new LinkedHashMap();
-                     ret.put("success", false);
-                     ret.put("msg", "今日注册用户数已达上限，请明日再来");
-                     return ret;
-            	}
-            }
-
             ClSmsService clSmsService = (ClSmsService)BeanUtil.getBean("clSmsService");
             int results = clSmsService.verifySms(phone, SmsModel.SMS_TYPE_REGISTER, vcode);
             String vmsg;

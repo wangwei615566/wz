@@ -5,8 +5,8 @@ import java.util.Map;
 
 import com.pos.manage.domain.QuartzInfo;
 import com.pos.manage.model.QuartzInfoModel;
-import com.rongdu.cashloan.core.common.mapper.BaseMapper;
-import com.rongdu.cashloan.core.common.mapper.RDBatisDao;
+import com.wz.cashloan.core.common.mapper.BaseMapper;
+import com.wz.cashloan.core.common.mapper.RDBatisDao;
 
 /**
  * 定时任务详情Dao

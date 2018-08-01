@@ -2,7 +2,7 @@ package com.pos.api.config;
 
 import java.util.Properties;
 
-import com.rongdu.cashloan.core.common.context.Global;
+import com.wz.cashloan.core.common.context.Global;
 
 public class JuheConfig {
 

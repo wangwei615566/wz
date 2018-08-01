@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.czwx.cashloan.core.mapper.UserMapper" >
-    <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.User" >
+<mapper namespace="com.wz.cashloan.core.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.wz.cashloan.core.model.User" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="login_name" property="loginName" jdbcType="VARCHAR" />
         <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
@@ -87,7 +87,7 @@
         delete from user
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.czwx.cashloan.core.model.User" >
+    <insert id="insert" parameterType="com.wz.cashloan.core.model.User" >
         insert into user (id, login_name, login_pwd,
         loginpwd_modify_time, register_client, invitation_code,
         channel_id, level_id, register_ip,
@@ -99,7 +99,7 @@
         #{loginIp,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.User" >
+    <insert id="insertSelective" parameterType="com.wz.cashloan.core.model.User" >
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -178,7 +178,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.User" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.wz.cashloan.core.model.User" >
         update user
         <set >
             <if test="loginName != null" >
@@ -217,7 +217,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.User" >
+    <update id="updateByPrimaryKey" parameterType="com.wz.cashloan.core.model.User" >
         update user
         set login_name = #{loginName,jdbcType=VARCHAR},
         login_pwd = #{loginPwd,jdbcType=VARCHAR},

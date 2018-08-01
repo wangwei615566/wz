@@ -105,8 +105,8 @@
    
    <!-- mapper扫描 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    	<property name="basePackage" value="com.pos.api.mapper,com.rongdu.cashloan.core.mapper,com.rongdu.cashloan.core.common.mapper,com.czwx.cashloan.core.mapper,com.rongdu.cashloan.system.mapper"/>
-        <property name="annotationClass" value="com.rongdu.cashloan.core.common.mapper.RDBatisDao"/>
+    	<property name="basePackage" value="com.pos.api.mapper,com.wz.cashloan.core.mapper,com.wz.cashloan.core.common.mapper,com.wz.cashloan.core.mapper,com.wz.cashloan.system.mapper"/>
+        <property name="annotationClass" value="com.wz.cashloan.core.common.mapper.RDBatisDao"/>
     </bean>
     <bean id="slaveSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 	  <constructor-arg index="0" ref="sqlSessionFactory" />

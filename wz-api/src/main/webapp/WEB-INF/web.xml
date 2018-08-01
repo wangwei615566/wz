@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-	<display-name>pos</display-name>
+	<display-name>wz-api</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -80,7 +80,7 @@
 
 	<filter>
 		<filter-name>remoteAddressFtiler</filter-name>
-		<filter-class>com.rongdu.cashloan.core.common.web.filter.RemoteAddressFilter</filter-class>
+		<filter-class>com.wz.cashloan.core.common.web.filter.RemoteAddressFilter</filter-class>
 		<init-param>
 			<param-name>ForwardParameter</param-name>
 			<param-value>X-Forwarded-For</param-value>
@@ -106,7 +106,7 @@
 
 	<filter>
 		<filter-name>performanceMonitor</filter-name>
-		<filter-class>com.rongdu.cashloan.core.common.web.filter.PerformanceMonitorFilter</filter-class>
+		<filter-class>com.wz.cashloan.core.common.web.filter.PerformanceMonitorFilter</filter-class>
 		<init-param>
 			<param-name>threshold</param-name>
 			<param-value>10</param-value>
@@ -131,7 +131,7 @@
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.rongdu.cashloan.core.common.web.listener.WebConfigContextListener</listener-class>
+		<listener-class>com.wz.cashloan.core.common.web.listener.WebConfigContextListener</listener-class>
 	</listener>
 	<servlet>
 		<servlet-name>springServlet</servlet-name>

@@ -1,6 +1,6 @@
 package com.pos.api.util;
 
-import com.rongdu.cashloan.core.common.util.HttpsUtil;
+import com.wz.cashloan.core.common.util.HttpsUtil;
 
 import java.util.Map;
 import java.util.concurrent.DelayQueue;

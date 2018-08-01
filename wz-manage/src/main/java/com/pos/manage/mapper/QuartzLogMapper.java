@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.pos.manage.domain.QuartzLog;
 import com.pos.manage.model.QuartzLogModel;
-import com.rongdu.cashloan.core.common.mapper.BaseMapper;
-import com.rongdu.cashloan.core.common.mapper.RDBatisDao;
+import com.wz.cashloan.core.common.mapper.BaseMapper;
+import com.wz.cashloan.core.common.mapper.RDBatisDao;
 
 /**
  * 定时任务记录Dao

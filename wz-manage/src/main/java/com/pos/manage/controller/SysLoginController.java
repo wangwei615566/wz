@@ -30,20 +30,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.rongdu.cashloan.core.common.context.Constant;
-import com.rongdu.cashloan.core.common.exception.ServiceException;
-import com.rongdu.cashloan.core.common.exception.SysAccessCodeException;
-import com.rongdu.cashloan.core.common.util.ServletUtils;
-import com.rongdu.cashloan.core.common.web.controller.BaseController;
-import com.rongdu.cashloan.system.domain.SysAccessCode;
-import com.rongdu.cashloan.system.domain.SysRole;
-import com.rongdu.cashloan.system.domain.SysUser;
-import com.rongdu.cashloan.system.domain.SysUserRole;
-import com.rongdu.cashloan.system.security.authentication.encoding.PasswordEncoder;
-import com.rongdu.cashloan.system.service.SysAccessCodeService;
-import com.rongdu.cashloan.system.service.SysRoleService;
-import com.rongdu.cashloan.system.service.SysUserRoleService;
-import com.rongdu.cashloan.system.service.SysUserService;
+import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.exception.ServiceException;
+import com.wz.cashloan.core.common.exception.SysAccessCodeException;
+import com.wz.cashloan.core.common.util.ServletUtils;
+import com.wz.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.system.domain.SysAccessCode;
+import com.wz.cashloan.system.domain.SysRole;
+import com.wz.cashloan.system.domain.SysUser;
+import com.wz.cashloan.system.domain.SysUserRole;
+import com.wz.cashloan.system.security.authentication.encoding.PasswordEncoder;
+import com.wz.cashloan.system.service.SysAccessCodeService;
+import com.wz.cashloan.system.service.SysRoleService;
+import com.wz.cashloan.system.service.SysUserRoleService;
+import com.wz.cashloan.system.service.SysUserService;
 
 /**
  * 

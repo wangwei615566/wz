@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.czwx.cashloan.core.mapper.UserInviteMapper" >
-  <resultMap id="BaseResultMap" type="com.czwx.cashloan.core.model.UserInvite" >
+<mapper namespace="com.wz.cashloan.core.mapper.UserInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.wz.cashloan.core.model.UserInvite" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="invite_time" property="inviteTime" jdbcType="TIMESTAMP" />
     <result column="invite_id" property="inviteId" jdbcType="BIGINT" />
@@ -18,18 +18,11 @@
     from user_invite
     where id = #{id,jdbcType=BIGINT}
   </select>
-
-  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select
-    <include refid="Base_Column_List" />
-    from user_invite
-    where invite_id = #{id,jdbcType=BIGINT}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user_invite
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+  <insert id="insert" parameterType="com.wz.cashloan.core.model.UserInvite" >
     insert into user_invite (id, invite_time, invite_id, 
       invite_name, user_id, user_name
       )
@@ -37,7 +30,7 @@
       #{inviteName,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+  <insert id="insertSelective" parameterType="com.wz.cashloan.core.model.UserInvite" >
     insert into user_invite
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.wz.cashloan.core.model.UserInvite" >
     update user_invite
     <set >
       <if test="inviteTime != null" >
@@ -101,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czwx.cashloan.core.model.UserInvite" >
+  <update id="updateByPrimaryKey" parameterType="com.wz.cashloan.core.model.UserInvite" >
     update user_invite
     set invite_time = #{inviteTime,jdbcType=TIMESTAMP},
       invite_id = #{inviteId,jdbcType=BIGINT},

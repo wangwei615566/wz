@@ -20,7 +20,7 @@
 	<!-- 此文件暂时配置不多，在以后如果需要开放接口或者调用别的项目开放接口的时候，最好采用scoket通信模式，将配置文件配置到这里 -->
 
 	<!-- Security不支持自定义注解注入service -->
-	<context:component-scan base-package="com.pos.api.user.service,com.pos.api.service,com.rongdu.cashloan.core.service,com.rongdu.cashloan.system.service">
+	<context:component-scan base-package="com.pos.api.user.service,com.pos.api.service,com.wz.cashloan.core.service,com.wz.cashloan.system.service">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
@@ -34,7 +34,7 @@
 	</bean>
 
 	<!-- JSON 序列化处理 -->
-	<bean id="objToJsonSerializer" class="com.rongdu.cashloan.core.common.util.json.fastjson.ObjToJsonSerializerImpl"/>
+	<bean id="objToJsonSerializer" class="com.wz.cashloan.core.common.util.json.fastjson.ObjToJsonSerializerImpl"/>
 
 	<!-- 将message信息注入Spring context中 -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -49,10 +49,10 @@
 	</bean>
 	<!-- 密码加密 -->
 	<bean id="passwordEncoder"
-		class="com.rongdu.cashloan.system.security.authentication.encoding.PasswordEncoder">
+		class="com.wz.cashloan.system.security.authentication.encoding.PasswordEncoder">
 		<property name="crypto">
 			<bean
-				class="com.rongdu.cashloan.core.common.util.crypto.impl.BlowfishCryptoImpl">
+				class="com.wz.cashloan.core.common.util.crypto.impl.BlowfishCryptoImpl">
 				<property name="key"
 					value="${system.password.encoding.key}" />
 			</bean>

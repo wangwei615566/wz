@@ -2,8 +2,8 @@ package com.pos.api.mapper;
 
 
 import com.pos.api.bean.SmsTpl;
-import com.rongdu.cashloan.core.common.mapper.BaseMapper;
-import com.rongdu.cashloan.core.common.mapper.RDBatisDao;
+import com.wz.cashloan.core.common.mapper.BaseMapper;
+import com.wz.cashloan.core.common.mapper.RDBatisDao;
 
 
 @RDBatisDao

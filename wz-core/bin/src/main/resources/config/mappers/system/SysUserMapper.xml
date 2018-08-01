@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rongdu.cashloan.system.mapper.SysUserMapper">
-	<resultMap type="com.rongdu.cashloan.system.domain.SysUser"
+<mapper namespace="com.wz.cashloan.system.mapper.SysUserMapper">
+	<resultMap type="com.wz.cashloan.system.domain.SysUser"
 		id="sysUserResult">
 		<id column="id" property="id" />
 		<result column="name" property="name" />
@@ -214,7 +214,7 @@
 		</trim>
 	</sql>
 
-	<insert id="save" parameterType="com.rongdu.cashloan.system.domain.SysUser">
+	<insert id="save" parameterType="com.wz.cashloan.system.domain.SysUser">
 		<selectKey resultType="long" keyProperty="id">
 			SELECT
 			LAST_INSERT_ID() AS ID
@@ -265,7 +265,7 @@
 		)
 	</insert>
 
-	<update id="update" parameterType="com.rongdu.cashloan.system.domain.SysUser">
+	<update id="update" parameterType="com.wz.cashloan.system.domain.SysUser">
 		update sys_user
 		set
 		name=#{name},
@@ -285,7 +285,7 @@
 		id = #{id}
 	</update>
 
-	<update id="editUserLoginInfo" parameterType="com.rongdu.cashloan.system.domain.SysUser">
+	<update id="editUserLoginInfo" parameterType="com.wz.cashloan.system.domain.SysUser">
 		update sys_user
 		set
 		login_ip=#{loginIp},
@@ -295,7 +295,7 @@
 		#{userName}
 	</update>
 
-	<update id="editUserPassWord" parameterType="com.rongdu.cashloan.system.domain.SysUser">
+	<update id="editUserPassWord" parameterType="com.wz.cashloan.system.domain.SysUser">
 		update sys_user
 		set
 		password=#{password}

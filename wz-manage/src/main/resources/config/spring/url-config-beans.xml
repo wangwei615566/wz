@@ -15,22 +15,22 @@
   http://www.springframework.org/schema/tx    
   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"  default-autowire="byName">
 	<!-- mlms-http-request -->
-	<bean id="mlmsAppServerConfig" init-method="init" class="com.rongdu.cashloan.core.common.model.URLConfig">
+	<bean id="mlmsAppServerConfig" init-method="init" class="com.wz.cashloan.core.common.model.URLConfig">
 		<property name="host" value="${mlms.app.host}" />
 		<property name="port" value="${mlms.app.port}" /> 
 		<property name="contextPath" value="${mlms.app.contextPath}" />
 	</bean>
-	<bean id="mlmsImageServerConfig" init-method="init" class="com.rongdu.cashloan.core.common.model.URLConfig">
+	<bean id="mlmsImageServerConfig" init-method="init" class="com.wz.cashloan.core.common.model.URLConfig">
 		<property name="host" value="${mlms.image.host}" />
 		<property name="port" value="${mlms.image.port}" />
 		<property name="contextPath" value="${mlms.image.contextPath}" />
 	</bean>
-	<bean id="mlmsScriptServerConfig" init-method="init" class="com.rongdu.cashloan.core.common.model.URLConfig">
+	<bean id="mlmsScriptServerConfig" init-method="init" class="com.wz.cashloan.core.common.model.URLConfig">
 		<property name="host" value="${mlms.script.host}" />
 		<property name="port" value="${mlms.script.port}" />
 		<property name="contextPath" value="${mlms.script.contextPath}" />
 	</bean>
-	<bean id="mlmsStyleServerConfig" init-method="init" class="com.rongdu.cashloan.core.common.model.URLConfig">
+	<bean id="mlmsStyleServerConfig" init-method="init" class="com.wz.cashloan.core.common.model.URLConfig">
 		<property name="host" value="${mlms.style.host}" />
 		<property name="port" value="${mlms.style.port}" />
 		<property name="contextPath" value="${mlms.style.contextPath}" />

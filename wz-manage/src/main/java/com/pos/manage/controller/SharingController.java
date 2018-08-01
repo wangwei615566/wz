@@ -1,7 +1,7 @@
 package com.pos.manage.controller;
 
 import com.pos.manage.service.SharingService;
-import com.rongdu.cashloan.core.common.util.ServletUtils;
+import com.wz.cashloan.core.common.util.ServletUtils;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;

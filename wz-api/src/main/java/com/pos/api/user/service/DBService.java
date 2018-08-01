@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Service;
 
-import com.rongdu.cashloan.core.common.exception.BaseRuntimeException;
+import com.wz.cashloan.core.common.exception.BaseRuntimeException;
 
 /**
  * Created by lsk on 2017/2/14.

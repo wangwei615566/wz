@@ -2,9 +2,9 @@ package com.pos.manage.controller;
 
 import javax.annotation.Resource;
 
-import com.rongdu.cashloan.core.common.web.controller.BaseController;
-import com.rongdu.cashloan.system.service.SysPermService;
-import com.rongdu.cashloan.system.service.SysUserRoleService;
+import com.wz.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.system.service.SysPermService;
+import com.wz.cashloan.system.service.SysUserRoleService;
 
 public class SysPermAction extends BaseController{
 

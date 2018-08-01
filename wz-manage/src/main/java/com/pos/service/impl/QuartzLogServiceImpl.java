@@ -15,8 +15,8 @@ import com.pos.manage.domain.QuartzLog;
 import com.pos.manage.mapper.QuartzLogMapper;
 import com.pos.manage.model.QuartzLogModel;
 import com.pos.manage.service.QuartzLogService;
-import com.rongdu.cashloan.core.common.mapper.BaseMapper;
-import com.rongdu.cashloan.core.common.service.impl.BaseServiceImpl;
+import com.wz.cashloan.core.common.mapper.BaseMapper;
+import com.wz.cashloan.core.common.service.impl.BaseServiceImpl;
 
 
 /**

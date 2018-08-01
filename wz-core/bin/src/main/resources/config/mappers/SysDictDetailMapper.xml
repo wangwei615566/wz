@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--感谢ibatis持久层框架 2014-10 by wu-->
-<mapper namespace="com.rongdu.cashloan.core.mapper.SysDictDetailMapper">
+<mapper namespace="com.wz.cashloan.core.mapper.SysDictDetailMapper">
 	
 	<!--返回MAP-->		
-	<resultMap id="sysDictDetailResult" type="com.rongdu.cashloan.system.domain.SysDictDetail">
+	<resultMap id="sysDictDetailResult" type="com.wz.cashloan.system.domain.SysDictDetail">
 		<id column="id" property="id" />
 		<result column="item_code" property="itemCode" />
 		<result column="item_value" property="itemValue" />
@@ -77,7 +77,7 @@
 		where parent_id = #{parentId}
 	</select>
 	
-	<insert id="save" parameterType="com.rongdu.cashloan.system.domain.SysDictDetail">
+	<insert id="save" parameterType="com.wz.cashloan.system.domain.SysDictDetail">
 		insert into sys_dict_detail(
 			item_code,
 			item_value,
@@ -95,7 +95,7 @@
 	
 	
 	<!--更新所有字段-->
-	<update id="update" parameterType="com.rongdu.cashloan.system.domain.SysDictDetail">
+	<update id="update" parameterType="com.wz.cashloan.system.domain.SysDictDetail">
 		update sys_dict_detail
 		set
 			item_code=#{itemCode},
@@ -126,7 +126,7 @@
 		JOIN sys_dict_detail dd ON dd.parent_id = dic.id
  	</select>
  	
- 	<select id="findDetail" resultType="com.rongdu.cashloan.system.domain.SysDictDetail">
+ 	<select id="findDetail" resultType="com.wz.cashloan.system.domain.SysDictDetail">
  		select a.id,a.item_code itemCode,a.item_value itemValue,a.parent_id parentId,a.state from sys_dict_detail a  LEFT JOIN sys_dict b on b.id = a.parent_id 
 		where a.item_code = #{code,jdbcType=VARCHAR} and b.type_code = #{parentName,jdbcType=VARCHAR}
  	</select>

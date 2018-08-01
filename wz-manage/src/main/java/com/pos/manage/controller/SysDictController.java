@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.Page;
-import com.rongdu.cashloan.core.common.context.Constant;
-import com.rongdu.cashloan.core.common.exception.ServiceException;
-import com.rongdu.cashloan.core.common.util.JsonUtil;
-import com.rongdu.cashloan.core.common.util.RdPage;
-import com.rongdu.cashloan.core.common.util.ServletUtils;
-import com.rongdu.cashloan.core.common.web.controller.BaseController;
-import com.rongdu.cashloan.core.service.SysDictDetailService;
-import com.rongdu.cashloan.core.service.SysDictService;
-import com.rongdu.cashloan.system.domain.SysDict;
-import com.rongdu.cashloan.system.domain.SysDictDetail;
-import com.rongdu.cashloan.system.permission.annotation.RequiresPermission;
+import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.exception.ServiceException;
+import com.wz.cashloan.core.common.util.JsonUtil;
+import com.wz.cashloan.core.common.util.RdPage;
+import com.wz.cashloan.core.common.util.ServletUtils;
+import com.wz.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.core.service.SysDictDetailService;
+import com.wz.cashloan.core.service.SysDictService;
+import com.wz.cashloan.system.domain.SysDict;
+import com.wz.cashloan.system.domain.SysDictDetail;
+import com.wz.cashloan.system.permission.annotation.RequiresPermission;
 
 import tool.util.StringUtil;
 

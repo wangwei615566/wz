@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- user表:用户管理模块 -->
-<mapper namespace="com.rongdu.cashloan.core.mapper.UserMapper">
+<mapper namespace="com.wz.cashloan.core.mapper.UserMapper">
   <!--返回Map-->        
-    <resultMap id="BaseResultMap" type="com.rongdu.cashloan.core.domain.User">
+    <resultMap id="BaseResultMap" type="com.wz.cashloan.core.domain.User">
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="login_name" property="loginName" jdbcType="VARCHAR" />
         <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
         <result column="login_time" property="loginTime" jdbcType="VARCHAR" />
     </resultMap>
     <!--返回用户的基本信息Map-->        
-    <resultMap id="BaseInfoModelMap"  extends="BaseResultMap"  type="com.rongdu.cashloan.core.model.CloanUserModel">
+    <resultMap id="BaseInfoModelMap"  extends="BaseResultMap"  type="com.wz.cashloan.core.model.CloanUserModel">
         <result column="real_name" property="realName" jdbcType="VARCHAR" />
         <result column="id_no" property="idNo" jdbcType="VARCHAR" />
         <result column="id_addr" property="idAddr" jdbcType="VARCHAR" />
@@ -124,12 +124,12 @@
         </trim>
     </sql>
     
-    <insert id="save" parameterType="com.rongdu.cashloan.core.domain.User">
+    <insert id="save" parameterType="com.wz.cashloan.core.domain.User">
         insert into user(login_nae,login_pwd,loginpwd_modify_time,regist_time,register_client,trade_pwd,tradepwd_modify_time,uuid,invitation_code,level,channel_id,mark_channel,knid,drainage_id,register_ip,login_ip)
         values(#{loginName,jdbcType=VARCHAR},#{loginPwd,jdbcType=VARCHAR},#{loginpwdModifyTime,jdbcType=TIMESTAMP},#{registTime,jdbcType=TIMESTAMP},#{registerClient,jdbcType=VARCHAR},#{tradePwd,jdbcType=VARCHAR},#{tradepwdModifyTime,jdbcType=TIMESTAMP},#{uuid,jdbcType=VARCHAR},#{invitationCode,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{channelId,jdbcType=BIGINT},#{markChannel,jdbcType=VARCHAR},#{knid,jdbcType=VARCHAR},#{drainageId,jdbcType=BIGINT},#{registerIp,jdbcType=VARCHAR},#{loginIp,jdbcType=VARCHAR},login_time=#{loginTime,jdbcType=TIMESTAMP})
     </insert>
     
-    <update id="update" parameterType="com.rongdu.cashloan.core.domain.User">
+    <update id="update" parameterType="com.wz.cashloan.core.domain.User">
         update user set 
             login_name = #{loginName,jdbcType=VARCHAR},
             login_pwd = #{loginPwd,jdbcType=VARCHAR},
@@ -327,7 +327,7 @@
         SELECT * FROM `user` WHERE login_name like concat("%",#{loginName,jdbcType=VARCHAR},"%")
     </select>
     
-	<update id="updateLevel" parameterType="com.rongdu.cashloan.core.domain.User">
+	<update id="updateLevel" parameterType="com.wz.cashloan.core.domain.User">
         update user set 
             level = #{level,jdbcType=INTEGER}
         where id = #{id ,jdbcType=BIGINT}

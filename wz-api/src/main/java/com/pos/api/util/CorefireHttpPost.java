@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.SortedMap;
 
-import com.rongdu.cashloan.core.common.util.XmlUtils;
+import com.wz.cashloan.core.common.util.XmlUtils;
 
 
 public class CorefireHttpPost{

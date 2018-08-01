@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rongdu.cashloan.system.mapper.SysUserRoleMapper">
-	<resultMap id="sysUserRoleResult" type="com.rongdu.cashloan.system.domain.SysUserRole">
+<mapper namespace="com.wz.cashloan.system.mapper.SysUserRoleMapper">
+	<resultMap id="sysUserRoleResult" type="com.wz.cashloan.system.domain.SysUserRole">
 		<result column="id" property="id" />
 		<result column="role_id" property="roleId" />
 		<result column="user_id" property="userId" />
@@ -21,7 +21,7 @@
             </if>
 		</trim>
 	</sql>
-	<insert id="save" parameterType="com.rongdu.cashloan.system.domain.SysUserRole">
+	<insert id="save" parameterType="com.wz.cashloan.system.domain.SysUserRole">
 		<selectKey resultType="long" keyProperty="id">
 			SELECT LAST_INSERT_ID() AS ID
 		</selectKey>

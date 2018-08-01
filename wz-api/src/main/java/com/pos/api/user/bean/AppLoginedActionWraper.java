@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.rongdu.cashloan.core.common.util.StringUtil;
+import com.wz.cashloan.core.common.util.StringUtil;
 
 /**
  * Created by lsk on 2016/7/29.

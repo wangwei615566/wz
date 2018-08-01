@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.rongdu.cashloan.core.common.context.Constant;
-import com.rongdu.cashloan.core.common.util.JsonUtil;
-import com.rongdu.cashloan.core.common.util.ServletUtils;
-import com.rongdu.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.util.JsonUtil;
+import com.wz.cashloan.core.common.util.ServletUtils;
+import com.wz.cashloan.core.common.web.controller.BaseController;
 
 @Scope("prototype")
 @Controller

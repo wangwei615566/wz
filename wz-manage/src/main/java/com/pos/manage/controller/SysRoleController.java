@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.Page;
-import com.rongdu.cashloan.core.common.context.Constant;
-import com.rongdu.cashloan.core.common.exception.ServiceException;
-import com.rongdu.cashloan.core.common.util.JsonUtil;
-import com.rongdu.cashloan.core.common.util.RdPage;
-import com.rongdu.cashloan.core.common.util.ServletUtils;
-import com.rongdu.cashloan.core.common.web.controller.BaseController;
-import com.rongdu.cashloan.system.domain.SysRole;
-import com.rongdu.cashloan.system.domain.SysUser;
-import com.rongdu.cashloan.system.permission.annotation.RequiresPermission;
-import com.rongdu.cashloan.system.service.SysRoleService;
-import com.rongdu.cashloan.system.service.SysUserService;
+import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.exception.ServiceException;
+import com.wz.cashloan.core.common.util.JsonUtil;
+import com.wz.cashloan.core.common.util.RdPage;
+import com.wz.cashloan.core.common.util.ServletUtils;
+import com.wz.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.system.domain.SysRole;
+import com.wz.cashloan.system.domain.SysUser;
+import com.wz.cashloan.system.permission.annotation.RequiresPermission;
+import com.wz.cashloan.system.service.SysRoleService;
+import com.wz.cashloan.system.service.SysUserService;
 
 @Scope("prototype")
 @Controller

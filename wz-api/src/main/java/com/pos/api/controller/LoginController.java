@@ -22,8 +22,8 @@ import com.pos.api.user.service.DBService;
 import com.pos.api.user.service.MybatisService;
 import com.pos.api.user.service.SmsService;
 import com.pos.api.user.service.UserService;
-import com.rongdu.cashloan.core.common.util.MD5;
-import com.rongdu.cashloan.core.common.util.StringUtil;
+import com.wz.cashloan.core.common.util.MD5;
+import com.wz.cashloan.core.common.util.StringUtil;
 
 /**
  * Created by lsk on 2016/7/27.

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.czwx.cashloan.core.mapper.SysManageOperateLogMapper">
+<mapper namespace="com.wz.cashloan.core.mapper.SysManageOperateLogMapper">
 	<insert id="saveSysManageOperateLog"
-		parameterType="com.czwx.cashloan.core.model.SysOperateLog">
+		parameterType="com.wz.cashloan.core.model.SysOperateLog">
 		insert into
 		sys_log(action_name,action_url,create_time,operate_id,operate_name,params)
 		values(#{actionName,jdbcType=VARCHAR},#{actionUrl,jdbcType=VARCHAR},#{createTime,jdbcType=VARCHAR},

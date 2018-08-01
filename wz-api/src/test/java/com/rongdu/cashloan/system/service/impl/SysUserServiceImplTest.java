@@ -1,5 +1,5 @@
 /*
-package com.rongdu.cashloan.system.service.impl;
+package com.wz.cashloan.system.service.impl;
 
 import static org.junit.Assert.*;
 
@@ -11,8 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
-import com.rongdu.cashloan.core.common.exception.ServiceException;
-import com.rongdu.cashloan.system.service.SysUserService;
+import com.wz.cashloan.core.common.exception.ServiceException;
+import com.wz.cashloan.system.service.SysUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/config/spring/*-beans.xml"})

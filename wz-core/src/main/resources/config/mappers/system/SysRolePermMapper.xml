@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.rongdu.cashloan.system.mapper.SysRolePermMapper">
+<mapper namespace="com.wz.cashloan.system.mapper.SysRolePermMapper">
 
 	<resultMap id="BaseResultMap"
-		type="com.rongdu.cashloan.system.domain.SysRolePerm">
+		type="com.wz.cashloan.system.domain.SysRolePerm">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="role_id" property="roleId" jdbcType="INTEGER" />
 		<result column="perm_id" property="permId" jdbcType="INTEGER" />
@@ -31,7 +31,7 @@
 		#{roleId,jdbcType=INTEGER}
 	</select>
 
-	<insert id="save" parameterType="com.rongdu.cashloan.system.domain.SysRolePerm">
+	<insert id="save" parameterType="com.wz.cashloan.system.domain.SysRolePerm">
 		insert into sys_role_perm
 		(id,
 		role_id, perm_id,
@@ -52,7 +52,7 @@
 		where role_id=#{roleId}
 	</delete>
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.rongdu.cashloan.system.domain.SysRolePerm">
+	<update id="updateByPrimaryKeySelective" parameterType="com.wz.cashloan.system.domain.SysRolePerm">
 		update sys_role_perm
 		<set>
 			<if test="roleId != null">

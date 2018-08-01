@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rongdu.cashloan.system.mapper.SysDictMapper">
+<mapper namespace="com.wz.cashloan.system.mapper.SysDictMapper">
 
-	<resultMap id="dictResult" type="com.rongdu.cashloan.system.domain.SysDict">
+	<resultMap id="dictResult" type="com.wz.cashloan.system.domain.SysDict">
 		<id column="id" property="id" />
 		<result column="type_name" property="name" />
 		<result column="type_code" property="code" />
@@ -70,7 +70,7 @@
 		<include refid="baseSysDictWhereSql"/>
 	</select>
 	
-	<insert id="save" parameterType="com.rongdu.cashloan.system.domain.SysDict">
+	<insert id="save" parameterType="com.wz.cashloan.system.domain.SysDict">
 		<selectKey resultType="long" keyProperty="id">
 			SELECT LAST_INSERT_ID() AS ID
 		</selectKey>
@@ -88,7 +88,7 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="com.rongdu.cashloan.system.domain.SysDict">
+	<update id="update" parameterType="com.wz.cashloan.system.domain.SysDict">
 		update sys_dict
 		set
 		type_name=#{name},
@@ -117,7 +117,7 @@
 			AND a.type_code = #{type}
 	</select>
 	
-	<select id="findByTypeCode" parameterType="java.lang.String" resultType="com.rongdu.cashloan.system.domain.SysDict">
+	<select id="findByTypeCode" parameterType="java.lang.String" resultType="com.wz.cashloan.system.domain.SysDict">
 		SELECT 
 		<include refid="baseQuerySql"/>
 		from sys_dict

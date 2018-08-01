@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- sys_config表:系统参数表模块 -->
-<mapper namespace="com.rongdu.cashloan.core.mapper.SysConfigMapper">
+<mapper namespace="com.wz.cashloan.core.mapper.SysConfigMapper">
     <!--xml内部引用别名-->
 	<!--返回MAP-->		
-	<resultMap id="SysConfigMap" type="com.rongdu.cashloan.system.domain.SysConfig">
+	<resultMap id="SysConfigMap" type="com.wz.cashloan.system.domain.SysConfig">
 			<id column="id" property="id" />
 			<result column="creator" property="creator" />
 			<result column="name" property="name" />
@@ -92,7 +92,7 @@
     </sql>
     
 	<!-- 动态的插入,必须要创建时间 -->
-	<insert id="save" parameterType="com.rongdu.cashloan.system.domain.SysConfig">
+	<insert id="save" parameterType="com.wz.cashloan.system.domain.SysConfig">
 		insert into sys_config
         (
         <include refid="InsertKey"/>
@@ -106,7 +106,7 @@
 	</insert>
 
     <!-- 动态更新 -->
-    <update id="update" parameterType="com.rongdu.cashloan.system.domain.SysConfig">
+    <update id="update" parameterType="com.wz.cashloan.system.domain.SysConfig">
         update sys_config
         <include refid="Update"/>
         where id = #{id}

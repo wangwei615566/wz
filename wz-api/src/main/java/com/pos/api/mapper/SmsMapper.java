@@ -4,8 +4,8 @@ package com.pos.api.mapper;
 import java.util.Map;
 
 import com.pos.api.bean.Sms;
-import com.rongdu.cashloan.core.common.mapper.BaseMapper;
-import com.rongdu.cashloan.core.common.mapper.RDBatisDao;
+import com.wz.cashloan.core.common.mapper.BaseMapper;
+import com.wz.cashloan.core.common.mapper.RDBatisDao;
 
 
 @RDBatisDao

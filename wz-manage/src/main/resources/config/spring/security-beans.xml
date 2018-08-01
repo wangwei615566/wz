@@ -71,15 +71,15 @@
     </beans:bean> -->
 	<!-- session -->
 	<beans:bean id="concurrencyFilter"
-		class="com.rongdu.cashloan.system.security.authentication.handler.MyConcurrentSessionFilter">
+		class="com.wz.cashloan.system.security.authentication.handler.MyConcurrentSessionFilter">
 		<beans:property name="sessionRegistry" ref="sessionRegistry" />
 		<beans:property name="expiredUrl" value="${logout.url}" />
 	</beans:bean>
 	<!--登录失败 -->
 	<beans:bean id="authenticationFailureHandler"
-		class="com.rongdu.cashloan.system.security.authentication.handler.AccessAuthenticationFailureHandler" />
+		class="com.wz.cashloan.system.security.authentication.handler.AccessAuthenticationFailureHandler" />
 		
-	<beans:bean id="accessDeniedHandler" class="com.rongdu.cashloan.system.security.authentication.handler.MyAccessDeniedHandlerImpl">
+	<beans:bean id="accessDeniedHandler" class="com.wz.cashloan.system.security.authentication.handler.MyAccessDeniedHandlerImpl">
 		
 	</beans:bean>
 	<!-- 登录失败 -->
@@ -90,7 +90,7 @@
 		<beans:property name="authenticationManager" ref="authenticationManager" />
 	</beans:bean>
 	
-	<beans:bean id="authenticationProcessingFilterEntryPoint" class="com.rongdu.cashloan.system.security.authentication.handler.RdAuthenticationEntryPoint">
+	<beans:bean id="authenticationProcessingFilterEntryPoint" class="com.wz.cashloan.system.security.authentication.handler.RdAuthenticationEntryPoint">
         <beans:property name="loginFormUrl" value="${logout.url}" />
     </beans:bean>
     
@@ -109,10 +109,10 @@
     </beans:bean>
     
     
-     <beans:bean id="ajaxFailureHandler" class="com.rongdu.cashloan.system.security.authentication.handler.AjaxAuthenticationFailureHandler">
+     <beans:bean id="ajaxFailureHandler" class="com.wz.cashloan.system.security.authentication.handler.AjaxAuthenticationFailureHandler">
     </beans:bean>
      
-    <beans:bean id="ajaxSuccessHandler" class="com.rongdu.cashloan.system.security.authentication.handler.AjaxAuthenticationSuccessHandler">
+    <beans:bean id="ajaxSuccessHandler" class="com.wz.cashloan.system.security.authentication.handler.AjaxAuthenticationSuccessHandler">
     </beans:bean>
 
 	<beans:bean id="sas"
@@ -130,10 +130,10 @@
 	<!-- session -->
 
 	<beans:bean id="authenticationSuccessHandler"
-		class="com.rongdu.cashloan.system.security.authentication.handler.SaveLoginInfoAuthenticationSuccessHandler" />
+		class="com.wz.cashloan.system.security.authentication.handler.SaveLoginInfoAuthenticationSuccessHandler" />
 
 	<beans:bean id="filterSecurityInterceptor"
-		class="com.rongdu.cashloan.system.security.intercept.FilterSecurityInterceptor">
+		class="com.wz.cashloan.system.security.intercept.FilterSecurityInterceptor">
 		<beans:property name="authenticationManager" ref="authenticationManager" />
 		<beans:property name="accessDecisionManager" ref="accessDecisionManager" />
 		<beans:property name="securityMetadataSource" ref="securityMetadataSource" />
@@ -163,17 +163,17 @@
 	</authentication-manager>
 
 	<beans:bean id="userRoleDetailProvider"
-		class="com.rongdu.cashloan.system.security.authentication.provider.UserRoleDetailProvider">
+		class="com.wz.cashloan.system.security.authentication.provider.UserRoleDetailProvider">
 		<beans:property name="systemPasswordInitialization"
 			value="${system.password.initialization}" />
 	</beans:bean>
 
 	<!-- 密码加密 -->
 	<beans:bean id="passwordEncoder"
-		class="com.rongdu.cashloan.system.security.authentication.encoding.PasswordEncoder">
+		class="com.wz.cashloan.system.security.authentication.encoding.PasswordEncoder">
 		<beans:property name="crypto">
 			<beans:bean
-				class="com.rongdu.cashloan.core.common.util.crypto.impl.BlowfishCryptoImpl">
+				class="com.wz.cashloan.core.common.util.crypto.impl.BlowfishCryptoImpl">
 				<beans:property name="key"
 					value="${system.password.encoding.key}" />
 			</beans:bean>
@@ -189,9 +189,9 @@
 
 	<!-- 访问决策器 -->
 	<beans:bean id="accessDecisionManager"
-		class="com.rongdu.cashloan.system.security.decision.AccessDecisionManager" />
+		class="com.wz.cashloan.system.security.decision.AccessDecisionManager" />
 
 	<!-- 资源源数据定义 -->
 	<beans:bean id="securityMetadataSource"
-		class="com.rongdu.cashloan.system.security.datesource.SecurityContextMetadataSource" />
+		class="com.wz.cashloan.system.security.datesource.SecurityContextMetadataSource" />
 </beans:beans>

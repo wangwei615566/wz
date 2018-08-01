@@ -18,22 +18,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.Page;
-import com.rongdu.cashloan.core.common.context.Constant;
-import com.rongdu.cashloan.core.common.context.Global;
-import com.rongdu.cashloan.core.common.exception.ServiceException;
-import com.rongdu.cashloan.core.common.util.CacheUtil;
-import com.rongdu.cashloan.core.common.util.HttpUtil;
-import com.rongdu.cashloan.core.common.util.JsonUtil;
-import com.rongdu.cashloan.core.common.util.RdPage;
-import com.rongdu.cashloan.core.common.util.ServletUtils;
-import com.rongdu.cashloan.core.common.util.StringUtil;
-import com.rongdu.cashloan.core.common.web.controller.BaseController;
-import com.rongdu.cashloan.core.service.SysConfigService;
-import com.rongdu.cashloan.core.service.SysDictService;
-import com.rongdu.cashloan.system.domain.SysConfig;
-import com.rongdu.cashloan.system.domain.SysUser;
-import com.rongdu.cashloan.system.model.SysConfigModel;
-import com.rongdu.cashloan.system.permission.annotation.RequiresPermission;
+import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.context.Global;
+import com.wz.cashloan.core.common.exception.ServiceException;
+import com.wz.cashloan.core.common.util.CacheUtil;
+import com.wz.cashloan.core.common.util.HttpUtil;
+import com.wz.cashloan.core.common.util.JsonUtil;
+import com.wz.cashloan.core.common.util.RdPage;
+import com.wz.cashloan.core.common.util.ServletUtils;
+import com.wz.cashloan.core.common.util.StringUtil;
+import com.wz.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.core.service.SysConfigService;
+import com.wz.cashloan.core.service.SysDictService;
+import com.wz.cashloan.system.domain.SysConfig;
+import com.wz.cashloan.system.domain.SysUser;
+import com.wz.cashloan.system.model.SysConfigModel;
+import com.wz.cashloan.system.permission.annotation.RequiresPermission;
 
 @Scope("prototype")
 @Controller

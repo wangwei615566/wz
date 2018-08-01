@@ -4,7 +4,7 @@ package com.pos.api.service;
 import java.util.Map;
 
 import com.pos.api.bean.Sms;
-import com.rongdu.cashloan.core.common.service.BaseService;
+import com.wz.cashloan.core.common.service.BaseService;
 
 
 public interface ClSmsService extends BaseService<Sms, Long>{
