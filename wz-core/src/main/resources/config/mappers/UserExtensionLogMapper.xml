@@ -17,7 +17,7 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="countIp" resultMap="java.lang.Integer" parameterType="java.lang.Long" >
+  <select id="countIp" resultType="java.lang.Integer" parameterType="java.lang.Long" >
     SELECT COUNT(DISTINCT(e.ip)) FROM `user_extension_log` e LEFT JOIN `user` u ON e.invitation_code = u.invitation_code WHERE u.id =#{userId,jdbcType=BIGINT}
   </select>
 

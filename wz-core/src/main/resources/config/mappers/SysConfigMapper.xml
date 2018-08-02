@@ -5,14 +5,14 @@
     <!--xml内部引用别名-->
 	<!--返回MAP-->		
 	<resultMap id="SysConfigMap" type="com.wz.cashloan.system.domain.SysConfig">
-			<id column="id" property="id" />
-			<result column="creator" property="creator" />
-			<result column="name" property="name" />
-			<result column="code" property="code" />
-			<result column="value" property="value" />
-			<result column="type" property="type" />
-			<result column="remark" property="remark" />
-			<result column="state" property="status" />
+			<id column="id" property="id" jdbcType="BIGINT"/>
+			<result column="creator" property="creator" jdbcType="BIGINT"/>
+			<result column="name" property="name" jdbcType="VARCHAR"/>
+			<result column="code" property="code" jdbcType="VARCHAR"/>
+			<result column="value" property="value" jdbcType="VARCHAR"/>
+			<result column="type" property="type" jdbcType="TINYINT"/>
+			<result column="remark" property="remark" jdbcType="VARCHAR"/>
+			<result column="state" property="status" jdbcType="TINYINT"/>
 	</resultMap>
 	
 	<!-- 动态查询 -->
