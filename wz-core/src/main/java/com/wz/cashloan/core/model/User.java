@@ -23,9 +23,19 @@ public class User {
 
     private String loginIp;
 
+    private byte state;
+
     private Date updateTime;
 
     private Date createTime;
+
+    public byte getState() {
+        return state;
+    }
+
+    public void setState(byte state) {
+        this.state = state;
+    }
 
     public Long getId() {
         return id;

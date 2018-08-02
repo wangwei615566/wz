@@ -11,13 +11,14 @@
         <result column="channel_id" property="channelId" jdbcType="INTEGER" />
         <result column="level_id" property="levelId" jdbcType="BIGINT" />
         <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="TINYINT" />
         <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, login_name, login_pwd, loginpwd_modify_time, register_client, invitation_code,
-        channel_id, level_id, register_ip, login_ip, update_time, create_time
+        channel_id, level_id, register_ip, login_ip, state, update_time, create_time
     </sql>
     <sql id="searchBy">
         <trim prefix="where" prefixOverrides="and|or">
@@ -44,6 +45,9 @@
             </if>
             <if test="registerClient != null and registerClient != ''">
                 and register_client = #{registerClient,jdbcType=VARCHAR}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state,jdbcType=TINYINT}
             </if>
             <if test="tradePwd != null and tradePwd != ''">
                 and trade_pwd = #{tradePwd,jdbcType=VARCHAR}
@@ -205,6 +209,9 @@
             <if test="registerIp != null" >
                 register_ip = #{registerIp,jdbcType=VARCHAR},
             </if>
+            <if test="state != null and state != ''">
+                state = #{state,jdbcType=TINYINT},
+            </if>
             <if test="loginIp != null" >
                 login_ip = #{loginIp,jdbcType=VARCHAR},
             </if>
@@ -228,6 +235,7 @@
         level_id = #{levelId,jdbcType=BIGINT},
         register_ip = #{registerIp,jdbcType=VARCHAR},
         login_ip = #{loginIp,jdbcType=VARCHAR},
+        state = #{state,jdbcType=TINYINT},
         update_time = #{updateTime,jdbcType=TIMESTAMP},
         create_time = #{createTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}

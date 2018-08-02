@@ -83,4 +83,18 @@ public class UserCashLog {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public UserCashLog() {
+
+    }
+
+    public UserCashLog(Long userId, Byte cashWay, String accountNo, String accountName, BigDecimal amount, BigDecimal fee, Date createTime) {
+        this.userId = userId;
+        this.cashWay = cashWay;
+        this.accountNo = accountNo;
+        this.accountName = accountName;
+        this.amount = amount;
+        this.fee = fee;
+        this.createTime = createTime;
+    }
 }

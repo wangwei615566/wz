@@ -20,7 +20,7 @@ import com.wz.cashloan.core.service.SysConfigService;
 import com.wz.cashloan.system.domain.SysConfig;
 
 /**
-* User:    mcwang
+*
 * DateTime:2016-08-04 03:26:22
 * details: 系统参数表,Service实现层
 * source:  代码生成器

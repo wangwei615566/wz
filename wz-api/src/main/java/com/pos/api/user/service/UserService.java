@@ -23,7 +23,7 @@ import com.wz.cashloan.core.common.context.Global;
 import com.wz.cashloan.core.common.util.MapUtil;
 import com.wz.cashloan.core.common.util.SqlUtil;
 import com.wz.cashloan.core.common.util.StringUtil;
-import com.wz.cashloan.core.mapper.User;
+import com.wz.cashloan.core.model.User;
 import com.wz.cashloan.core.mapper.UserMapper;
 
 import tool.util.BeanUtil;

@@ -10,7 +10,6 @@ import com.wz.cashloan.core.common.mapper.RDBatisDao;
 import com.wz.cashloan.system.domain.SysConfig;
 
 /**
-* User:    mcwang
 * DateTime:2016-08-04 03:26:22
 * details: 系统参数表,Dao接口层
 * source:  代码生成器

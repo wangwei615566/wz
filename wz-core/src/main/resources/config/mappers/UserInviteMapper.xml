@@ -18,6 +18,9 @@
     from user_invite
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="countInvite" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    SELECT COUNT(0) FROM user_invite WHERE user_id = #{userId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user_invite
     where id = #{id,jdbcType=BIGINT}

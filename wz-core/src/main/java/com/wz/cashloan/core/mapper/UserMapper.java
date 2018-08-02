@@ -2,7 +2,7 @@ package com.wz.cashloan.core.mapper;
 
 import java.util.List;
 import java.util.Map;
-
+import com.wz.cashloan.core.model.User;
 import com.wz.cashloan.core.common.mapper.RDBatisDao;
 
 @RDBatisDao
