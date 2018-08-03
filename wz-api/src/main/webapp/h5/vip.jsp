@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+	String zh= request.getParameter("zh");
+	String je= request.getParameter("je");
+	String bz= request.getParameter("bz");
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0061)http://enok2.cn/chongzhi/vip.php?zh=2931143404&je=216&bz=wanf -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,10 +67,10 @@ window.location.reload();
 	<div class="pay_mess">
 	  <div class="pay_mess_list">
 		  <p><span class="pay_name">财付通账号：</span><span class="pay_text">
-		  2931143404		  </span></p>
+		  "<%=zh%>"		  </span></p>
       </div>
-		<div class="pay_mess_list"><span class="pay_name">付款金额：</span><span class="pay_text">216.00</span></div>
-		<div class="pay_mess_list"><span class="pay_name">转账留言：</span><span class="pay_text">wanf</span></div>
+		<div class="pay_mess_list"><span class="pay_name">付款金额：</span><span class="pay_text">"<%=je%>"</span></div>
+		<div class="pay_mess_list"><span class="pay_name">转账留言：</span><span class="pay_text">"<%=bz%>"</span></div>
 	</div>
 </div>
 <div class="ewm">
