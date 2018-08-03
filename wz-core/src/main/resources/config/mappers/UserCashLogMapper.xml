@@ -9,10 +9,27 @@
     <result column="account_name" property="accountName" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
     <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="state" property="state" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, cash_way, account_no, account_name, amount, fee, create_time
+    id, user_id, cash_way, account_no, account_name, amount, fee, create_time,state
+  </sql>
+  <sql id="searchBy">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="cashWay != null">
+        cash_way  = #{cashWay,jdbcType=TINYINT}
+      </if>
+      <if test="accountNo !=null and accountNo != ''">
+        and account_no = #{accountNo,jdbcType=VARCHAR}
+      </if>
+      <if test="accountName !=null and accountName != ''">
+        and account_name = #{accountName,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null and state != ''">
+        and state = #{state,jdbcType=TINYINT}
+      </if>
+    </trim>
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -26,6 +43,14 @@
     from user_cash_log
     where user_id = #{userId,jdbcType=BIGINT}
   </select>
+
+  <select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user_cash_log
+    <include refid="searchBy"/>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user_cash_log
     where id = #{id,jdbcType=BIGINT}
@@ -120,6 +145,32 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <update id="updateOrder" parameterType="java.util.HashMap" >
+    update user_cash_log
+    <set >
+      <if test="cashWay != null" >
+        cash_way = #{cashWay,jdbcType=TINYINT},
+      </if>
+      <if test="accountNo != null" >
+        account_no = #{accountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.wz.cashloan.core.model.UserCashLog" >
     update user_cash_log
     set user_id = #{userId,jdbcType=BIGINT},

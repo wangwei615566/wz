@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wz.cashloan.system.mapper.SysDictMapper">
+<mapper namespace="com.wz.cashloan.core.mapper.SysDictMapper">
 
 	<resultMap id="dictResult" type="com.wz.cashloan.system.domain.SysDict">
 		<id column="id" property="id" />

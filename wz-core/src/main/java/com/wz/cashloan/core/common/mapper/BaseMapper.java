@@ -1,5 +1,7 @@
 package com.wz.cashloan.core.common.mapper;
 
+import com.wz.cashloan.core.common.mapper.RDBatisDao;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

@@ -4,6 +4,7 @@ import com.wz.cashloan.core.common.mapper.RDBatisDao;
 import com.wz.cashloan.core.model.UserCashLog;
 
 import java.util.List;
+import java.util.Map;
 
 @RDBatisDao
 public interface UserCashLogMapper {
@@ -11,11 +12,13 @@ public interface UserCashLogMapper {
 
     int insert(UserCashLog record);
 
-    int insertSelective(UserCashLog record);
-
     UserCashLog selectByPrimaryKey(Long id);
 
     List<UserCashLog> listToUserId(Long userId);
+
+    List<UserCashLog> listSelective(Map<String, Object> params);
+
+    int updateOrder(Map<String, Object> params);
 
     int updateByPrimaryKeySelective(UserCashLog record);
 

@@ -25,6 +25,8 @@ public class User {
 
     private byte state;
 
+    private byte vipState;
+
     private Date updateTime;
 
     private Date createTime;
@@ -131,5 +133,13 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public byte getVipState() {
+        return vipState;
+    }
+
+    public void setVipState(byte vipState) {
+        this.vipState = vipState;
     }
 }

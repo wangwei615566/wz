@@ -12,13 +12,14 @@
         <result column="level_id" property="levelId" jdbcType="BIGINT" />
         <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
         <result column="state" property="state" jdbcType="TINYINT" />
+        <result column="vip_state" property="vipState" jdbcType="TINYINT" />
         <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, login_name, login_pwd, loginpwd_modify_time, register_client, invitation_code,
-         register_ip, login_ip, state, update_time, create_time
+         register_ip, login_ip, state, update_time, create_time,vip_state
     </sql>
     <sql id="searchBy">
         <trim prefix="where" prefixOverrides="and|or">
@@ -202,6 +203,18 @@
             </if>
             <if test="createTime != null" >
                 create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateBySelective" parameterType="java.util.HashMap" >
+        update user
+        <set >
+            <if test="state != null and state != ''">
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="loginIp != null" >
+                login_ip = #{loginIp,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}

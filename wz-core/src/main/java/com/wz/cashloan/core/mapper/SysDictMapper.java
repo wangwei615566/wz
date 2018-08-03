@@ -3,9 +3,9 @@ package com.wz.cashloan.core.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.wz.cashloan.core.common.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.wz.cashloan.core.common.mapper.BaseMapper;
 import com.wz.cashloan.core.common.mapper.RDBatisDao;
 import com.wz.cashloan.system.domain.SysDict;
 

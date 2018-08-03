@@ -32,6 +32,8 @@ public class SysConfig implements Serializable {
 	
 	/**创建者*/
 	private Long creator;
+
+	private Integer state;
 	
 	/**备注*/
 	private String remark;
@@ -99,7 +101,12 @@ public class SysConfig implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
-	
 
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
 }

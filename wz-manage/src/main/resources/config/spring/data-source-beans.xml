@@ -105,9 +105,14 @@
    
    <!-- mapper扫描 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    	<property name="basePackage" value="com.pos.api.mapper,com.wz.cashloan.core.mapper,com.wz.cashloan.core.common.mapper,com.wz.cashloan.core.mapper,com.wz.cashloan.system.mapper"/>
+    	<property name="basePackage" value="com.wz.cashloan.core.mapper,com.wz.cashloan.system.mapper,com.wz.cashloan.core.common.mapper,com.wz.manage.mapper"/>
         <property name="annotationClass" value="com.wz.cashloan.core.common.mapper.RDBatisDao"/>
     </bean>
+
+	<context:component-scan base-package="com.wz.manage.service,com.wz.manage.controller">
+		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+	</context:component-scan>
+
     <bean id="slaveSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 	  <constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
