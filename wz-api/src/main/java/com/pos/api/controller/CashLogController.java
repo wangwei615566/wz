@@ -27,7 +27,7 @@ public class CashLogController extends BaseController{
     @Resource
     private UserCashLogService userCashLogService;
     /**
-     * 首页获取金额接口
+     * 保存提现记录接口
      * @param cashWay
      * @param accountNo
      * @param amount
@@ -35,7 +35,7 @@ public class CashLogController extends BaseController{
      * @param userId
      */
     @RequestMapping("index/find/cashLog.htm")
-    public void updateAmount(@RequestParam("cashWay") String cashWay,@RequestParam("accountNo") String accountNo,@RequestParam("amount") double amount,
+    public void saveCashLog(@RequestParam("cashWay") String cashWay,@RequestParam("accountNo") String accountNo,@RequestParam("amount") double amount,
     @RequestParam("fee") double fee,@RequestParam("userId") long userId){
         Map<String, Object> result = new HashMap<>();
         UserCashLog userCashLog = new UserCashLog(userId, Byte.parseByte(cashWay), accountNo, null, BigDecimal.valueOf(amount), BigDecimal.valueOf(fee), new Date());
