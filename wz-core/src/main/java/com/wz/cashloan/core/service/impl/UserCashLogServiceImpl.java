@@ -1,5 +1,7 @@
 package com.wz.cashloan.core.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.wz.cashloan.core.mapper.UserCashLogMapper;
 import com.wz.cashloan.core.model.UserCashLog;
 import com.wz.cashloan.core.service.UserCashLogService;
@@ -23,5 +25,17 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Override
     public List<UserCashLog> listUserCashLog(Long userId) {
         return userCashLogMapper.listToUserId(userId);
+    }
+
+    @Override
+    public Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize) {
+        PageHelper.startPage(current, pageSize);
+        List<UserCashLog> orderList = userCashLogMapper.listSelective(params);
+        return (Page<UserCashLog>) orderList;
+    }
+
+    @Override
+    public int updateOrder(Map<String, Object> params) {
+        return userCashLogMapper.updateOrder(params);
     }
 }

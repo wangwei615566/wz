@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- quartz_info表:定时任务详情模块 -->
-<mapper namespace="com.pos.manage.mapper.QuartzInfoMapper">
+<mapper namespace="com.wz.manage.mapper.QuartzInfoMapper">
     <!--返回Map-->        
-    <resultMap id="BaseResultMap" type="com.pos.manage.domain.QuartzInfo">
+    <resultMap id="BaseResultMap" type="com.wz.manage.domain.QuartzInfo">
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="code" property="code" jdbcType="VARCHAR" />
@@ -54,7 +54,7 @@
     </sql>
     
     
-    <insert id="save" parameterType="com.pos.manage.domain.QuartzInfo">
+    <insert id="save" parameterType="com.wz.manage.domain.QuartzInfo">
         insert into quartz_info(name,`code`,cycle,class_name,succeed,fail,state,create_time)values(#{name,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{cycle,jdbcType=VARCHAR},#{className,jdbcType=VARCHAR},#{succeed,jdbcType=INTEGER},#{fail,jdbcType=INTEGER},#{state,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
     </insert>
 
@@ -112,7 +112,7 @@
         <include refid="searchBy"/>
     </select>
     
-    <select id="page" resultType="com.pos.manage.model.QuartzInfoModel" parameterType="java.util.HashMap">
+    <select id="page" resultType="com.wz.manage.model.QuartzInfoModel" parameterType="java.util.HashMap">
     	select 
        		info.id,info.name,info.`code`,info.cycle,info.class_name,info.succeed,info.fail,info.state,info.create_time 
 		from quartz_info info 

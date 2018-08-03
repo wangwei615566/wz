@@ -17,6 +17,8 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
+    int updateBySelective(Map<String,Object> map);
+
     int updateByPrimaryKey(User record);
 
     User findSelective(Map<String,Object> param);

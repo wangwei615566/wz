@@ -1,0 +1,35 @@
+*{margin:0;padding:0;font-family:'Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,'Lucida Grande',sans-serif;}
+img{border:0;}
+a{text-decoration:none;}
+ul{list-style:none;}
+.clear{clear:both;}
+.con{width: 640px;
+    margin:0 auto;
+}
+.top{height:40px;margin-top:5px;border-bottom:1px solid #666;margin:0 auto;}
+.top_title{float:left;font-size:26px;height:40px;line-height:40px;color:#fa0100;padding-left:5px;font-weight:bold;}
+.top_mess{float:left;color:#666;font-size:12px;height:20px;line-height:20px;padding-top:16px;padding-right:5px;}
+
+.text_s{font-size:16px;font-weight:bold;padding:5px;margin-top:5px;}
+.text ul{margin-top:10px;}
+.text ul li {margin-bottom:5px;padding:5px;margin-top:5px;color:#999;font-size:14px;}
+.text ul li .num{float:left;width:26px;height:26px;line-height:26px;text-align:center;color:#fff;border-radius:50%;background:#0399d8;margin:0 auto;}
+.text_t{padding-left:30px;line-height:26px;}
+
+.pay_title{font-size:12px;width:100%;text-align:left;color:#fff;background:#0399d8;height:30px;line-height:30px;border-radius:6px;}
+
+.pay_mess div{width:96%;margin-left:2%;border-bottom:1px solid #999;margin-top:10px;}
+.pay_name{display:inline-block;font-size:16px;color:#666;width:100px;}
+.pay_text{font-size:16px;font-weight:bold;color:#de5e00;background:#fff600;}
+.long{font-size:12px;color:#666;}
+.pay_mess_list{height:36px;line-height:36px;}
+.foot{ color: #9d1009;font-size: 14px;line-height: 20px;margin-top: 2%;width: 96%;margin: 2% auto 0;}
+.ewm{ width:96%;text-align: center;margin: 2% auto 0; font-size: 12px;line-height: 24px;}
+.ewm img {width: 80%;height: auto;}
+
+
+
+
+
+@media (min-width:801px){.ewm{width: 20%; margin:2% 0 0 0}}
+@media (min-width:760px){.ewm{width: 20%; margin:2% auto 0}}

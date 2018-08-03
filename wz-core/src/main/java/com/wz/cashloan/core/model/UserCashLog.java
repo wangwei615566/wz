@@ -18,6 +18,8 @@ public class UserCashLog {
 
     private BigDecimal fee;
 
+    private Byte state;
+
     private Date createTime;
 
     public Long getId() {
@@ -96,5 +98,13 @@ public class UserCashLog {
         this.amount = amount;
         this.fee = fee;
         this.createTime = createTime;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
     }
 }
