@@ -15,13 +15,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Resource
     private UserCashLogMapper userCashLogMapper;
     @Override
-    public int save(Map<String,Object> map) {
-        Byte cashWay = Byte.parseByte(map.get("cashWay").toString());
-        String accountNo = map.get("accountNo").toString();
-        Double amount = map.get("amount")==null?0:Double.parseDouble(map.get("amount").toString());
-        Double fee = map.get("fee") == null ?0.0:Double.parseDouble(map.get("fee").toString());
-        Long userId = Long.parseLong(map.get("user_id").toString());
-        UserCashLog userCashLog = new UserCashLog(userId, cashWay, accountNo, null, BigDecimal.valueOf(amount), BigDecimal.valueOf(fee), new Date());
+    public int save(UserCashLog userCashLog) {
         return userCashLogMapper.insert(userCashLog);
     }
 }
