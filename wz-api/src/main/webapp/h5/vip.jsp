@@ -67,10 +67,10 @@ window.location.reload();
 	<div class="pay_mess">
 	  <div class="pay_mess_list">
 		  <p><span class="pay_name">财付通账号：</span><span class="pay_text">
-		  "<%=zh%>"		  </span></p>
+		  <%=zh%>		  </span></p>
       </div>
-		<div class="pay_mess_list"><span class="pay_name">付款金额：</span><span class="pay_text">"<%=je%>"</span></div>
-		<div class="pay_mess_list"><span class="pay_name">转账留言：</span><span class="pay_text">"<%=bz%>"</span></div>
+		<div class="pay_mess_list"><span class="pay_name">付款金额：</span><span class="pay_text"><%=je%></span></div>
+		<div class="pay_mess_list"><span class="pay_name">转账留言：</span><span class="pay_text"><%=bz%></span></div>
 	</div>
 </div>
 <div class="ewm">
