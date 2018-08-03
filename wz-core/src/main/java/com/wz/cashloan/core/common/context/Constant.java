@@ -45,17 +45,17 @@ public class Constant {
 	
 	public static final int SIGN_FAIL = 99; // 验签失败
 
-	public static final int SUCCEED_CODE_VALUE = 200; // 成功 插入 、删除 更新 修改
+	public static final int SUCCEED_CODE_VALUE = 200; // 成功
+	
+	public static final int FAIL_CODE_PARAM_INSUFFICIENT = 300;	//业务异常
+	
+	public static final int FAIL_CODE_VALUE = 400; // 缺少参数
 
-	public static final int FAIL_CODE_PARAM_INSUFFICIENT = 300;	//参数列表不完整 
-
-	public static final int FAIL_CODE_VALUE = 400; // 失败 插入 、删除 更新 修改
+	public static final int OTHER_CODE_VALUE = 500; // 系统异常
 	
 	public static final int FAIL_CODE_PWD = 401; // 交易密码错误
 	
 	public static final int PERM_CODE_VALUE = 403; // 无权限访问
-
-	public static final int OTHER_CODE_VALUE = 500; // 其他异常
 	
 	public static final int NOSESSION_CODE_VALUE = 800; // session失效
 	
