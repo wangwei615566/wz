@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -41,7 +41,7 @@
     </div>
   </div>
   <script type="text/javascript">
-	Qfast.add('widgets', { path: "../js/terminator2.2.min.js", type: "js", requires: ['fx'] });  
+	Qfast.add('widgets', { path: "../static/js/terminator2.2.min.js", type: "js", requires: ['fx'] });  
 	Qfast(false, 'widgets', function () {
 		K.tabs({
 			id: 'fsD1',   //焦点图包裹id  
