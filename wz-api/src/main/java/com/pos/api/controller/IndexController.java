@@ -28,8 +28,8 @@ public class IndexController extends BaseController{
     private UserInviteService userInviteService;
     /**
      * 首页获取金额接口
-     * @param reqMap
-     * @param response
+     * @param userId
+     * @param amount
      */
     @RequestMapping("index/find/amount.htm")
     public void updateAmount(@RequestParam("userId") long userId,@RequestParam("amount") double amount){

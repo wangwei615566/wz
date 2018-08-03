@@ -18,7 +18,7 @@
     </resultMap>
     <sql id="Base_Column_List" >
         id, login_name, login_pwd, loginpwd_modify_time, register_client, invitation_code,
-        channel_id, level_id, register_ip, login_ip, state, update_time, create_time
+         register_ip, login_ip, state, update_time, create_time
     </sql>
     <sql id="searchBy">
         <trim prefix="where" prefixOverrides="and|or">
@@ -34,35 +34,17 @@
             <if test="loginpwdModifyTime != null">
                 and loginpwd_modify_time = #{loginpwdModifyTime,jdbcType=TIMESTAMP}
             </if>
-            <if test="registTime != null">
-                and regist_time = #{registTime,jdbcType=TIMESTAMP}
-            </if>
-            <if test="startTime != null">
-                and regist_time &gt; #{startTime,jdbcType=TIMESTAMP}
-            </if>
-            <if test="endTime  != null">
-                and regist_time &lt; #{endTime,jdbcType=TIMESTAMP}
-            </if>
             <if test="registerClient != null and registerClient != ''">
                 and register_client = #{registerClient,jdbcType=VARCHAR}
             </if>
             <if test="state != null and state != ''">
                 and state = #{state,jdbcType=TINYINT}
             </if>
-            <if test="tradePwd != null and tradePwd != ''">
-                and trade_pwd = #{tradePwd,jdbcType=VARCHAR}
-            </if>
             <if test="tradepwdModifyTime != null">
                 and tradepwd_modify_time = #{tradepwdModifyTime,jdbcType=TIMESTAMP}
             </if>
             <if test="invitationCode != null and invitationCode != ''">
                 and invitation_code = #{invitationCode,jdbcType=VARCHAR}
-            </if>
-            <if test="channelId != null and channelId != ''">
-                and channel_id = #{channelId,jdbcType=BIGINT}
-            </if>
-            <if test="levelId != null and level != ''">
-                and level_id = #{levelId,jdbcType=BIGINT}
             </if>
             <if test="registerIp != null and registerIp != ''">
                 and register_ip = #{registerIp,jdbcType=VARCHAR}

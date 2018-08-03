@@ -63,24 +63,16 @@ public class UserService {
      * @param request
      * @param phone
      * @param pwd 登陆密码（加密）
-     * @param vcode
      * @param invitationCode
-     * @param registerCoordinate
-     * @param registerAddr
      * @param regClient
-     * @param signMsg
-     * @param channelCode
-     * @param markChannel
-     * @param registration 注册方式
      * @param passWord 登陆密码（未加密）
      * @return
      */
 	@Transactional
-    public Map registerUser(HttpServletRequest request, String phone, String pwd, String vcode, String invitationCode,
-                            String registerCoordinate,String registerAddr,String regClient, String signMsg, String channelCode,
-                            String markChannel,String registration,String passWord) {
+    public Map registerUser(HttpServletRequest request, String phone, String pwd, String invitationCode,String regClient,String registerIp,String deviceId,
+                            String passWord) {
         try {
-            if (StringUtil.isEmpty(phone) || !StringUtil.isPhone(phone) || StringUtil.isEmpty(pwd) || StringUtil.isEmpty(vcode) || pwd.length() < 32) {
+            if (StringUtil.isEmpty(phone) || StringUtil.isEmpty(pwd) ||pwd.length() < 6) {
                 Map ret = new LinkedHashMap();
                 ret.put("success", false);
                 ret.put("msg", "参数有误");
@@ -90,19 +82,13 @@ public class UserService {
             Map invitor = null;
             if (!StringUtil.isEmpty(invitationCode)) {
                 invitor = mybatisService.queryRec("usr.queryUserByInvitation", invitationCode);
-                if (invitor == null) {
-                    Map ret = new LinkedHashMap();
-                    ret.put("success", false);
-                    ret.put("msg", "邀请人不存在");
-                    return ret;
-                }
             }
 //
             Map old = mybatisService.queryRec("usr.queryUserByLoginName", phone);
             if (old != null) {
                 Map ret = new LinkedHashMap();
                 ret.put("success", false);
-                ret.put("msg", "该手机号码已被注册");
+                ret.put("msg", "该账号已被注册");
                 return ret;
             }
 
@@ -111,11 +97,11 @@ public class UserService {
                 {"login_name", phone},
                 {"login_pwd", pwd},
                 {"invitation_code", randomInvitationCode(6)},
-                {"regist_time", new Date()},
-                {"uuid", uuid},
-                {"level", 3},
+                {"vip_state", 0},
+                {"register_ip", registerIp},
+                {"device_id", deviceId},
                 {"register_client", regClient},
-                {"mark_channel", markChannel}
+                {"create_time", new Date()},
             }));
 
             if (invitor != null) {
@@ -130,7 +116,6 @@ public class UserService {
             dbService.insert(SqlUtil.buildInsertSqlMap("user_amount", new Object[][]{
                     {"user_id", userId},
                     {"total", 0.0},
-                    {"update_time", new Date()},
                     {"create_time", new Date()},
             }));
             //2017.5.6 仅用于demo演示环境
@@ -205,7 +190,7 @@ public class UserService {
     public Map login(final HttpServletRequest request, final String loginName, final String loginPwd) {
         try {
             Map user = mybatisService.queryRec("usr.queryUserByLoginName", loginName);
-            if (user == null) {
+            if (user == null || "2".equals(user.get("state"))) {
                 Map ret = new LinkedHashMap();
                 ret.put("success", false);
                 ret.put("msg", "账户不存在");

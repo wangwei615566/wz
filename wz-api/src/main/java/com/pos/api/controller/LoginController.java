@@ -150,21 +150,18 @@ public class LoginController {
 			final HttpServletResponse response, 
 			final String loginName,
 			final String loginPwd, 
-			final String vcode,
-			final String invitationCode, 
+			final String invitationCode,
 			final String client,
-			final String registerCoordinate,
-			final String registerAddr, 
-			final String signMsg,
-			final String markChannel
+			final String registerIp,
+			final String deviceId
 			) {
 		new AppAbsActionWrapper(response) {
 			@Override
 			public Object doAction() {
 				String channelCode = "jyqb"; // 设置渠道为“玖印钱包”
 				Map result = userService.registerUser(request, loginName,
-						loginPwd, vcode, invitationCode, registerCoordinate,
-						registerAddr, client, signMsg, channelCode ,markChannel,null,null);
+						loginPwd, invitationCode,
+						 client,registerIp,deviceId,null);
 				if ((Boolean) result.get("success")) {
 					result = userService.login(request, loginName, loginPwd);
 					result.put("msg", result.get("msg"));
@@ -173,89 +170,14 @@ public class LoginController {
 			}
 		};
 	}
-
-	@RequestMapping("wxRegister")
-	public void wxRegister(final HttpServletRequest request,
-			final HttpServletResponse response, final String loginName,
-			final String loginPwd, final String vcode,
-			final String invitationCode,
-			final String channelCode, final String registerCoordinate,
-			final String registerAddr, final String signMsg,final String markChannel,
-			final String platform
-			) {
-		Map<String, Object> map = new HashMap<>();
-		if (StringUtils.isNotBlank(platform)) {
-			map.put("platform", platform);
-		}
-		new AppAbsActionWrapper(response) {
-			@Override
-			public Object doAction() {
-				Map result = userService.registerUser(request, loginName,
-						loginPwd.toUpperCase(), vcode, invitationCode, registerCoordinate,
-						registerAddr, "h5", signMsg,channelCode,markChannel,null,null);
-				if ((Boolean) result.get("success")) {
-//					result = userService.login(request, loginName, loginPwd,
-//							signMsg,blackBox);
-					result.put("msg", "注册成功!");
-				}
-				return result;
-			}
-		};
-	}
-
-	/**
-	 * 短信注册，不需要密码
-	 * @param request
-	 * @param response
-	 * @param loginName
-	 * @param vcode
-	 * @param invitationCode
-	 * @param channelCode
-	 * @param registerCoordinate
-	 * @param registerAddr
-	 * @param signMsg
-	 * @param markChannel
-	 * @param platform
-	 */
-	@RequestMapping("smsRegister")
-	public void smsRegister(final HttpServletRequest request,
-						   final HttpServletResponse response, final String loginName,
-						   final String vcode,
-						   final String invitationCode,
-						   final String channelCode, final String registerCoordinate,
-						   final String registerAddr, final String signMsg,final String markChannel,
-						   final String platform
-	) {
-		if (StringUtils.isNotBlank(platform)) {
-		}
-		int code = (int) (Math.random() * 900000) + 100000;
-		final String pwd = "jy"+code;
-		final String loginPwd = MD5.md5(pwd);
-		new AppAbsActionWrapper(response) {
-			@Override
-			public Object doAction() {
-				final String blackBox = "";
-				Map result = userService.registerUser(request, loginName,
-						loginPwd.toUpperCase(), vcode, invitationCode, registerCoordinate,
-						registerAddr, "h5", signMsg,channelCode,markChannel,"sms",pwd);
-				if ((Boolean) result.get("success")) {
-//					result = userService.login(request, loginName, loginPwd,
-//							signMsg,blackBox);
-					result.put("msg", "注册成功!");
-				}
-				return result;
-			}
-		};
-	}
-
 	/**
 	 * 修改密码接口(wz-新)
 	 * @param request
 	 * @param response
-	 * @param phone
+	 * @param userId
 	 * @param newPwd
-	 * @param vcode
-	 * @param signMsg
+	 * @param newPwd2
+	 * @param oldPwd
 	 */
 	@RequestMapping("login/forgetPwd.htm")
 	public void forgetPwd(final HttpServletRequest request,

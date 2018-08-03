@@ -141,38 +141,6 @@ public class AppDbSession {
 								{ "token", token },
 								{ "refreshToken", refreshToken } } },
 				{ "userData", user } });
-
-		Map oSession = dbService
-				.queryRec("select * from cl_app_session where user_id="
-						+ userId + " order by id desc limit 1");
-		if (oSession != null) {
-			getCache().evict(oSession.get("token"));
-			dbService
-					.update(SqlUtil.buildUpdateSql(
-							"cl_app_session",
-							MapUtil.array2Map(new Object[][] {
-									{ "id", oSession.get("id") },
-									{ "status", 0 },
-									{
-											"err_data",
-											JsonUtil.toString(MapUtil
-													.array2Map(new Object[][] {
-															{ "code", 410 },
-															{ "msg",
-																	"您的账号已在其他设备登录" } })) } })));
-		}
-
-		Date now = new Date();
-		dbService.insert(SqlUtil.buildInsertSqlMap(
-				"cl_app_session",
-				new Object[][] { { "token", token },
-						{ "refresh_token", refreshToken },
-						{ "user_id", userId },
-						{ "expire_time", DateUtil.dateAddMins(now, liveMin) },
-						{ "last_access_time", now }, { "status", 1 },
-						{ "login_type", loginType },
-						{ "session", JsonUtil.toString(session) } }));
-
 		return new AppSessionBean(session);
 
 	}

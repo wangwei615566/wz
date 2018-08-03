@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,7 +35,7 @@ public class CashLogController extends BaseController{
      * @param fee
      * @param userId
      */
-    @RequestMapping("index/find/cashLog.htm")
+    @RequestMapping("index/save/cashLog.htm")
     public void saveCashLog(@RequestParam("cashWay") String cashWay,@RequestParam("accountNo") String accountNo,@RequestParam("amount") double amount,
     @RequestParam("fee") double fee,@RequestParam("userId") long userId){
         Map<String, Object> result = new HashMap<>();
@@ -42,6 +43,20 @@ public class CashLogController extends BaseController{
         int save = userCashLogService.save(userCashLog);
         result.put(Constant.RESPONSE_CODE, save>0?Constant.SUCCEED_CODE_VALUE:Constant.FAIL_CODE_VALUE);
         result.put(Constant.RESPONSE_CODE_MSG, save>0?"保存成功":"保存失败");
+        JsonUtil.writeJson(result,response);
+    }
+
+    /**
+     * 查询提现记录接口
+
+     * @param userId
+     */
+    @RequestMapping("index/list/cashLog.htm")
+    public void listCashLog(@RequestParam("userId") long userId){
+        Map<String, Object> result = new HashMap<>();
+        List<UserCashLog> userCashLogs = userCashLogService.listUserCashLog(userId);
+        result.put(Constant.RESPONSE_CODE, userCashLogs);
+        result.put(Constant.RESPONSE_CODE_MSG, "请求成功");
         JsonUtil.writeJson(result,response);
     }
 }

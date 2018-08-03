@@ -10,32 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/**
- * vip的controller
- */
 @Scope("prototype")
 @Controller
-@RequestMapping("/api")
-public class VipController extends BaseController{
+public class InviteController extends BaseController{
     @Resource
     private UserInviteService userInviteService;
-
-    /**
-     * 免费开通vip接口
-     * @param userId
-     * @param userId
-     */
-    @RequestMapping("/free/vip.htm")
-    public void freeVip(@RequestParam("userId") long userId){
-        Map<String, Object> result = new HashMap<String, Object>();
-        Map<String, Object> freeInvite = userInviteService.getFreeInvite(userId);
-        result.put(Constant.RESPONSE_CODE,Constant.SUCCEED_CODE_VALUE);
-        result.put(Constant.RESPONSE_DATA,freeInvite);
-        result.put(Constant.RESPONSE_CODE_MSG, "查询成功");
+    @RequestMapping("index/reward/find.htm")
+    public void rewardFind(@RequestParam("userId") long userId){
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> maps = userInviteService.listReward(userId);
+        result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
+        result.put(Constant.RESPONSE_DATA, maps);
+        result.put(Constant.RESPONSE_CODE_MSG, "获取成功");
         JsonUtil.writeJson(result,response);
     }
 }

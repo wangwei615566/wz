@@ -21,6 +21,9 @@
   <select id="countInvite" resultType="java.lang.Integer" parameterType="java.lang.Long" >
     SELECT COUNT(0) FROM user_invite WHERE user_id = #{userId,jdbcType=BIGINT}
   </select>
+  <select id="listInviteName" resultType="java.lang.String" parameterType="java.lang.Long">
+    SELECT u.login_name FROM `user_invite` i LEFT JOIN `user` u ON i.invite_id = u.id WHERE i.user_id = #{userId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user_invite
     where id = #{id,jdbcType=BIGINT}
