@@ -9,9 +9,9 @@
 <meta name="apple-touch-fullscreen" content="YES">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title></title>
-<link href="./enok2.cn_files/css.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="./enok2.cn_files/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="./enok2.cn_files/koala.min.1.5.js"></script>
+<link href="/static/css/css.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/static/js/koala.min.1.5.js"></script>
 </head>
 <body>
 
@@ -20,20 +20,20 @@
   
   <div class="clear"></div>
    <div class="help">
-    <img src="./enok2.cn_files/ask.jpg">
-    <img src="./enok2.cn_files/question_01.jpg" width="100%">
-    <img src="./enok2.cn_files/question_02.jpg" width="100%">
-    <img src="./enok2.cn_files/question_03.jpg" width="100%">
-    <img src="./enok2.cn_files/question_04.jpg" width="100%">
-    <img src="./enok2.cn_files/question_05.jpg" width="100%">
-    <img src="./enok2.cn_files/question_06.jpg" width="100%">
-    <img src="./enok2.cn_files/question_07.jpg" width="100%">
-    <img src="./enok2.cn_files/question_08.jpg" width="100%">
-    <img src="./enok2.cn_files/question_09.jpg" width="100%">
-    <img src="./enok2.cn_files/question_10.jpg" width="100%">
+    <img src="/static/images/wzimg/ask.jpg">
+    <img src="/static/images/wzimg/question_01.jpg" width="100%">
+    <img src="/static/images/wzimg/question_02.jpg" width="100%">
+    <img src="/static/images/wzimg/question_03.jpg" width="100%">
+    <img src="/static/images/wzimg/question_04.jpg" width="100%">
+    <img src="/static/images/wzimg/question_05.jpg" width="100%">
+    <img src="/static/images/wzimg/question_06.jpg" width="100%">
+    <img src="/static/images/wzimg/question_07.jpg" width="100%">
+    <img src="/static/images/wzimg/question_08.jpg" width="100%">
+    <img src="/static/images/wzimg/question_09.jpg" width="100%">
+    <img src="/static/images/wzimg/question_10.jpg" width="100%">
    </div>
  <div class="bottom">  
-   <img src="./enok2.cn_files/bot.jpg" width="100%">
+   <img src="/static/images/wzimg/bot.jpg" width="100%">
    
    
 </div>

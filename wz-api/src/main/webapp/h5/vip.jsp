@@ -4,8 +4,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <title>VIP开通</title>
-<link rel="stylesheet" type="text/css" href="./VIP开通_files/User.css">
-<script src="./VIP开通_files/jquery1.4.2.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/User.css">
+<script src="/static/js/jquery1.4.2.js"></script>
 </head>
 
 <body>
@@ -50,7 +50,7 @@ window.location.reload();
 		<li><p class="num">1</p><p class="text_t">付款金额为：216.00，如填写其他金额系统将不能自动开通VIP。</p></li>
 		<li><p class="num">2</p><p class="text_t">请在转账留言明中填写你在我们软件中的注册用户名，如果填错或乱填，系统将不能自动开通。</p></li>
 		<li><p class="num">3</p><p class="text_t">付款成功后，自动开通VIP会员，如需免费获取VIP会员，可以通过推广APP获取。</p></li>
-	    <li><img style="border:0px;margain:0px;padding:0px;" src="./VIP开通_files/pay4.gif"></li>
+	    <li><img style="border:0px;margain:0px;padding:0px;" src="/static/images/wzimg/pay4.gif"></li>
 	</ul>
 </div>
 <div class="pay">
@@ -67,7 +67,7 @@ window.location.reload();
 	</div>
 </div>
 <div class="ewm">
-  <p><img src="./VIP开通_files/111.png"></p>
+  <p><img src="/static/images/wzimg/111.png"></p>
   <p>使用QQ扫描二维码或者在财付通付款。</p>
 </div>
 <div class="foot">注意：转账留言要填写自己的软件用户名，否则系统不会自动开通，若出现系统没有及时开通清等待即可。</div>
