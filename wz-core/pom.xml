@@ -134,11 +134,6 @@
 			<version>0.1.53</version>
 		</dependency>
 		<dependency>
-           <groupId>com.erongdu.credit</groupId>
-           <artifactId>apidemo</artifactId>
-           <version>1.0.4</version>
-		 </dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>RELEASE</version>
