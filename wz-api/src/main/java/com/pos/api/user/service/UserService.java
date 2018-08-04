@@ -163,7 +163,10 @@ public class UserService {
 
 
     public Object forgetPwd(String oldPwd, String newPwd, String newPwd2,Long userId) {
-        User user = userMapper.selectByPrimaryKey(userId);
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId",userId);
+        map.put("loginPwd",oldPwd);
+        User user = userMapper.findSelective(map);
         if (user == null || !newPwd.equals(newPwd2)) {
             Map ret = new LinkedHashMap();
             ret.put("success", false);
