@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wz.cashloan.core.mapper.UserCashLogMapper;
 import com.wz.cashloan.core.model.UserCashLog;
+import com.wz.cashloan.core.service.UserAmountService;
 import com.wz.cashloan.core.service.UserCashLogService;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,15 @@ import java.util.Map;
 public class UserCashLogServiceImpl implements UserCashLogService {
     @Resource
     private UserCashLogMapper userCashLogMapper;
+    @Resource
+    private UserAmountService userAmountService;
     @Override
     public int save(UserCashLog userCashLog) {
+        Double amount = userAmountService.getAmount(userCashLog.getUserId(), 0.0);
+        if (userCashLog.getAmount().doubleValue()>amount){
+            return -1;
+        }
+        userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
         return userCashLogMapper.insert(userCashLog);
     }
 
@@ -27,7 +35,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
         return userCashLogMapper.listToUserId(userId);
     }
 
-    @Override
+    /*@Override
     public Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize) {
         PageHelper.startPage(current, pageSize);
         List<UserCashLog> orderList = userCashLogMapper.listSelective(params);
@@ -37,5 +45,5 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Override
     public int updateOrder(Map<String, Object> params) {
         return userCashLogMapper.updateOrder(params);
-    }
+    }*/
 }
