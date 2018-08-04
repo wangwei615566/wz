@@ -23,7 +23,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Override
     public int save(UserCashLog userCashLog) {
         Double amount = userAmountService.getAmount(userCashLog.getUserId(), 0.0);
-        if (userCashLog.getAmount().doubleValue()>amount){
+        if (userCashLog.getAmount().doubleValue()>amount || userCashLog.getAmount().doubleValue()<=0){
             return -1;
         }
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
