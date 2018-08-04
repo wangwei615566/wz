@@ -19,6 +19,11 @@ import java.util.Map;
 public class InviteController extends BaseController{
     @Resource
     private UserInviteService userInviteService;
+
+    /**
+     * 推荐奖励查询
+     * @param userId
+     */
     @RequestMapping("index/reward/find.htm")
     public void rewardFind(@RequestParam("userId") long userId){
         Map<String, Object> result = new HashMap<>();
