@@ -54,7 +54,8 @@ public class CashLogController extends BaseController{
     public void listCashLog(@RequestParam("userId") long userId){
         Map<String, Object> result = new HashMap<>();
         List<UserCashLog> userCashLogs = userCashLogService.listUserCashLog(userId);
-        result.put(Constant.RESPONSE_CODE, userCashLogs);
+        result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
+        result.put(Constant.RESPONSE_DATA, userCashLogs);
         result.put(Constant.RESPONSE_CODE_MSG, "请求成功");
         JsonUtil.writeJson(result,response);
     }
