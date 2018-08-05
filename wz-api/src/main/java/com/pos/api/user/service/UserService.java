@@ -69,7 +69,7 @@ public class UserService {
      * @return
      */
 	@Transactional
-    public Map registerUser(HttpServletRequest request, String phone, String pwd, String invitationCode,String regClient,String registerIp,String deviceId,
+    public Map registerUser(HttpServletRequest request, String phone, String pwd, String InvitationName,String regClient,String registerIp,String deviceId,
                             String passWord) {
         try {
             if (StringUtil.isEmpty(phone) || StringUtil.isEmpty(pwd) ||pwd.length() < 6) {
@@ -80,8 +80,8 @@ public class UserService {
             }
 
             Map invitor = null;
-            if (!StringUtil.isEmpty(invitationCode)) {
-                invitor = mybatisService.queryRec("usr.queryUserByInvitation", invitationCode);
+            if (!StringUtil.isEmpty(InvitationName)) {
+                invitor = mybatisService.queryRec("usr.queryUserByLoginName", InvitationName);
             }
 //
             Map old = mybatisService.queryRec("usr.queryUserByLoginName", phone);

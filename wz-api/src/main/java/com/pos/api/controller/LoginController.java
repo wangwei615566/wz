@@ -150,7 +150,7 @@ public class LoginController {
 			final HttpServletResponse response, 
 			final String loginName,
 			final String loginPwd, 
-			final String invitationCode,
+			final String InvitationName,
 			final String client,
 			final String registerIp,
 			final String deviceId
@@ -160,7 +160,7 @@ public class LoginController {
 			public Object doAction() {
 				String channelCode = "jyqb"; // 设置渠道为“玖印钱包”
 				Map result = userService.registerUser(request, loginName,
-						loginPwd, invitationCode,
+						loginPwd, InvitationName,
 						 client,registerIp,deviceId,null);
 				if ((Boolean) result.get("success")) {
 					result = userService.login(request, loginName, loginPwd);
