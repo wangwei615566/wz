@@ -261,30 +261,6 @@ public class SysUserController extends BaseController {
 	}
 	
 	/**
-	 * 获取头部信息 可以js缓存优化 后期处理
-	 * @param response
-	 * @param request
-	 */
-//	@RequestMapping("/modules/system/getUserMessage.htm")
-	@RequestMapping("/modules/manage/system/user/find.htm")
-//	@RequiresPermission(code = "modules:manage:system:user:find",name = "登录用户查询")
-	public void findUser(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		Map<String, Object> responsemap = new HashMap<String, Object>();
-		SysUser sysUser = this.getLoginUser(request);
-		if (null==sysUser) {
-			response.sendRedirect("/dev/index.html");
-			ServletUtils.writeToResponse(response, responsemap);
-			return;
-		}
-		List<SysRole> roleList = sysRoleService.getRoleListByUserId(sysUser.getId());
-		responsemap.put("name", sysUser.getName());
-		responsemap.put("roleList", roleList);
-		responsemap.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
-		responsemap.put(Constant.RESPONSE_CODE_MSG, Constant.OPERATION_SUCCESS);
-		ServletUtils.writeToResponse(response, responsemap);
-	}
-	
-	/**
 	 * @description 根据角色Id查找用户
 	 * @param response
 	 * @param request

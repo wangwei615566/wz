@@ -63,6 +63,8 @@ public interface SysUserMapper extends BaseMapper<SysUser, Long>{
 
     SysUser getUserByUserName(String userName) throws PersistentDataException;
 
+    SysUser loginByUserName(Map<String, Object> map) throws PersistentDataException;
+
 	int getPageCountOracle(Map<String, Object> map);
 
 	List<Map<String, Object>> getUserInfoOracle(Map<String, Object> mapdata);

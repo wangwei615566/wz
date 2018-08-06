@@ -15,16 +15,10 @@ import com.wz.cashloan.system.service.SysRoleService;
 import com.wz.cashloan.system.service.SysUserRoleService;
 import com.wz.cashloan.system.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,8 +52,6 @@ public class SysLoginController extends BaseController {
 	@Resource
 	private SysUserService sysUserService;
 	@Resource
-	private AuthenticationManager authenticationManager;
-	@Resource
 	private PasswordEncoder passwordEncoder;// 密码加密
 	@Resource
 	private SysUserRoleService sysUserRoleService;
@@ -83,70 +75,43 @@ public class SysLoginController extends BaseController {
 	@RequestMapping(value = "/system/user/login.htm")
 	public void loginAjax(@RequestParam(value = "username", required = true) String username,
 			@RequestParam(value = "password", required = true) String password,
-			@RequestParam(value = "accessCode", required = false) String accessCode,
 			HttpServletResponse response,
 			HttpServletRequest request, HttpSession session) throws Exception {
 		Map<String, Object> res = new HashMap<String, Object>();
-		try {
-//			Authentication authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-//			Authentication authentication = authenticationManager.authenticate(authenticationToken);
-			//shiro
-			Subject user = SecurityUtils.getSubject();
-			password = passwordEncoder.encodePassword(String.valueOf(password));
-			UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-			token.setRememberMe(true);
-			user.login(token);
-//			SecurityContextHolder.getContext().setAuthentication(authentication);
-			session.setAttribute("SPRING_SECURITY_CONTEXT",SecurityContextHolder.getContext());
-			SysUser sysUser = (SysUser) user.getSession().getAttribute("SysUser");
-			validateAccessCode(sysUser,accessCode);
-			session.setAttribute(Constant.ACCESSCODE,accessCode);
-			session.setAttribute("SysUser", sysUser);
-			List<SysUserRole> list = sysUserRoleService.getSysUserRoleList(sysUser.getId());
-			if(list != null && list.size() > 0) {
-				session.setAttribute(Constant.ROLEID, list.get(0).getRoleId());
+			SysUser sysUser = (SysUser) request.getSession().getAttribute("SysUser");
+			if(sysUser != null){
+				res.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
 			} else {
-				throw new UnknownAccountException("为找到该账号对应的角色");
+				password = passwordEncoder.encodePassword(String.valueOf(password));
+				Map<String,Object> params = new HashMap<>();
+				params.put("userName",username);
+				params.put("password",password);
+				SysUser sysUserBySql = sysUserService.loginByUserName(params);
+				if(sysUserBySql == null){
+					res.put(Constant.RESPONSE_CODE, Constant.OTHER_CODE_VALUE);
+					res.put(Constant.RESPONSE_CODE_MSG, "密码错误请重新输入");
+				} else {
+					session.setAttribute("SysUser",sysUserBySql);
+					res.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
+				}
 			}
+			ServletUtils.writeToResponse(response, res);
+	}
+
+	@RequestMapping(value = "/system/user/loginOut.htm")
+	public void loginOut() throws Exception {
+		Map<String, Object> res = new HashMap<>();
+		try {
+			Subject user = SecurityUtils.getSubject();
+			user.logout();
 			res.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
-		} catch (SysAccessCodeException ex){
-			logger.error("访问码无效", ex);
-			res.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_VALUE);
-			res.put(Constant.RESPONSE_CODE_MSG, "登录失败，访问码无效");
-		} catch (IncorrectCredentialsException ex){
-			logger.error("密码错误", ex);
+			res.put(Constant.RESPONSE_CODE_MSG,"退出成功");
+		} catch (Exception e) {
 			res.put(Constant.RESPONSE_CODE, Constant.OTHER_CODE_VALUE);
-			res.put(Constant.RESPONSE_CODE_MSG, "密码错误请重新输入");
-		} catch (LockedAccountException ex) {
-			logger.error("该用户已锁定", ex);
-			res.put(Constant.RESPONSE_CODE, Constant.OTHER_CODE_VALUE);
-			res.put(Constant.RESPONSE_CODE_MSG, "该用户已锁定，请联系管理员！");
-		} catch (AuthenticationException ex) {
-			logger.error("登录失败", ex);
-			res.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_VALUE);
-			res.put(Constant.RESPONSE_CODE_MSG, "登录失败");
-		} catch (ExpiredCredentialsException ex) {
-			logger.error(ex.getMessage(), ex);
-			res.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_VALUE);
-			res.put(Constant.RESPONSE_CODE_MSG, ex.getMessage());
-		} catch (UnknownAccountException ex){
-			logger.error(ex.getMessage(), ex);
-			res.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_VALUE);
-			res.put(Constant.RESPONSE_CODE_MSG, "账号不存在请核对后重新输入");
-		} 
-		
+			res.put(Constant.RESPONSE_CODE_MSG, "系统错误");
+		}
 		ServletUtils.writeToResponse(response, res);
 
-	}
-	
-	private void validateAccessCode(SysUser user, String code) {
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("sysUserId",user.getId());
-		map.put("code",code);
-		SysAccessCode sysAccessCode = sysAccessCodeService.findSysAccessCode(map);
-		if(sysAccessCode == null || sysAccessCode.getExceedTime().getTime() < new Date().getTime()) {
-			throw new SysAccessCodeException("访问码无效");
-		}
 	}
 	
 
@@ -189,6 +154,26 @@ public class SysLoginController extends BaseController {
 		res.put(Constant.RESPONSE_CODE_MSG, "登录失败");
 
 		ServletUtils.writeToResponse(response, res);
+	}
+
+	/**
+	 * 获取头部信息 可以js缓存优化 后期处理
+	 * @param response
+	 * @param request
+	 */
+	@RequestMapping("/system/user/find.htm")
+	public void findUser(HttpServletResponse response, HttpServletRequest request) throws Exception{
+		Map<String, Object> responsemap = new HashMap<String, Object>();
+		SysUser sysUser = this.getLoginUser(request);
+		if (null==sysUser) {
+			responsemap.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_VALUE);
+			responsemap.put(Constant.RESPONSE_CODE_MSG, Constant.OPERATION_FAIL);
+			ServletUtils.writeToResponse(response, responsemap);
+			return;
+		}
+		responsemap.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
+		responsemap.put(Constant.RESPONSE_CODE_MSG, Constant.OPERATION_SUCCESS);
+		ServletUtils.writeToResponse(response, responsemap);
 	}
 	
 }

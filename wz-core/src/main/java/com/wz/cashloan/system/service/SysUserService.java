@@ -3,6 +3,7 @@ package com.wz.cashloan.system.service;
 import java.util.List;
 import java.util.Map;
 
+import com.wz.cashloan.core.common.exception.PersistentDataException;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.github.pagehelper.Page;
@@ -94,6 +95,8 @@ public interface SysUserService {
 	List<Map<String, Object>> getCustomerServiceStaffList(Map<String, Object> paramMap) throws ServiceException;
 
 	int queryRoleUserIsUse(Map<String, Object> data) throws ServiceException;
+
+	SysUser loginByUserName(Map<String, Object> map) throws PersistentDataException;
 	
 	SysRole getRoleById(long id) throws ServiceException ;
 

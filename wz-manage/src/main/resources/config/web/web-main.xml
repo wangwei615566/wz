@@ -14,7 +14,7 @@
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<bean id="ResourceConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:/config/server.properties</value>
@@ -25,28 +25,28 @@
 	<!-- 使用annotation @Repository,@Service自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
 	<context:component-scan base-package="com.wz.manage.controller">
 		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+								expression="org.springframework.stereotype.Controller" />
 		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
+								expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
-	<task:executor id="executor" pool-size="5" />      
-    <task:scheduler id="scheduler" pool-size="5" />    
-    <task:annotation-driven executor="executor" scheduler="scheduler" />
+	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="5" />
+	<task:annotation-driven executor="executor" scheduler="scheduler" />
 
 
 	<bean id="secAuthorizeUrl"
-		class="com.wz.cashloan.system.security.freemarker.directive.SpringSecurityAuthorizeUrlDirective"></bean>
-	 <!-- 配置freeMarker的模板路径 -->
+		  class="com.wz.cashloan.system.security.freemarker.directive.SpringSecurityAuthorizeUrlDirective"></bean>
+	<!-- 配置freeMarker的模板路径 -->
 	<bean id="freeMarkerConfigurer"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="templateLoaderPath" value="WEB-INF/views/" />
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="secAuthorizeUrl" value-ref="secAuthorizeUrl"></entry>
 			</map>
 		</property>
-		<!--FreeMarker默认每隔5秒检查模板是否被更新，如果已经更新了，就会重新加载并分析模板。 但经常检查模板是否更新可能比较耗时。如果你的应用运行在生产模式下，而且你预期模板不会经常更新， 
+		<!--FreeMarker默认每隔5秒检查模板是否被更新，如果已经更新了，就会重新加载并分析模板。 但经常检查模板是否更新可能比较耗时。如果你的应用运行在生产模式下，而且你预期模板不会经常更新，
 			则可以将更新的延迟时间延长至一个小时或者更久。 可以通过为freemarkerSettings属性设置template_update_delay达到这一目的-->
 		<property name="freemarkerSettings">
 			<props>
@@ -56,14 +56,14 @@
 		</property>
 		<!--以下语句可以也可以配置freemarker Settings属性，代码更为简洁-->
 		<property name="configLocation" value="classpath:/config/freeMarker.properties"></property>
-	</bean> 
+	</bean>
 
 	<!-- 配置freeMarker视图解析器 -->
 	<!-- FreeMarker视图解析 如返回student,在这里配置后缀名ftl和视图解析器 -->
-	 <bean id="freemarkerResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<bean id="freemarkerResolver"
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="viewClass"
-			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+				  value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
 		<property name="cache" value="true" />
 		<property name="suffix" value=".ftl" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
@@ -73,14 +73,14 @@
 		<property name="exposeSessionAttributes" value="true" />
 		<!-- 使用这些宏，必须设置FreeMarkerViewResolver的exposeMacroHelpers属性为true -->
 		<property name="exposeSpringMacroHelpers" value="true" />
-	</bean> 
- 
+	</bean>
+
 	<!-- URL分布式缓存处理示例 -->
-	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
-		<property name="order" value="100" /> <property name="urlMap"> <map> <entry 
-		key="/remoting/cacheService.html" value-ref="cacheService-hessian" /> </map> 
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="100" /> <property name="urlMap"> <map> <entry
+		key="/remoting/cacheService.html" value-ref="cacheService-hessian" /> </map>
 		</property> </bean> -->
-	
+
 
 	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -95,7 +95,7 @@
 
 	<!-- 默认的注释处理程序映射 -->
 	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+			class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="200" />
 		<property name="interceptors">
 			<list>
@@ -103,15 +103,15 @@
 				<ref bean="permissionsInterceptor" />
 			</list>
 		</property>
-	
+
 	</bean>
 	<!-- 用户权限处理 -->
 	<bean id="permissionsInterceptor"
-		class="com.wz.cashloan.core.common.web.interceptor.PermissionsInterceptor" />
+		  class="com.wz.cashloan.core.common.web.interceptor.PermissionsInterceptor" />
 
 	<!-- 动静分离配置 -->
 	<bean id="urlConfigLauncherInterceptor"
-		class="com.wz.cashloan.core.common.web.interceptor.URLConfigLauncherInterceptor">
+		  class="com.wz.cashloan.core.common.web.interceptor.URLConfigLauncherInterceptor">
 		<property name="urlConfigs">
 			<map>
 				<entry key="mlmsAppServer" value-ref="mlmsAppServerConfig"></entry>
@@ -121,18 +121,18 @@
 			</map>
 		</property>
 	</bean>
-     
-     <bean id="RDobjectMapper" class="com.wz.cashloan.core.common.util.json.mapper.RDObjectMapper" init-method="init">
-        <property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss"/>
-    </bean>
-    <mvc:annotation-driven>
-        <mvc:message-converters>
-        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper" ref="RDobjectMapper"/>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-	
+
+	<bean id="RDobjectMapper" class="com.wz.cashloan.core.common.util.json.mapper.RDObjectMapper" init-method="init">
+		<property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss"/>
+	</bean>
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="RDobjectMapper"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
 	<mvc:interceptors>
 		<!-- <mvc:interceptor>
 			拦截器拦截的URL格式

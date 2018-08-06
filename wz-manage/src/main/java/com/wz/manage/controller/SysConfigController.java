@@ -93,7 +93,6 @@ public class SysConfigController extends BaseController {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping("/modules/manage/system/config/list.htm")
-//    @RequiresPermission(code = "modules:manage:system:config:list", name = "系统管理-系统参数设置-查询")
     public void listConfigs ( HttpServletRequest request,HttpServletResponse response,
                         @RequestParam(value = "current") Integer current,
                         @RequestParam(value = "pageSize") Integer pageSize,

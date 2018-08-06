@@ -47,7 +47,7 @@
 	
     <!-- 动态插入键 -->
     <sql id="InsertKey">
-                   <if test="creator !='' and creator != null">		creator		</if>
+                   <if test="creator != null">		creator		</if>
                    <if test="name !='' and name != null">		,name		</if>
                    <if test="code !='' and code != null">		,code		</if>
                    <if test="value !='' and value != null">		,value		</if>
@@ -58,7 +58,7 @@
     
     <!-- 动态插入值 -->
     <sql id="InsertValue">
-                   <if test="creator !='' and creator != null" >		#{creator}		</if>
+                   <if test="creator != null" >		#{creator}		</if>
                    <if test="name !='' and name != null" >		,#{name}		</if>
                    <if test="code !='' and code != null" >		,#{code}		</if>
                    <if test="value !='' and value != null" >		,#{value}		</if>

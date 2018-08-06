@@ -333,6 +333,14 @@
 		is_delete = 0 and user_name = #{userName}
 	</select>
 
+	<select id="loginByUserName" parameterType="java.util.HashMap" resultMap="sysUserResult">
+		select
+		<include refid="searchSql" />
+		from sys_user
+		where
+		is_delete = 0 and user_name = #{userName} and password = #{password}
+	</select>
+
 	<!-- 根据机构获取当前用户的客户专员列表 -->
 	<select id="getCustomerServiceStaffList" parameterType="java.util.Map"
 		resultMap="customerservicestaff">

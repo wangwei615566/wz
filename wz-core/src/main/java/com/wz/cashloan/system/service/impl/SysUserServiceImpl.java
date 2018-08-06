@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.wz.cashloan.core.common.exception.PersistentDataException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -212,6 +213,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, Long> implement
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(),e,Constant.FAIL_CODE_VALUE);
 		}
+	}
+
+	@Override
+	public SysUser loginByUserName(Map<String, Object> map) throws PersistentDataException {
+		return sysUserMapper.loginByUserName(map);
 	}
 
 
