@@ -18,8 +18,12 @@
     <!-- 此文件暂时配置不多，在以后如果需要开放接口或者调用别的项目开放接口的时候，最好采用scoket通信模式，将配置文件配置到这里 -->
 
     <!-- Security不支持自定义注解注入service -->
-    <context:component-scan base-package="com.wz.cashloan.core.service,com.wz.cashloan.system.service">
+    <context:component-scan base-package="com.wz.cashloan.core.service,com.wz.cashloan.core.common.service,com.wz.cashloan.system.service,com.wz.manage.service">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <context:component-scan base-package="com.wz.cashloan.system">
+        <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
     </context:component-scan>
     <!-- <bean id="sysUserService" class="com.rongdu.arc.modules.system.service.impl.SysUserServiceImpl"/>
     <bean id="sysMenuService" class="com.rongdu.arc.modules.system.service.impl.SysMenuServiceImpl"/>
@@ -35,6 +39,7 @@
         <property name="encoding" value="UTF-8"></property>
         <property name="forceEncoding" value="false"></property>
     </bean>
+    <bean id="passwordEncoder"  class="com.wz.cashloan.system.security.authentication.encoding.PasswordEncoder"></bean>
 
     <!-- JSON 序列化处理 -->
     <bean id="objToJsonSerializer" class="com.wz.cashloan.core.common.util.json.fastjson.ObjToJsonSerializerImpl"/>

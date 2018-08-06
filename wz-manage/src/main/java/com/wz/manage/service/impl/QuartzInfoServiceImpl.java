@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import com.wz.cashloan.core.common.mapper.BaseMapper;
 import com.wz.cashloan.core.common.service.impl.BaseServiceImpl;
+import com.wz.manage.mapper.QuartzInfoMapper;
 import com.wz.manage.mapper.QuartzLogMapper;
 import com.wz.manage.model.QuartzInfoModel;
 import org.slf4j.Logger;

@@ -9,8 +9,6 @@ import com.wz.cashloan.core.service.UserCashLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +33,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
         return userCashLogMapper.listToUserId(userId);
     }
 
-    /*@Override
+    @Override
     public Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize) {
         PageHelper.startPage(current, pageSize);
         List<UserCashLog> orderList = userCashLogMapper.listSelective(params);
@@ -45,5 +43,5 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Override
     public int updateOrder(Map<String, Object> params) {
         return userCashLogMapper.updateOrder(params);
-    }*/
+    }
 }
