@@ -193,12 +193,6 @@ public class UserService {
     public Map login(final HttpServletRequest request, final String loginName, final String loginPwd) {
         try {
             Map user = mybatisService.queryRec("usr.queryUserByLoginName", loginName);
-            if("2".equals(user.get("state"))){
-                Map ret = new LinkedHashMap();
-                ret.put("code", 99);
-                ret.put("msg", "账户已冻结");
-                return ret;
-            }
             if (user == null) {
                 Map ret = new LinkedHashMap();
                 ret.put("code", 300);
@@ -206,6 +200,12 @@ public class UserService {
                 return ret;
             }
 
+            if("2".equals(user.get("state"))){
+                Map ret = new LinkedHashMap();
+                ret.put("code", 99);
+                ret.put("msg", "账户已冻结");
+                return ret;
+            }
             String dbPwd = (String) user.get("login_pwd");
             if (dbPwd.equalsIgnoreCase(loginPwd)) {
                 AppSessionBean session = appDbSession.create(request, loginName);
