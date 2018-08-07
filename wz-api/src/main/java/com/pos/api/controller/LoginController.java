@@ -182,11 +182,11 @@ public class LoginController {
 	@RequestMapping("login/forgetPwd.htm")
 	public void forgetPwd(final HttpServletRequest request,
 			HttpServletResponse response, final String oldPwd,
-			final String newPwd, final String newPwd2,final String loginName) {
+			final String newPwd, final String newPwd2,final String account) {
 		new AppAbsActionWrapper(response) {
 			@Override
 			public Object doAction() {
-				return userService.forgetPwd(oldPwd, newPwd, newPwd2,loginName);
+				return userService.forgetPwd(oldPwd, newPwd, newPwd2,account);
 			}
 		};
 	}

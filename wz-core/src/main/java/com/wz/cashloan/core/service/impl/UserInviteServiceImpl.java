@@ -27,7 +27,9 @@ public class UserInviteServiceImpl implements UserInviteService {
         int countIp = userExtensionLogMapper.countIp(userId);
         int countInvite = userInviteMapper.countInvite(userId);
         Map<String, Object> result = new HashMap<>();
-        if (countIp>=500 || countInvite>=50){
+        Integer extensionCount = Integer.parseInt(Global.getValue("extension_count"));
+        Integer inviteCount = Integer.parseInt(Global.getValue("invite_count"));
+        if (countIp>=extensionCount || countInvite>=inviteCount){
             //开通成功把用户改为禁用
             User user = new User();
             user.setId(userId);

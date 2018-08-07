@@ -1,6 +1,7 @@
 package com.pos.api.controller;
 
 import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.context.Global;
 import com.wz.cashloan.core.common.util.JsonUtil;
 import com.wz.cashloan.core.common.web.controller.BaseController;
 import com.wz.cashloan.core.service.UserAmountService;
@@ -67,6 +68,23 @@ public class IndexController extends BaseController{
         int count = userInviteService.registerCount(userId);
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA, count);
+        result.put(Constant.RESPONSE_CODE_MSG, "获取成功");
+        JsonUtil.writeJson(result,response);
+    }
+
+    /**
+     * 参数配置表参数返回
+     */
+    @RequestMapping("index/sys/config.htm")
+    public void sysConfig(){
+        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("cftNumber",Global.getValue("cft_number"));
+        data.put("vipAmount",Global.getValue("vip_amount"));
+        data.put("extensionCount",Global.getValue("extension_count"));
+        data.put("inviteCount",Global.getValue("invite_count"));
+        result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
+        result.put(Constant.RESPONSE_DATA, data);
         result.put(Constant.RESPONSE_CODE_MSG, "获取成功");
         JsonUtil.writeJson(result,response);
     }

@@ -169,7 +169,7 @@ public class UserService {
         User user = userMapper.findSelective(map);
         if (user == null || !newPwd.equals(newPwd2)) {
             Map ret = new LinkedHashMap();
-            ret.put("success", false);
+            ret.put("code", 300);
             ret.put("msg", "用户不存在或两次密码不一致");
             return ret;
         }
@@ -178,12 +178,12 @@ public class UserService {
 
         if (i>0) {
                 Map ret = new LinkedHashMap();
-                ret.put("success", true);
+                ret.put("code", 200);
                 ret.put("msg", "密码已修改");
                 return ret;
             } else {
                 Map ret = new LinkedHashMap();
-                ret.put("success", false);
+                ret.put("code", 300);
                 ret.put("msg", "密码修改失败");
                 return ret;
             }

@@ -126,20 +126,22 @@ public class AppDbSession {
 		Map<String, Object> user = dbService.queryRec(
 				"select * from user where login_name=?", loginname);
 		long userId = Long.parseLong(user.get("id").toString());
-
+		Map<String, Object> userAmount = dbService.queryRec(
+				"select * from user_amount where user_id=?", userId);
 		// Map customer =
 		// dbService.queryRec("select * from cl_user_base_info where user_id=?",
 		// userId);
 
 		String token = UUID.randomUUID().toString().replaceAll("-", "");
-		String refreshToken = (String) user.get("uuid");
 
 		Map session = MapUtil.array2Map(new Object[][] {
 				{
 						"front",
 						new Object[][] { { "userId", userId },
-								{ "token", token },
-								{ "refreshToken", refreshToken } } },
+								{"loginName",loginname},
+								{"vipState",user.get("vip_state")},
+								{"amount",userAmount.get("total")},
+								{ "token", token } } },
 				{ "userData", user } });
 		return new AppSessionBean(session);
 
