@@ -20,7 +20,7 @@
 	<!-- 此文件暂时配置不多，在以后如果需要开放接口或者调用别的项目开放接口的时候，最好采用scoket通信模式，将配置文件配置到这里 -->
 
 	<!-- Security不支持自定义注解注入service -->
-	<context:component-scan base-package="com.pos.api.user.service,com.pos.api.service,com.wz.cashloan.core.service,com.wz.cashloan.system.service">
+	<context:component-scan base-package="com.pos.api.user.service,com.pos.api.service,com.wz.cashloan">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 

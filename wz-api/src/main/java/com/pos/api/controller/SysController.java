@@ -27,18 +27,15 @@ import java.util.Map;
 @Controller
 @Scope("prototype")
 public class SysController extends BaseController {
-    @Resource
-    private CacheUtil cacheUtil;
     /**
      * 重加载系统配置数据
      * 
      * @throws Exception
      */
     @RequestMapping("/system/config/reload.htm")
-    @RequiresPermission(code = "system:config:reload", name = "系统管理-系统参数设置-缓存数据重加载")
     public void reload() throws Exception {
         // 调用缓存辅助类 重加载系统配置数据
-    		cacheUtil.initSysConfig();
+        CacheUtil.initSysConfig();
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		returnMap.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
 		returnMap.put(Constant.RESPONSE_CODE_MSG, Constant.OPERATION_SUCCESS);
