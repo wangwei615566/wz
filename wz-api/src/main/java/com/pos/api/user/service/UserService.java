@@ -162,9 +162,9 @@ public class UserService {
     }
 
 
-    public Object forgetPwd(String oldPwd, String newPwd, String newPwd2,Long userId) {
+    public Object forgetPwd(String oldPwd, String newPwd, String newPwd2,String loginName) {
         Map<String, Object> map = new HashMap<>();
-        map.put("userId",userId);
+        map.put("loginName",loginName);
         map.put("loginPwd",oldPwd);
         User user = userMapper.findSelective(map);
         if (user == null || !newPwd.equals(newPwd2)) {
