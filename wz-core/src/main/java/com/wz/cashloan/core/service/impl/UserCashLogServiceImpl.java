@@ -9,6 +9,7 @@ import com.wz.cashloan.core.service.UserCashLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,13 +20,18 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Resource
     private UserAmountService userAmountService;
     @Override
-    public int save(UserCashLog userCashLog) {
+    public Map<String, Object> save(UserCashLog userCashLog) {
         Double amount = userAmountService.getAmount(userCashLog.getUserId(), 0.0);
+        Map<String, Object> result = new HashMap<>();
         if (userCashLog.getAmount().doubleValue()>amount || userCashLog.getAmount().doubleValue()<=0){
-            return -1;
+            result.put("code",-1);
+            return result;
         }
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
-        return userCashLogMapper.insert(userCashLog);
+        int insert = userCashLogMapper.insert(userCashLog);
+        result.put("code",insert>0?1:-1);
+        result.put("amount",amount);
+        return result;
     }
 
     @Override

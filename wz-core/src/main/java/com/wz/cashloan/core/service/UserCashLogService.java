@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserCashLogService {
-    int save(UserCashLog userCashLog);
+    Map<String, Object> save(UserCashLog userCashLog);
     List<UserCashLog> listUserCashLog(Long userId);
 
     Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize);

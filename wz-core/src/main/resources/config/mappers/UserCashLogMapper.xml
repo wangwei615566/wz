@@ -41,7 +41,7 @@
     select
     <include refid="Base_Column_List" />
     from user_cash_log
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=BIGINT} order by id desc
   </select>
 
   <select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap" >

@@ -38,8 +38,11 @@ public class CashLogController extends BaseController{
     @RequestParam("userId") long userId){
         Map<String, Object> result = new HashMap<>();
         UserCashLog userCashLog = new UserCashLog(userId, (byte)2, accountNo, accountName, BigDecimal.valueOf(amount), BigDecimal.valueOf(0), new Date());
-        int save = userCashLogService.save(userCashLog);
+        userCashLog.setState((byte)2);
+        Map<String, Object> rep = userCashLogService.save(userCashLog);
+        int save = Integer.parseInt(rep.get("code").toString());
         result.put(Constant.RESPONSE_CODE, save>0?Constant.SUCCEED_CODE_VALUE:Constant.FAIL_CODE_VALUE);
+        result.put(Constant.RESPONSE_DATA,rep.get("amount"));
         result.put(Constant.RESPONSE_CODE_MSG, save>0?"保存成功":"保存失败");
         JsonUtil.writeJson(result,response);
     }
