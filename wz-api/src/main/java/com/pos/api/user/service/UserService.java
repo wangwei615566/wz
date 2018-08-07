@@ -193,9 +193,15 @@ public class UserService {
     public Map login(final HttpServletRequest request, final String loginName, final String loginPwd) {
         try {
             Map user = mybatisService.queryRec("usr.queryUserByLoginName", loginName);
-            if (user == null || "2".equals(user.get("state"))) {
+            if("2".equals(user.get("state"))){
                 Map ret = new LinkedHashMap();
-                ret.put("success", false);
+                ret.put("code", 99);
+                ret.put("msg", "账户已冻结");
+                return ret;
+            }
+            if (user == null) {
+                Map ret = new LinkedHashMap();
+                ret.put("code", 300);
                 ret.put("msg", "账户不存在");
                 return ret;
             }
@@ -204,13 +210,13 @@ public class UserService {
             if (dbPwd.equalsIgnoreCase(loginPwd)) {
                 AppSessionBean session = appDbSession.create(request, loginName);
                 Map ret = new LinkedHashMap();
-                ret.put("success", true);
+                ret.put("code", 200);
                 ret.put("msg", "登录成功");
                 ret.put("data", session.getFront());
                 return ret;
             }
             Map ret = new LinkedHashMap();
-            ret.put("success", false);
+            ret.put("code", 300);
             ret.put("msg", "密码错误");
             return ret;
         } catch (Exception e) {
