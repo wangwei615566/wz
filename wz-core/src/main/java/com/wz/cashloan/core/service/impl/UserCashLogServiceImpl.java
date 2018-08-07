@@ -9,6 +9,7 @@ import com.wz.cashloan.core.service.UserCashLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
         int insert = userCashLogMapper.insert(userCashLog);
         result.put("code",insert>0?1:-1);
-        result.put("amount",amount);
+        result.put("amount", BigDecimal.valueOf(amount).subtract(userCashLog.getAmount()));
         return result;
     }
 

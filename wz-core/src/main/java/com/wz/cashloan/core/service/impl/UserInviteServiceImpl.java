@@ -5,6 +5,8 @@ import com.wz.cashloan.core.mapper.UserExtensionLogMapper;
 import com.wz.cashloan.core.mapper.UserInviteMapper;
 import com.wz.cashloan.core.mapper.UserMapper;
 import com.wz.cashloan.core.model.User;
+import com.wz.cashloan.core.model.UserInvite;
+import com.wz.cashloan.core.service.UserAmountService;
 import com.wz.cashloan.core.service.UserInviteService;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class UserInviteServiceImpl implements UserInviteService {
     private UserInviteMapper userInviteMapper;
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private UserAmountService userAmountService;
     @Override
     public Map<String, Object> getFreeInvite(Long userId) {
         int countIp = userExtensionLogMapper.countIp(userId);
@@ -36,6 +40,12 @@ public class UserInviteServiceImpl implements UserInviteService {
             user.setState((byte)2);
             userMapper.updateByPrimaryKeySelective(user);
             result.put("state",1);
+
+            UserInvite toInvite = userInviteMapper.findToInvite(userId);
+            if (toInvite!=null){
+                String invite_amount = Global.getValue("invite_amount");
+                Double amount = userAmountService.getAmount(toInvite.getUserId(), Double.parseDouble(invite_amount));
+            }
         }else {
             result.put("state",-1);
         }
