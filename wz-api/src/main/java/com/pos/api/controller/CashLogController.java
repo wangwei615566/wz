@@ -31,14 +31,13 @@ public class CashLogController extends BaseController{
      * @param accountName
      * @param accountNo
      * @param amount
-     * @param fee
      * @param userId
      */
     @RequestMapping("index/save/cashLog.htm")
     public void saveCashLog(@RequestParam("accountNo") String accountNo,@RequestParam("accountName") String accountName,@RequestParam("amount") double amount,
-    @RequestParam("fee") double fee,@RequestParam("userId") long userId){
+    @RequestParam("userId") long userId){
         Map<String, Object> result = new HashMap<>();
-        UserCashLog userCashLog = new UserCashLog(userId, (byte)2, accountNo, accountName, BigDecimal.valueOf(amount), BigDecimal.valueOf(fee), new Date());
+        UserCashLog userCashLog = new UserCashLog(userId, (byte)2, accountNo, accountName, BigDecimal.valueOf(amount), BigDecimal.valueOf(0), new Date());
         int save = userCashLogService.save(userCashLog);
         result.put(Constant.RESPONSE_CODE, save>0?Constant.SUCCEED_CODE_VALUE:Constant.FAIL_CODE_VALUE);
         result.put(Constant.RESPONSE_CODE_MSG, save>0?"保存成功":"保存失败");
