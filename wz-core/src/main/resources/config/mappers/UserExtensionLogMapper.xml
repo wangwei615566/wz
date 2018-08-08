@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.wz.cashloan.core.model.UserExtensionLog" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="invitation_code" property="invitationCode" jdbcType="VARCHAR" />
-    <result column="ip" property="ip" jdbcType="BIGINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -28,7 +28,7 @@
   <insert id="insert" parameterType="com.wz.cashloan.core.model.UserExtensionLog" >
     insert into user_extension_log (id, invitation_code, ip, 
       create_time)
-    values (#{id,jdbcType=BIGINT}, #{invitationCode,jdbcType=VARCHAR}, #{ip,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{invitationCode,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.wz.cashloan.core.model.UserExtensionLog" >
@@ -55,7 +55,7 @@
         #{invitationCode,jdbcType=VARCHAR},
       </if>
       <if test="ip != null" >
-        #{ip,jdbcType=BIGINT},
+        #{ip,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -69,7 +69,7 @@
         invitation_code = #{invitationCode,jdbcType=VARCHAR},
       </if>
       <if test="ip != null" >
-        ip = #{ip,jdbcType=BIGINT},
+        ip = #{ip,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -80,7 +80,7 @@
   <update id="updateByPrimaryKey" parameterType="com.wz.cashloan.core.model.UserExtensionLog" >
     update user_extension_log
     set invitation_code = #{invitationCode,jdbcType=VARCHAR},
-      ip = #{ip,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

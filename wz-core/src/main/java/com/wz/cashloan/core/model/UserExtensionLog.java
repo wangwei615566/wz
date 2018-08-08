@@ -7,7 +7,7 @@ public class UserExtensionLog {
 
     private String invitationCode;
 
-    private Long ip;
+    private String ip;
 
     private Date createTime;
 
@@ -27,11 +27,11 @@ public class UserExtensionLog {
         this.invitationCode = invitationCode == null ? null : invitationCode.trim();
     }
 
-    public Long getIp() {
+    public String getIp() {
         return ip;
     }
 
-    public void setIp(Long ip) {
+    public void setIp(String ip) {
         this.ip = ip;
     }
 

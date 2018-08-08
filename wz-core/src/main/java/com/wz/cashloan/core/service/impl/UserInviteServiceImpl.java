@@ -1,20 +1,19 @@
 package com.wz.cashloan.core.service.impl;
 
 import com.wz.cashloan.core.common.context.Global;
+import com.wz.cashloan.core.common.util.IPv4IntTransformer;
 import com.wz.cashloan.core.mapper.UserExtensionLogMapper;
 import com.wz.cashloan.core.mapper.UserInviteMapper;
 import com.wz.cashloan.core.mapper.UserMapper;
 import com.wz.cashloan.core.model.User;
+import com.wz.cashloan.core.model.UserExtensionLog;
 import com.wz.cashloan.core.model.UserInvite;
 import com.wz.cashloan.core.service.UserAmountService;
 import com.wz.cashloan.core.service.UserInviteService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("userInviteService")
 public class UserInviteServiceImpl implements UserInviteService {
@@ -87,5 +86,17 @@ public class UserInviteServiceImpl implements UserInviteService {
             map.put("amount",recommendAward);
         }
         return list;
+    }
+
+    @Override
+    public void saveExtension(String id, String ip) {
+        Map<String, Object> reqMap = new HashMap<>();
+        reqMap.put("loginName",id);
+        User user = userMapper.findSelective(reqMap);
+        UserExtensionLog userExtensionLog = new UserExtensionLog();
+        if (user!=null)userExtensionLog.setInvitationCode(user.getInvitationCode());
+        userExtensionLog.setIp(ip);
+        userExtensionLog.setCreateTime(new Date());
+        int insert = userExtensionLogMapper.insertSelective(userExtensionLog);
     }
 }

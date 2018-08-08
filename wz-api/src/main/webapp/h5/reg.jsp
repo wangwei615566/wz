@@ -1,4 +1,13 @@
+<%@ page import="com.wz.cashloan.core.common.util.IpUtil" %>
+<%@ page import="com.wz.cashloan.core.service.UserInviteService" %>
+<%@ page import="tool.util.BeanUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  String userId= request.getParameter("id");
+  String ip = IpUtil.getRemortIP(request);
+  UserInviteService userInviteService = (UserInviteService) BeanUtil.getBean("userInviteService");
+  userInviteService.saveExtension(userId,ip);
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

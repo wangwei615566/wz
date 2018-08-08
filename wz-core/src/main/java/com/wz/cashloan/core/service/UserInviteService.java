@@ -8,4 +8,6 @@ public interface UserInviteService {
     int getExtensionCount(Long userId);
     int registerCount(Long userId);
     List<Map<String,Object>> listReward(Long userId);
+
+    void saveExtension(String userId,String ip);
 }
