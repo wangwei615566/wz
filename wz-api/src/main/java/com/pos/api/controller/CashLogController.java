@@ -35,7 +35,7 @@ public class CashLogController extends BaseController{
      */
     @RequestMapping("index/save/cashLog.htm")
     public void saveCashLog(@RequestParam("accountNo") String accountNo,@RequestParam("accountName") String accountName,@RequestParam("amount") double amount,
-    @RequestParam("userId") long userId,@RequestParam("inviteId") long inviteId){
+    @RequestParam("userId") long userId,@RequestParam(value = "inviteId",required = false) long inviteId){
     	Map<String, Object> result = new HashMap<>();
     	if(inviteId != 0 && userCashLogService.selectInviteId(inviteId)){
     		result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);

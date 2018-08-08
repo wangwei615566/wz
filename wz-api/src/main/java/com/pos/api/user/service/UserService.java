@@ -63,7 +63,6 @@ public class UserService {
      * @param request
      * @param phone
      * @param pwd 登陆密码（加密）
-     * @param invitationCode
      * @param regClient
      * @param passWord 登陆密码（未加密）
      * @return
@@ -72,7 +71,7 @@ public class UserService {
     public Map registerUser(HttpServletRequest request, String phone, String pwd, String InvitationName,String regClient,String registerIp,String deviceId,
                             String passWord) {
         try {
-            if (StringUtil.isEmpty(phone) || StringUtil.isEmpty(pwd) ||pwd.length() < 6) {
+            if (StringUtil.isAnyBlank(phone,pwd,regClient,registerIp,deviceId) ||pwd.length() < 6) {
                 Map ret = new LinkedHashMap();
                 ret.put("success", false);
                 ret.put("msg", "参数有误");
