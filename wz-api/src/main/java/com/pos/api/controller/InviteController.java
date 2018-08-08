@@ -16,6 +16,7 @@ import java.util.Map;
 
 @Scope("prototype")
 @Controller
+@RequestMapping("/api")
 public class InviteController extends BaseController{
     @Resource
     private UserInviteService userInviteService;

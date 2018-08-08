@@ -13,5 +13,7 @@ public interface UserCashLogService {
     Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize);
 
     int updateOrder(Map<String, Object> params);
+    
+    public boolean selectInviteId(Long inviteId);
 
 }

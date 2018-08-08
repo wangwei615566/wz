@@ -43,7 +43,7 @@ public class MD5 {
      * @throws Exception 
      */
     public static String md5(String text){
-    	return md5(text,null,"utf-8");
+    	return md5(text,null);
     }
     
     /**
@@ -52,9 +52,9 @@ public class MD5 {
      * @param chartset 字符编码
      * @return 加密结果
      */
-    public static String md5(String text,String key,String chartset){
+    public static String md5(String text,String key){
     	text = StringUtils.isBlank(key) ? text : text+key;
-    	byte[] bytes = getContentBytes(text,chartset);
+    	byte[] bytes = getContentBytes(text,"utf-8");
         MessageDigest messageDigest = null;
 		try {
 			messageDigest = MessageDigest.getInstance("MD5");
@@ -83,7 +83,7 @@ public class MD5 {
      * @throws Exception 
      */
     public static String sign(Map<String,Object> map, String key){
-    	return md5(paramsString(map),key,"utf-8");
+    	return md5(paramsString(map),key);
     }
     
     /**
@@ -95,7 +95,7 @@ public class MD5 {
      * @throws Exception 
      */
     public static boolean verify(String text, String sign, String key){
-    	String mysign = md5(text,key,"utf-8");
+    	String mysign = md5(text,key);
     	if(mysign.equals(sign)) {
     		return true;
     	}
@@ -103,26 +103,6 @@ public class MD5 {
     		return false;
     	}
     }
-    
-    /**
-     * 签名字符串
-     * @param text 需要签名的字符串
-     * @param sign 签名结果
-     * @param key 密钥
-     * @param input_charset 编码格式
-     * @return 签名结果
-     * @throws Exception 
-     */
-    public static boolean verify(String text, String sign, String key, String input_charset){
-    	String mysign = md5(text,key,input_charset);
-    	if(mysign.equals(sign)) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
-    }
-    
     /**
      * 按照key的升序排序
      * @param map

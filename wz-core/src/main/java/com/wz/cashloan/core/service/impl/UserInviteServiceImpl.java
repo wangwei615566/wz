@@ -80,15 +80,11 @@ public class UserInviteServiceImpl implements UserInviteService {
     @Override
     public List<Map<String, Object>> listReward(Long userId) {
         String recommendAward = Global.getValue("recommend_ award");
-        List<String> nameList = userInviteMapper.listInviteName(userId);
-        Map<String, Object> map;
-        ArrayList<Map<String, Object>> list = new ArrayList<>();
-        for (String name:nameList
+        List<Map<String,Object>> list = userInviteMapper.listInviteName(userId);
+        
+        for (Map<String,Object> map:list
              ) {
-            map = new HashMap<>();
-            map.put("name",name);
             map.put("amount",recommendAward);
-            list.add(map);
         }
         return list;
     }

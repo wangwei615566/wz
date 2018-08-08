@@ -108,8 +108,8 @@ public class ApiInterceptor implements HandlerInterceptor {
 
 		
 		//String token = request.getHeader("token");
-		String signMsg = request.getHeader("signMsg");
-
+		String signMsg = requestMap.get("signMsg") == null ? null : requestMap.get("signMsg").toString();
+		requestMap.remove("signMsg");
 		Map<String, Object> rec = new LinkedHashMap<String, Object>();
 		// 登录后的请求地址都带有/act/
 		boolean flag = false;

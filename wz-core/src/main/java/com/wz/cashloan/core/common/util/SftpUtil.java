@@ -1,4 +1,4 @@
-package com.wz.cashloan.core.common.util;
+/*package com.wz.cashloan.core.common.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,44 +23,44 @@ public class SftpUtil {
 
 	private static final Logger logger = Logger.getLogger(SftpUtil.class);
 
-	/**
+	*//**
 	 * sftp服务器地址
-	 */
+	 *//*
 	protected static String host;
 
-	/**
+	*//**
 	 * sftp服务器端口号
-	 */
+	 *//*
 	protected static int port;
 
-	/**
+	*//**
 	 * sftp服务器用户名
-	 */
+	 *//*
 	protected static String username;
 
-	/**
+	*//**
 	 * sftp服务器密码
-	 */
+	 *//*
 	protected static String password;
 
-	/**
+	*//**
 	 * 文件路径
-	 */
+	 *//*
 	protected static String path;
 
-	/**
+	*//**
 	 * 密钥文件路径
-	 */
+	 *//*
 	protected static String privateKey;
 
-	/**
+	*//**
 	 * 密钥口令
-	 */
+	 *//*
 	protected static String passphrase;
 
-	/**
+	*//**
 	 * 初始化参数
-	 */
+	 *//*
 	private static void init() {
 		String sftp = Global.getValue("lianlian_sftp");
 
@@ -77,11 +77,11 @@ public class SftpUtil {
 		}
 	}
 
-	/**
+	*//**
 	 * 获取sftp连接
 	 * 
 	 * @return
-	 */
+	 *//*
 	public static ChannelSftp connect() {
 		init();
 		JSch jsch = new JSch();
@@ -110,7 +110,7 @@ public class SftpUtil {
 	public static void main(String[] args) {
 		connect();
 	}
-	/**
+	*//**
 	 * 上传文件
 	 * 
 	 * @param directory
@@ -118,7 +118,7 @@ public class SftpUtil {
 	 * @param uploadFile
 	 *            要上传的文件
 	 * @param sftp
-	 */
+	 *//*
 	public static void upload(String directory, String uploadFile,
 			ChannelSftp sftp) {
 		FileInputStream fis = null;
@@ -138,7 +138,7 @@ public class SftpUtil {
 		}
 	}
 
-	/**
+	*//**
 	 * 下载文件
 	 * 
 	 * @param directory
@@ -148,7 +148,7 @@ public class SftpUtil {
 	 * @param saveDirectory
 	 *            存在本地的路径
 	 * @param sftp
-	 */
+	 *//*
 	public static boolean download(String directory, String downloadFile,
 			String saveDirectory, ChannelSftp sftp) {
 		logger.info("下载sftp对账文件：" + downloadFile);
@@ -168,7 +168,7 @@ public class SftpUtil {
 		}
 	}
 
-	/**
+	*//**
 	 * 获取文件流
 	 * 
 	 * @param directory
@@ -176,7 +176,7 @@ public class SftpUtil {
 	 * @param fileName
 	 *            文件名
 	 * @param sftp
-	 */
+	 *//*
 	public static InputStream getFileStream(String fileName, ChannelSftp sftp) {
 		InputStream in = null;
 		logger.info("读取sftp对账文件输入流：" + fileName);
@@ -190,3 +190,4 @@ public class SftpUtil {
 	}
 
 }
+*/

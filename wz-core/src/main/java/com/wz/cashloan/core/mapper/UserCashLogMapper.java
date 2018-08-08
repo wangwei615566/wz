@@ -23,4 +23,6 @@ public interface UserCashLogMapper {
     int updateByPrimaryKeySelective(UserCashLog record);
 
     int updateByPrimaryKey(UserCashLog record);
+    
+    int selectInviteId(Long inviteId);
 }

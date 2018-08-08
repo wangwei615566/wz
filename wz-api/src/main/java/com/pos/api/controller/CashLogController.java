@@ -35,15 +35,22 @@ public class CashLogController extends BaseController{
      */
     @RequestMapping("index/save/cashLog.htm")
     public void saveCashLog(@RequestParam("accountNo") String accountNo,@RequestParam("accountName") String accountName,@RequestParam("amount") double amount,
-    @RequestParam("userId") long userId){
-        Map<String, Object> result = new HashMap<>();
+    @RequestParam("userId") long userId,@RequestParam("inviteId") long inviteId){
+    	Map<String, Object> result = new HashMap<>();
+    	if(inviteId != 0 && userCashLogService.selectInviteId(inviteId)){
+    		result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
+            result.put(Constant.RESPONSE_CODE_MSG, "该笔推荐奖励已申请提现，请勿重复操作");
+            JsonUtil.writeJson(result,response);
+    		return;
+    	}
         UserCashLog userCashLog = new UserCashLog(userId, (byte)2, accountNo, accountName, BigDecimal.valueOf(amount), BigDecimal.valueOf(0), new Date());
         userCashLog.setState((byte)2);
+        userCashLog.setInviteId(inviteId);
         Map<String, Object> rep = userCashLogService.save(userCashLog);
         int save = Integer.parseInt(rep.get("code").toString());
-        result.put(Constant.RESPONSE_CODE, save>0?Constant.SUCCEED_CODE_VALUE:Constant.FAIL_CODE_VALUE);
+        result.put(Constant.RESPONSE_CODE, save==1?Constant.SUCCEED_CODE_VALUE : save==-2 ? Constant.FAIL_CODE_PARAM_INSUFFICIENT :Constant.FAIL_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA,rep.get("amount"));
-        result.put(Constant.RESPONSE_CODE_MSG, save>0?"保存成功":"保存失败");
+        result.put(Constant.RESPONSE_CODE_MSG, save==1 ? "保存成功" : save==-2 ? "账户余额不足，无法提现":"保存失败");
         JsonUtil.writeJson(result,response);
     }
 

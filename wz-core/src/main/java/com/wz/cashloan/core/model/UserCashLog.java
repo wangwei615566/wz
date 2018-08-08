@@ -17,6 +17,8 @@ public class UserCashLog {
     private BigDecimal amount;
 
     private BigDecimal fee;
+    
+    private Long inviteId;
 
     private Byte state;
 
@@ -100,7 +102,15 @@ public class UserCashLog {
         this.createTime = createTime;
     }
 
-    public Byte getState() {
+    public Long getInviteId() {
+		return inviteId;
+	}
+
+	public void setInviteId(Long inviteId) {
+		this.inviteId = inviteId;
+	}
+
+	public Byte getState() {
         return state;
     }
 

@@ -4,16 +4,16 @@
   <resultMap id="BaseResultMap" type="com.wz.cashloan.core.model.UserCashLog" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="cash_way" property="cashWay" jdbcType="TINYINT" />
+    <!-- <result column="cash_way" property="cashWay" jdbcType="TINYINT" /> -->
     <result column="account_no" property="accountNo" jdbcType="VARCHAR" />
     <result column="account_name" property="accountName" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <!-- <result column="fee" property="fee" jdbcType="DECIMAL" /> -->
     <result column="state" property="state" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, cash_way, account_no, account_name, amount, fee, create_time,state
+    id, user_id, account_no, account_name, amount, create_time,state
   </sql>
   <sql id="searchBy">
     <trim prefix="where" prefixOverrides="and|or">
@@ -58,10 +58,10 @@
   <insert id="insert" parameterType="com.wz.cashloan.core.model.UserCashLog" >
     insert into user_cash_log (id, user_id, cash_way, 
       account_no, account_name, amount, 
-      fee, create_time)
+      fee,invite_id,state, create_time)
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{cashWay,jdbcType=TINYINT}, 
       #{accountNo,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
-      #{fee,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP})
+      #{fee,jdbcType=DECIMAL},#{inviteId,jdbcType=BIGINT}, #{state,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.wz.cashloan.core.model.UserCashLog" >
     insert into user_cash_log
@@ -86,6 +86,12 @@
       </if>
       <if test="fee != null" >
         fee,
+      </if>
+      <if test="inviteId != null" >
+        invite_id,
+      </if>
+      <if test="state != null" >
+        state,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -113,9 +119,16 @@
       <if test="fee != null" >
         #{fee,jdbcType=DECIMAL},
       </if>
+      <if test="inviteId != null" >
+        #{inviteId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wz.cashloan.core.model.UserCashLog" >
@@ -182,4 +195,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectInviteId" resultType="java.lang.Integer" parameterType="java.lang.Long">
+  	select count(1) from user_cash_log where invite_id = #{inviteId,jdbcType=BIGINT}
+  </select>
 </mapper>

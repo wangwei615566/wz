@@ -29,8 +29,11 @@
   <select id="countInvite" resultType="java.lang.Integer" parameterType="java.lang.Long" >
     SELECT COUNT(0) FROM user_invite WHERE user_id = #{userId,jdbcType=BIGINT}
   </select>
-  <select id="listInviteName" resultType="java.lang.String" parameterType="java.lang.Long">
-    SELECT u.login_name FROM `user_invite` i LEFT JOIN `user` u ON i.invite_id = u.id WHERE i.user_id = #{userId,jdbcType=BIGINT}
+  <select id="listInviteName" resultType="java.util.Map" parameterType="java.lang.Long">
+    SELECT i.id,u.login_name as name FROM `user_invite` i 
+	LEFT JOIN `user` u ON i.invite_id = u.id 
+	LEFT JOIN user_cash_log ucl ON i.id = ucl.invite_id
+	WHERE i.user_id = #{userId,jdbcType=BIGINT} and ucl.id is null
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user_invite

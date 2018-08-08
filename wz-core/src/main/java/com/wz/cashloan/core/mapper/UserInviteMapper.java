@@ -4,6 +4,7 @@ import com.wz.cashloan.core.common.mapper.RDBatisDao;
 import com.wz.cashloan.core.model.UserInvite;
 
 import java.util.List;
+import java.util.Map;
 
 @RDBatisDao
 public interface UserInviteMapper {
@@ -15,7 +16,7 @@ public interface UserInviteMapper {
 
     int countInvite(Long userId);
 
-    List<String>listInviteName(Long userId);
+    List<Map<String,Object>> listInviteName(Long userId);
 
     UserInvite selectByPrimaryKey(Long id);
 

@@ -25,7 +25,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
         Double amount = userAmountService.getAmount(userCashLog.getUserId(), 0.0);
         Map<String, Object> result = new HashMap<>();
         if (userCashLog.getAmount().doubleValue()>amount || userCashLog.getAmount().doubleValue()<=0){
-            result.put("code",-1);
+            result.put("code",-2);
             return result;
         }
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
@@ -50,5 +50,13 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     @Override
     public int updateOrder(Map<String, Object> params) {
         return userCashLogMapper.updateOrder(params);
+    }
+    /**
+     * 查询是否存在提现推荐记录
+     * @param inviteId
+     * @return
+     */
+    public boolean selectInviteId(Long inviteId){
+    	return userCashLogMapper.selectInviteId(inviteId) > 0 ? true : false;
     }
 }
