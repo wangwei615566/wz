@@ -83,6 +83,8 @@ public class IndexController extends BaseController{
         data.put("vipAmount",Global.getValue("vip_amount"));
         data.put("extensionCount",Global.getValue("extension_count"));
         data.put("inviteCount",Global.getValue("invite_count"));
+        data.put("vipDesc",Global.getValue("vip_desc"));
+        data.put("notice",Global.getValue("notice"));
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA, data);
         result.put(Constant.RESPONSE_CODE_MSG, "获取成功");
