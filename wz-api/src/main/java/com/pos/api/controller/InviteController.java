@@ -26,7 +26,7 @@ public class InviteController extends BaseController{
      * @param userId
      */
     @RequestMapping("index/reward/find.htm")
-    public void rewardFind(@RequestParam("userId") long userId){
+    public void rewardFind(@RequestParam("userId") Long userId){
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> maps = userInviteService.listReward(userId);
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);

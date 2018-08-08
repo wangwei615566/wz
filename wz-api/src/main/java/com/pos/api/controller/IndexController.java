@@ -33,7 +33,7 @@ public class IndexController extends BaseController{
      * @param amount
      */
     @RequestMapping("index/find/amount.htm")
-    public void updateAmount(@RequestParam("userId") long userId,@RequestParam("amount") double amount){
+    public void updateAmount(@RequestParam("userId") Long userId,@RequestParam("amount") Double amount){
         Map<String, Object> result = new HashMap<String, Object>();
         Double reqAmount = userAmountService.getAmount(userId, amount);
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);

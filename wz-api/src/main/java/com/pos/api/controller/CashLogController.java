@@ -34,10 +34,10 @@ public class CashLogController extends BaseController{
      * @param userId
      */
     @RequestMapping("index/save/cashLog.htm")
-    public void saveCashLog(@RequestParam("accountNo") String accountNo,@RequestParam("accountName") String accountName,@RequestParam("amount") double amount,
-    @RequestParam("userId") long userId,@RequestParam(value = "inviteId",required = false) long inviteId){
+    public void saveCashLog(@RequestParam("accountNo") String accountNo,@RequestParam("accountName") String accountName,@RequestParam("amount") Double amount,
+    @RequestParam("userId") Long userId,@RequestParam(value = "inviteId",required = false) Long inviteId){
     	Map<String, Object> result = new HashMap<>();
-    	if(inviteId != 0 && userCashLogService.selectInviteId(inviteId)){
+    	if(inviteId != null && userCashLogService.selectInviteId(inviteId)){
     		result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
             result.put(Constant.RESPONSE_CODE_MSG, "该笔推荐奖励已申请提现，请勿重复操作");
             JsonUtil.writeJson(result,response);
@@ -60,7 +60,7 @@ public class CashLogController extends BaseController{
      * @param userId
      */
     @RequestMapping("index/list/cashLog.htm")
-    public void listCashLog(@RequestParam("userId") long userId){
+    public void listCashLog(@RequestParam("userId") Long userId){
         Map<String, Object> result = new HashMap<>();
         List<UserCashLog> userCashLogs = userCashLogService.listUserCashLog(userId);
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
