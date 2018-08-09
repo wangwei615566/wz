@@ -14,6 +14,19 @@
   <sql id="Base_Column_List" >
     id, rec_account, pay_account, amount, state, remark, update_time, create_time
   </sql>
+  <sql id="searchBy">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="recAccount != null" >
+        rec_account = #{recAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="payAccount != null" >
+        and pay_account = #{payAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        and state = #{state,jdbcType=TINYINT}
+      </if>
+    </trim>
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
@@ -24,6 +37,33 @@
     delete from user_charge_log
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_charge_log
+    <include refid="searchBy"/>
+  </select>
+  <update id="updateOrder" parameterType="java.util.HashMap" >
+    update user_charge_log
+    <set >
+      <if test="recAccount != null" >
+        rec_account = #{recAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccount != null" >
+        pay_account = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <insert id="insert" parameterType="com.wz.cashloan.core.model.UserChargeLog" >
     insert into user_charge_log (id, rec_account, pay_account, 
       amount, state, remark, 

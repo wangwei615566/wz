@@ -50,10 +50,11 @@ public class ManageUserController extends ManageBaseController {
      * @throws Exception
      */
     @RequestMapping(value = "/manage/user/search/update.htm")
-    public void findById(@RequestParam(value="id") long id,int state) throws Exception {
+    public void findById(@RequestParam(value="id") long id,@RequestParam(value="state",required = false)Integer state,@RequestParam(value="vipState",required = false)Integer vipState) throws Exception {
         Map<String,Object> param = new HashMap<>();
         param.put("id",id);
         param.put("state",state);
+        param.put("vipState",vipState);
         Map<String,Object> result = new HashMap<>();
         int i = userService.updateUser(param);
         if(i == 1){

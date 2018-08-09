@@ -41,14 +41,26 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     }
 
     @Override
-    public Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize) {
+    public Page<Map<String,Object>> pageList(Map<String, Object> params, int current, int pageSize) {
         PageHelper.startPage(current, pageSize);
-        List<UserCashLog> orderList = userCashLogMapper.listSelective(params);
-        return (Page<UserCashLog>) orderList;
+        List<Map<String,Object>> orderList = userCashLogMapper.listSelective(params);
+        return (Page<Map<String,Object>>) orderList;
     }
 
     @Override
     public int updateOrder(Map<String, Object> params) {
+        UserCashLog userCashLog = userCashLogMapper.selectByPrimaryKey(Long.parseLong(params.get("id").toString()));
+        String state = params.get("state").toString();
+        if(!userCashLog.getState().equals(state)){
+            //修改为失败
+            if(state.equals("0")){
+                userAmountService.getAmount(userCashLog.getUserId(), userCashLog.getAmount().doubleValue());
+            } else {
+                if (userCashLog.getState().equals("0")) {
+                    userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
+                }
+            }
+        }
         return userCashLogMapper.updateOrder(params);
     }
     /**

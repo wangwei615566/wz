@@ -10,7 +10,7 @@ public interface UserCashLogService {
     Map<String, Object> save(UserCashLog userCashLog);
     List<UserCashLog> listUserCashLog(Long userId);
 
-    Page<UserCashLog> pageList(Map<String, Object> params, int current, int pageSize);
+    Page<Map<String,Object>> pageList(Map<String, Object> params, int current, int pageSize);
 
     int updateOrder(Map<String, Object> params);
     

@@ -5,8 +5,9 @@ import com.wz.cashloan.core.common.context.Constant;
 import com.wz.cashloan.core.common.util.JsonUtil;
 import com.wz.cashloan.core.common.util.RdPage;
 import com.wz.cashloan.core.common.util.ServletUtils;
-import com.wz.cashloan.core.model.UserCashLog;
+import com.wz.cashloan.core.model.UserChargeLog;
 import com.wz.cashloan.core.service.UserCashLogService;
+import com.wz.cashloan.core.service.UserChargeLogService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,24 +19,24 @@ import java.util.Map;
 
 @Controller
 @Scope("prototype")
-public class ManageOrderController extends ManageBaseController {
+public class ManageChargeController extends ManageBaseController {
 
     @Resource
-    private UserCashLogService userCashLogService;
+    private UserChargeLogService userChargeLogService;
 
     /**
-     * 订单列表
+     * 充值列表
      * @param searchParams 查询参数 json字符串
      * @param current 当前页
      * @param pageSize 每页页数
      * @throws Exception 异常
      */
-    @RequestMapping(value = "/manage/order/search/list.htm")
+    @RequestMapping(value = "/manage/charge/search/list.htm")
     public void searchList(@RequestParam(value="searchParams",required=false) String searchParams,
                            @RequestParam(value = "current") int current,
                            @RequestParam(value = "pageSize") int pageSize) throws Exception {
         Map<String, Object> params = JsonUtil.parse(searchParams, Map.class);
-        Page<Map<String,Object>> page = userCashLogService.pageList(params, current, pageSize);
+        Page<UserChargeLog> page = userChargeLogService.pageList(params, current, pageSize);
         Map<String,Object> result = new HashMap<>();
         result.put(Constant.RESPONSE_DATA, page.getResult());
         result.put(Constant.RESPONSE_DATA_PAGE, new RdPage(page));
@@ -45,15 +46,15 @@ public class ManageOrderController extends ManageBaseController {
     }
 
     /**
-     * 保存单个订单
+     * 保存充值记录
      * @param searchParams
      * @throws Exception
      */
-    @RequestMapping(value = "/manage/order/search/save.htm")
+    @RequestMapping(value = "/manage/charge/search/save.htm")
     public void findById(@RequestParam(value="searchParams",required=true) String searchParams) throws Exception {
         Map<String,Object> result = new HashMap<>();
         Map<String, Object> params = JsonUtil.parse(searchParams, Map.class);
-        int i = userCashLogService.updateOrder(params);
+        int i = userChargeLogService.updateOrder(params);
         if(i == 1){
             result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
             result.put(Constant.RESPONSE_CODE_MSG, "成功");

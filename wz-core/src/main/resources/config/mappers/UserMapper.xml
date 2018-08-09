@@ -222,6 +222,18 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <update id="updateBySelective" parameterType="java.util.HashMap" >
+        update user
+        <set >
+            <if test="state != null">
+                state = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="vipState != null">
+                vip_state = #{vipState,jdbcType=TINYINT}
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.wz.cashloan.core.model.User" >
         update user
         set login_name = #{loginName,jdbcType=VARCHAR},
