@@ -6,7 +6,7 @@ import com.wz.cashloan.core.common.util.JsonUtil;
 import com.wz.cashloan.core.common.util.RdPage;
 import com.wz.cashloan.core.common.util.ServletUtils;
 import com.wz.cashloan.core.model.User;
-import com.wz.manage.service.UserService;
+import com.wz.cashloan.core.service.UserService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

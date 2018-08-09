@@ -1,10 +1,13 @@
 package com.pos.api.controller;
 
 import com.wz.cashloan.core.common.context.Constant;
+import com.wz.cashloan.core.common.context.Global;
 import com.wz.cashloan.core.common.util.JsonUtil;
 import com.wz.cashloan.core.common.web.controller.BaseController;
+import com.wz.cashloan.core.model.User;
 import com.wz.cashloan.core.model.UserCashLog;
 import com.wz.cashloan.core.service.UserCashLogService;
+import com.wz.cashloan.core.service.UserService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,8 @@ import java.util.Map;
 public class CashLogController extends BaseController{
     @Resource
     private UserCashLogService userCashLogService;
+    @Resource
+    private UserService userService;
     /**
      * 保存提现记录接口
      * @param accountName
@@ -43,6 +48,17 @@ public class CashLogController extends BaseController{
             JsonUtil.writeJson(result,response);
     		return;
     	}
+        String chargeCount = Global.getValue("charge_count");
+        if (userCashLogService.listUserCashLog(userId).size()>Integer.parseInt(chargeCount)){
+            User user = new User();
+            user.setId(userId);
+            user.setState((byte)2);
+            userService.updateByPrimaryKeySelective(user);
+            result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
+            result.put(Constant.RESPONSE_CODE_MSG, "今日提现次数已达上限");
+            JsonUtil.writeJson(result,response);
+            return;
+        }
         UserCashLog userCashLog = new UserCashLog(userId, (byte)2, accountNo, accountName, BigDecimal.valueOf(amount), BigDecimal.valueOf(0), new Date());
         userCashLog.setState((byte)2);
         userCashLog.setInviteId(inviteId);

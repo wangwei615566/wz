@@ -55,7 +55,9 @@
     <select id="queryUserByLoginName" resultType="map">
         select * from user where login_name=#{loginName}
     </select>
-
+    <select id="queryUserByDeviceId" resultMap="java.util.List">
+        select * from user where device_id=#{deviceId}
+    </select>
     <select id="getTradeState" resultType="map">
         select
             u.id,

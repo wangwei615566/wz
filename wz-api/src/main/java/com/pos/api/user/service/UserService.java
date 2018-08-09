@@ -1,11 +1,6 @@
 package com.pos.api.user.service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -77,6 +72,14 @@ public class UserService {
                 ret.put("msg", "参数有误");
                 return ret;
             }
+            List<Map> list = mybatisService.querySql("usr.queryUserByDeviceId", deviceId);
+            if (list!=null && list.size()>0){
+                Map ret = new LinkedHashMap();
+                ret.put("success", false);
+                ret.put("msg", "该设备已经注册,请更换设备");
+                return ret;
+            }
+
 
             Map invitor = null;
             if (!StringUtil.isEmpty(InvitationName)) {

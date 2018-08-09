@@ -15,7 +15,7 @@ public class User {
 
     private String invitationCode;
 
-    private Integer channelId;
+    private String deviceId;
 
     private Long levelId;
 
@@ -87,12 +87,12 @@ public class User {
         this.invitationCode = invitationCode == null ? null : invitationCode.trim();
     }
 
-    public Integer getChannelId() {
-        return channelId;
+    public String getDeviceId() {
+        return deviceId;
     }
 
-    public void setChannelId(Integer channelId) {
-        this.channelId = channelId;
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public Long getLevelId() {

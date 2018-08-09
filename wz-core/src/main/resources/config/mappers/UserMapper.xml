@@ -8,16 +8,17 @@
         <result column="loginpwd_modify_time" property="loginpwdModifyTime" jdbcType="TIMESTAMP" />
         <result column="register_client" property="registerClient" jdbcType="VARCHAR" />
         <result column="invitation_code" property="invitationCode" jdbcType="VARCHAR" />
-        <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+        <result column="vip_state" property="vipState" jdbcType="TINYINT" />
         <result column="level_id" property="levelId" jdbcType="BIGINT" />
         <result column="register_ip" property="registerIp" jdbcType="VARCHAR" />
         <result column="state" property="state" jdbcType="TINYINT" />
+        <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
         <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, login_name, login_pwd, loginpwd_modify_time, register_client, invitation_code,
+        id, login_name, login_pwd, loginpwd_modify_time, register_client, invitation_code,vip_state,device_id
          register_ip, login_ip, state, update_time, create_time
     </sql>
     <sql id="searchBy">
@@ -39,6 +40,12 @@
             </if>
             <if test="state != null and state != ''">
                 and state = #{state,jdbcType=TINYINT}
+            </if>
+            <if test="vipState != null and vipState != ''">
+                and vip_state = #{vipState,jdbcType=TINYINT}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId,jdbcType=VARCHAR}
             </if>
             <if test="tradepwdModifyTime != null">
                 and tradepwd_modify_time = #{tradepwdModifyTime,jdbcType=TIMESTAMP}
@@ -106,8 +113,11 @@
             <if test="invitationCode != null" >
                 invitation_code,
             </if>
-            <if test="channelId != null" >
-                channel_id,
+            <if test="vipState != null and vipState != ''">
+                #{vipState,jdbcType=TINYINT},
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+               #{deviceId,jdbcType=VARCHAR},
             </if>
             <if test="levelId != null" >
                 level_id,
@@ -144,8 +154,11 @@
             <if test="invitationCode != null" >
                 #{invitationCode,jdbcType=VARCHAR},
             </if>
-            <if test="channelId != null" >
-                #{channelId,jdbcType=INTEGER},
+            <if test="vipState != null and vipState != ''">
+                #{vipState,jdbcType=TINYINT},
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                #{deviceId,jdbcType=VARCHAR},
             </if>
             <if test="levelId != null" >
                 #{levelId,jdbcType=BIGINT},
@@ -182,8 +195,11 @@
             <if test="invitationCode != null" >
                 invitation_code = #{invitationCode,jdbcType=VARCHAR},
             </if>
-            <if test="channelId != null" >
-                channel_id = #{channelId,jdbcType=INTEGER},
+            <if test="vipState != null and vipState != ''">
+                vip_state = #{vipState,jdbcType=TINYINT},
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId,jdbcType=VARCHAR},
             </if>
             <if test="levelId != null" >
                 level_id = #{levelId,jdbcType=BIGINT},

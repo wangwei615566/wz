@@ -1,8 +1,8 @@
-package com.wz.manage.service.impl;
+package com.wz.cashloan.core.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.wz.manage.service.UserService;
+import com.wz.cashloan.core.service.UserService;
 import com.wz.cashloan.core.mapper.UserMapper;
 import com.wz.cashloan.core.model.User;
 import org.springframework.stereotype.Service;
@@ -27,5 +27,10 @@ public class UseServiceImpl implements UserService {
     @Override
     public int updateUser(Map<String, Object> params) {
         return userMapper.updateBySelective(params);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(User record) {
+        return userMapper.updateByPrimaryKeySelective(record);
     }
 }
