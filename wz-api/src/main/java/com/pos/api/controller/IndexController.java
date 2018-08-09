@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * 首页controller
@@ -36,8 +37,10 @@ public class IndexController extends BaseController{
     public void updateAmount(@RequestParam("userId") Long userId,@RequestParam("amount") Double amount){
         Map<String, Object> result = new HashMap<String, Object>();
         Double reqAmount = userAmountService.getAmount(userId, amount);
-        String url = Global.getValue("server_host") + "/static/images/wzimg/kfbg.png";
-//        String url =  "http://localhost:8080/h5/static/images/wzimg/kfbg.png";
+        int img_random_count = Integer.parseInt(Global.getValue("img_random_count"));
+        int v = (int)(Math.random() * img_random_count);
+//        String url = Global.getValue("server_host") + "/static/images/index/"+v+".png";
+        String url =  "http://localhost:8080/h5/static/images/index/"+v+".png";;
         Map<String, Object> data = new HashMap<>();
         data.put("amount",reqAmount);
         data.put("imgUrl",url);
