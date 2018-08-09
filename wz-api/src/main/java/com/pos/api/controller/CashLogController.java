@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 提现记录controller
@@ -48,8 +45,21 @@ public class CashLogController extends BaseController{
             JsonUtil.writeJson(result,response);
     		return;
     	}
+        List<UserCashLog> userCashLogs = userCashLogService.listUserCashLog(userId);
+        Integer hourTime = Integer.parseInt(Global.getValue("hour_time"));
+        Date createTime = userCashLogs.get(0).getCreateTime();
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.HOUR_OF_DAY,-hourTime);
+        Date time = c.getTime();
+        if (createTime.getTime() > time.getTime()){
+            result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
+            result.put(Constant.RESPONSE_CODE_MSG, "今日提现次数已达上限，请明日再来");
+            JsonUtil.writeJson(result,response);
+            return;
+        }
+
         String chargeCount = Global.getValue("charge_count");
-        if (userCashLogService.listUserCashLog(userId).size()>Integer.parseInt(chargeCount)){
+        if (userCashLogs.size()>Integer.parseInt(chargeCount)){
             User user = new User();
             user.setId(userId);
             user.setState((byte)2);
