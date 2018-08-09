@@ -22,8 +22,9 @@ import com.wz.cashloan.core.common.util.MapUtil;
 
 public class TestApi {
 
+
     public static void main(String[] args){
-        String url = "http://47.92.137.197/api/index/sys/config.htm";
+        String url = "http://localhost:8080/api/act/user/login.htm";
 //        String str = "{\"mobile\":\"13666666666\"}";
 //        JSONObject  jsonObject = JSONObject.parseObject(str);
         Map<String, Object> hashMap = new HashMap<>();
@@ -32,13 +33,12 @@ public class TestApi {
 //        hashMap.put("client", "Android");
 //        hashMap.put("registerIp", "e80%3A%3Ad82d%3A30ff%3Afef4%3A1afe%25dummy0");
 
-        hashMap.put("userId", 4);
-        hashMap.put("deviceId", "7a24850535f25ef4");
-        hashMap.put("versionNumber", "1.0.0");
+        hashMap.put("loginName", "wangwei");
+        hashMap.put("loginPwd", "8886465");
+        //hashMap.put("versionNumber", "1.0.0");
         String s = TestApi.doPost(url, hashMap);
         System.out.println(s);
     }
-
 
      /**
      * 发送 POST 请求（HTTP），JSON形式

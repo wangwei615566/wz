@@ -204,7 +204,7 @@ public class UserService {
                 return ret;
             }
 
-            if("2".equals(user.get("state"))){
+            if("2".equals(user.get("state").toString())){
                 Map ret = new LinkedHashMap();
                 ret.put("code", 99);
                 ret.put("msg", "账户已冻结");

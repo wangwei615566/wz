@@ -36,8 +36,13 @@ public class IndexController extends BaseController{
     public void updateAmount(@RequestParam("userId") Long userId,@RequestParam("amount") Double amount){
         Map<String, Object> result = new HashMap<String, Object>();
         Double reqAmount = userAmountService.getAmount(userId, amount);
+        String url = Global.getValue("server_host") + "/static/images/wzimg/kfbg.png";
+//        String url =  "http://localhost:8080/h5/static/images/wzimg/kfbg.png";
+        Map<String, Object> data = new HashMap<>();
+        data.put("amount",reqAmount);
+        data.put("imgUrl",url);
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
-        result.put(Constant.RESPONSE_DATA, reqAmount);
+        result.put(Constant.RESPONSE_DATA, data);
         result.put(Constant.RESPONSE_CODE_MSG, "获取成功");
         JsonUtil.writeJson(result,response);
     }
@@ -85,6 +90,8 @@ public class IndexController extends BaseController{
         data.put("inviteCount",Global.getValue("invite_count"));
         data.put("vipDesc",Global.getValue("vip_desc"));
         data.put("notice",Global.getValue("notice"));
+        data.put("extensionOfficial",Global.getValue("extension_official"));
+        data.put("inviteOfficial",Global.getValue("invite_official"));
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA, data);
         result.put(Constant.RESPONSE_CODE_MSG, "获取成功");
