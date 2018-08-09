@@ -1,8 +1,12 @@
+<%@ page import="tool.util.BeanUtil" %>
+<%@ page import="com.wz.cashloan.core.service.UserChargeLogService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 	String zh= request.getParameter("zh");
 	String je= request.getParameter("je");
 	String bz= request.getParameter("bz");
+	UserChargeLogService userChargeLogService = (UserChargeLogService)BeanUtil.getBean("userChargeLogService");
+	userChargeLogService.insertSelective(zh,je,bz);
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

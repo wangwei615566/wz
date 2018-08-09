@@ -72,8 +72,10 @@ public class UserService {
                 ret.put("msg", "参数有误");
                 return ret;
             }
-            List<Map> list = mybatisService.querySql("usr.queryUserByDeviceId", deviceId);
-            if (list!=null && list.size()>0){
+            Map<String, Object> reqMap = new HashMap<>();
+            reqMap.put("deviceId",deviceId);
+            List<User> users = userMapper.listSelective(reqMap);
+            if (users!=null && users.size()>0){
                 Map ret = new LinkedHashMap();
                 ret.put("success", false);
                 ret.put("msg", "该设备已经注册,请更换设备");
