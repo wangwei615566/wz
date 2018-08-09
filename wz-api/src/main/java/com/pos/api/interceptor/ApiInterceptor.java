@@ -99,8 +99,11 @@ public class ApiInterceptor implements HandlerInterceptor {
 			int result=StringUtil.compareVersion(sys_version,user_version);
 			if(result>0){
 				m=new HashMap<String,Object>();
-				m.put("code", 400);
-				m.put("msg","版本过低，请卸载旧版本并更新至最新版本！");
+				m.put("code", -1);
+				m.put("msg","版本过低，请到官网下载新最新版本！");
+				Map<String,String> updateAppUrlMap = new HashMap<String,String>();
+				updateAppUrlMap.put("updateAppUrl", Global.getValue("update_app_url"));
+				m.put("data", updateAppUrlMap);
 				JsonUtil.writeJson(m, response);
 				return false;
 			}
