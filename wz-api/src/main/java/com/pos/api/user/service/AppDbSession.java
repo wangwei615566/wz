@@ -8,6 +8,8 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.wz.cashloan.core.mapper.UserExtensionLogMapper;
+import com.wz.cashloan.core.mapper.UserInviteMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.Cache;
@@ -29,6 +31,10 @@ import com.wz.cashloan.core.common.util.SqlUtil;
 public class AppDbSession {
 	@Resource
 	protected DBService dbService;
+	@Resource
+	private UserExtensionLogMapper userExtensionLogMapper;
+	@Resource
+	private UserInviteMapper userInviteMapper;
 	private int liveMin = 60 * 24 * 7;
 
 	private Logger logger = LoggerFactory.getLogger(AppDbSession.class);
@@ -133,7 +139,8 @@ public class AppDbSession {
 		// userId);
 
 		String token = UUID.randomUUID().toString().replaceAll("-", "");
-
+		int countIp = userExtensionLogMapper.countIp(userId);
+		int countInvite = userInviteMapper.countInvite(userId);
 		Map session = MapUtil.array2Map(new Object[][] {
 				{
 						"front",
@@ -141,6 +148,8 @@ public class AppDbSession {
 								{"loginName",loginname},
 								{"vipState",user.get("vip_state")},
 								{"amount",userAmount.get("total")},
+								{"countExtension",countIp},
+								{"countInvite",countInvite},
 								{ "token", token } } },
 				{ "userData", user } });
 		return new AppSessionBean(session);
