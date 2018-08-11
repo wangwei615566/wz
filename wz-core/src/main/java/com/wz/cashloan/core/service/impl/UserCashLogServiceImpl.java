@@ -3,6 +3,8 @@ package com.wz.cashloan.core.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wz.cashloan.core.mapper.UserCashLogMapper;
+import com.wz.cashloan.core.mapper.UserMapper;
+import com.wz.cashloan.core.model.User;
 import com.wz.cashloan.core.model.UserCashLog;
 import com.wz.cashloan.core.service.UserAmountService;
 import com.wz.cashloan.core.service.UserCashLogService;
@@ -20,6 +22,8 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     private UserCashLogMapper userCashLogMapper;
     @Resource
     private UserAmountService userAmountService;
+    @Resource
+    private UserMapper userMapper;
     @Override
     public Map<String, Object> save(UserCashLog userCashLog) {
         Double amount = userAmountService.getAmount(userCashLog.getUserId(), 0.0);
@@ -27,6 +31,10 @@ public class UserCashLogServiceImpl implements UserCashLogService {
         if (userCashLog.getAmount().doubleValue()>amount || userCashLog.getAmount().doubleValue()<=0){
             result.put("code",-2);
             return result;
+        }
+        User user = userMapper.selectByPrimaryKey(userCashLog.getId());
+        if (user.getVipState()==0 && userCashLog.getAmount().doubleValue()>0.5) {
+            result.put("code",-1);
         }
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
         int insert = userCashLogMapper.insert(userCashLog);
