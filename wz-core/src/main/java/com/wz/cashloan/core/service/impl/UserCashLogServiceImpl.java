@@ -34,7 +34,7 @@ public class UserCashLogServiceImpl implements UserCashLogService {
         }
         User user = userMapper.selectByPrimaryKey(userCashLog.getId());
         if (user.getVipState()==0 && userCashLog.getAmount().doubleValue()>0.5) {
-            result.put("code",-1);
+            result.put("code",-3);
         }
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
         int insert = userCashLogMapper.insert(userCashLog);

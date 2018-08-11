@@ -76,7 +76,7 @@ public class CashLogController extends BaseController{
         int save = Integer.parseInt(rep.get("code").toString());
         result.put(Constant.RESPONSE_CODE, save==1?Constant.SUCCEED_CODE_VALUE : save==-2 ? Constant.FAIL_CODE_PARAM_INSUFFICIENT :Constant.FAIL_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA,rep.get("amount"));
-        result.put(Constant.RESPONSE_CODE_MSG, save==1 ? "保存成功" : save==-2 ? "账户余额不足，无法提现":"保存失败");
+        result.put(Constant.RESPONSE_CODE_MSG, save==1 ? "保存成功" : save==-2 ? "账户余额不足，无法提现":save==-3?"非vip会员每次提现不能超过0.5元！vip会员不受此限制":"保存失败");
         JsonUtil.writeJson(result,response);
     }
 
