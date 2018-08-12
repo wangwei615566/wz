@@ -8,7 +8,10 @@ import java.util.Map;
 
 public interface UserCashLogService {
     Map<String, Object> save(UserCashLog userCashLog);
+
     List<UserCashLog> listUserCashLog(Long userId);
+
+    int listToUserIdState(Long userId,int state);
 
     Page<Map<String,Object>> pageList(Map<String, Object> params, int current, int pageSize);
 

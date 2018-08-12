@@ -16,6 +16,8 @@ public interface UserCashLogMapper {
 
     List<UserCashLog> listToUserId(Long userId);
 
+    int listToUserIdSccCount(Map<String, Object> params);
+
     List<Map<String,Object>> listSelective(Map<String, Object> params);
 
     int updateOrder(Map<String, Object> params);

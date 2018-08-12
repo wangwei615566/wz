@@ -51,6 +51,14 @@ public class UserCashLogServiceImpl implements UserCashLogService {
     }
 
     @Override
+    public int listToUserIdState(Long userId,int state) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("userId",userId);
+        param.put("state",(byte)state);
+        return userCashLogMapper.listToUserIdSccCount(param);
+    }
+
+    @Override
     public Page<Map<String,Object>> pageList(Map<String, Object> params, int current, int pageSize) {
         PageHelper.startPage(current, pageSize);
         List<Map<String,Object>> orderList = userCashLogMapper.listSelective(params);

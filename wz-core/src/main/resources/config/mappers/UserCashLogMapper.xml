@@ -40,6 +40,12 @@
     from user_cash_log
     where user_id = #{userId,jdbcType=BIGINT} order by id desc
   </select>
+  <select id="listToUserIdSccCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select
+    COUNT(0)
+    from user_cash_log
+    where user_id = #{userId,jdbcType=BIGINT} and state = #{state,jdbcType=TINYINT}
+  </select>
 
   <select id="listSelective" resultType="java.util.HashMap" parameterType="java.util.HashMap" >
     select

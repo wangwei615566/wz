@@ -59,7 +59,8 @@ public class CashLogController extends BaseController{
         }
 
         String chargeCount = Global.getValue("charge_count");
-        if (userCashLogs.size()>Integer.parseInt(chargeCount)){
+        int count = userCashLogService.listToUserIdState(userId, 1);
+        if (count>Integer.parseInt(chargeCount)){
             User user = new User();
             user.setId(userId);
             user.setState((byte)2);
