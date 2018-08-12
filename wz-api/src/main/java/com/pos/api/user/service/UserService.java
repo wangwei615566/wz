@@ -207,7 +207,7 @@ public class UserService {
             if("2".equals(user.get("state").toString())){
                 Map ret = new LinkedHashMap();
                 ret.put("code", 99);
-                ret.put("msg", "账户已冻结");
+                //ret.put("msg", "账户已冻结");
                 return ret;
             }
             String dbPwd = (String) user.get("login_pwd");

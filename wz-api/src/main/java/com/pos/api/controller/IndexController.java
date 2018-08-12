@@ -37,13 +37,8 @@ public class IndexController extends BaseController{
     public void updateAmount(@RequestParam("userId") Long userId,@RequestParam("amount") Double amount){
         Map<String, Object> result = new HashMap<String, Object>();
         Double reqAmount = userAmountService.getAmount(userId, amount);
-        int img_random_count = Integer.parseInt(Global.getValue("img_random_count"));
-        int v = (int)(Math.random() * img_random_count);
-        String url = Global.getValue("server_host") + "/static/images/index/"+v+".png";
-//        String url =  "http://localhost:8080/static/images/index/"+v+".png";
         Map<String, Object> data = new HashMap<>();
         data.put("amount",reqAmount);
-        data.put("imgUrl",url);
         result.put(Constant.RESPONSE_CODE, Constant.SUCCEED_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA, data);
         result.put(Constant.RESPONSE_CODE_MSG, "获取成功");

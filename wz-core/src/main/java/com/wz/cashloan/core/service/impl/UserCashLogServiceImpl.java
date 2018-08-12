@@ -2,6 +2,7 @@ package com.wz.cashloan.core.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.wz.cashloan.core.common.context.Global;
 import com.wz.cashloan.core.mapper.UserCashLogMapper;
 import com.wz.cashloan.core.mapper.UserMapper;
 import com.wz.cashloan.core.model.User;
@@ -32,9 +33,10 @@ public class UserCashLogServiceImpl implements UserCashLogService {
             result.put("code",-2);
             return result;
         }
-        User user = userMapper.selectByPrimaryKey(userCashLog.getId());
-        if (user.getVipState()==0 && userCashLog.getAmount().doubleValue()>0.5) {
+        User user = userMapper.selectByPrimaryKey(userCashLog.getUserId());
+        if (user.getVipState()==0 && userCashLog.getAmount().doubleValue()>Global.getDouble("cash_amount_limit")) {
             result.put("code",-3);
+            return result;
         }
         userAmountService.getAmount(userCashLog.getUserId(), -userCashLog.getAmount().doubleValue());
         int insert = userCashLogMapper.insert(userCashLog);

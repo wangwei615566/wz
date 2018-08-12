@@ -29,7 +29,7 @@ public class VipController extends BaseController{
      * @param userId
      * @param userId
      */
-    @RequestMapping("/free/vip.htm")
+    @RequestMapping("/index/free/vip.htm")
     public void freeVip(@RequestParam("userId") Long userId){
         Map<String, Object> result = new HashMap<String, Object>();
         Map<String, Object> freeInvite = userInviteService.getFreeInvite(userId);
