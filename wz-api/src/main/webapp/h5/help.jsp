@@ -20,23 +20,23 @@
   
   <div class="clear"></div>
    <div class="help">
-    <img src="/static/images/wzimg/ask.jpg">
-    <img src="/static/images/wzimg/question_01.jpg" width="100%">
-    <img src="/static/images/wzimg/question_02.jpg" width="100%">
-    <img src="/static/images/wzimg/question_03.jpg" width="100%">
-    <img src="/static/images/wzimg/question_04.jpg" width="100%">
-    <img src="/static/images/wzimg/question_05.jpg" width="100%">
-    <img src="/static/images/wzimg/question_06.jpg" width="100%">
-    <img src="/static/images/wzimg/question_07.jpg" width="100%">
-    <img src="/static/images/wzimg/question_08.jpg" width="100%">
-    <img src="/static/images/wzimg/question_09.jpg" width="100%">
-    <img src="/static/images/wzimg/question_10.jpg" width="100%">
+    <img src="../static/images/wzimg/ask.jpg">
+    <img src="../static/images/wzimg/question_01.jpg" width="100%">
+    <img src="../static/images/wzimg/question_02.jpg" width="100%">
+    <img src="../static/images/wzimg/question_03.jpg" width="100%">
+    <img src="../static/images/wzimg/question_04.jpg" width="100%">
+    <img src="../static/images/wzimg/question_05.jpg" width="100%">
+    <img src="../static/images/wzimg/question_06.jpg" width="100%">
+    <img src="../static/images/wzimg/question_07.jpg" width="100%">
+    <img src="../static/images/wzimg/question_08.jpg" width="100%">
+    <img src="../static/images/wzimg/question_09.jpg" width="100%">
+    <img src="../static/images/wzimg/question_10.jpg" width="100%">
    </div>
- <div class="bottom">  
-   <img src="/static/images/wzimg/bot.jpg" width="100%">
+ <!-- <div class="bottom">  
+   <img src="../static/images/wzimg/bot.jpg" width="100%">
    
    
-</div>
+</div> -->
 
 
 </body></html>

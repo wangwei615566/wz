@@ -71,7 +71,7 @@
   <div class="download"><img class="bg" src="../static/images/download.jpg" /><div class="button1"><a id="J_weixin" class="android-btn" href="http://wakuang-10027738.cossh.myqcloud.com/sppz.apk"><img class="button" src="../static/images/dow1.jpg" /></a><a href="http://wakuang-10027738.cossh.myqcloud.com/sppz.exe"><img class="button" src="../static/images/dow2.jpg" /></a></div></div>
        
  <div class="video">
-   <video src="https://shiping12.oss-cn-shanghai.aliyuncs.com/zhuye.mp4" controls="controls" autoplay="autoplay" width="100%" ></video>
+   <video src="../static/mp4/zhuye.mp4" controls="controls" autoplay="autoplay" width="100%" ></video>
 </div>
 
 
