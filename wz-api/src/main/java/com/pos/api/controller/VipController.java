@@ -33,9 +33,9 @@ public class VipController extends BaseController{
     public void freeVip(@RequestParam("userId") Long userId){
         Map<String, Object> result = new HashMap<String, Object>();
         Map<String, Object> freeInvite = userInviteService.getFreeInvite(userId);
-        result.put(Constant.RESPONSE_CODE,Constant.SUCCEED_CODE_VALUE);
-        result.put(Constant.RESPONSE_DATA,freeInvite);
-        result.put(Constant.RESPONSE_CODE_MSG, "查询成功");
+        int code = (int) freeInvite.get("state");
+        result.put(Constant.RESPONSE_CODE,code == -1 ? Constant.FAIL_CODE_PARAM_INSUFFICIENT : Constant.SUCCEED_CODE_VALUE);
+        result.put(Constant.RESPONSE_CODE_MSG, code == -1 ? freeInvite.get("msg") : "开通成功");
         JsonUtil.writeJson(result,response);
     }
 }

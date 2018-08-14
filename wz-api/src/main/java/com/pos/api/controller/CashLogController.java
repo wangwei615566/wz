@@ -46,18 +46,20 @@ public class CashLogController extends BaseController{
     		return;
     	}
         List<UserCashLog> userCashLogs = userCashLogService.listUserCashLog(userId);
+        
         Integer hourTime = Integer.parseInt(Global.getValue("hour_time"));
-        Date createTime = userCashLogs.get(0).getCreateTime();
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.HOUR_OF_DAY,-hourTime);
-        Date time = c.getTime();
-        if (createTime.getTime() > time.getTime()){
-            result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
-            result.put(Constant.RESPONSE_CODE_MSG, "今日提现次数已达上限，请明日再来");
-            JsonUtil.writeJson(result,response);
-            return;
+        if(userCashLogs != null && userCashLogs.size() > 0){
+        	Date createTime = userCashLogs.get(0).getCreateTime();
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.HOUR_OF_DAY,-hourTime);
+            Date time = c.getTime();
+            if (createTime.getTime() > time.getTime()){
+                result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
+                result.put(Constant.RESPONSE_CODE_MSG, "非VIP用户"+hourTime+"小时内仅可提现1次，VIP用户不受此限制");
+                JsonUtil.writeJson(result,response);
+                return;
+            }
         }
-
         String chargeCount = Global.getValue("charge_count");
         int count = userCashLogService.listToUserIdState(userId, 1);
         if (count>Integer.parseInt(chargeCount)){
@@ -66,7 +68,7 @@ public class CashLogController extends BaseController{
             user.setState((byte)2);
             userService.updateByPrimaryKeySelective(user);
             result.put(Constant.RESPONSE_CODE, Constant.FAIL_CODE_PARAM_INSUFFICIENT);
-            result.put(Constant.RESPONSE_CODE_MSG, "今日提现次数已达上限");
+            result.put(Constant.RESPONSE_CODE_MSG, "提现次数已达上限");
             JsonUtil.writeJson(result,response);
             return;
         }
@@ -77,7 +79,7 @@ public class CashLogController extends BaseController{
         int save = Integer.parseInt(rep.get("code").toString());
         result.put(Constant.RESPONSE_CODE, save==1?Constant.SUCCEED_CODE_VALUE : save==-2 ? Constant.FAIL_CODE_PARAM_INSUFFICIENT :Constant.FAIL_CODE_VALUE);
         result.put(Constant.RESPONSE_DATA,rep.get("amount"));
-        result.put(Constant.RESPONSE_CODE_MSG, save==1 ? "保存成功" : save==-2 ? "账户余额不足，无法提现":save==-3?"非vip会员每次提现不能超过"+Global.getDouble("cash_amount_limit")+"元！vip会员不受此限制":"保存失败");
+        result.put(Constant.RESPONSE_CODE_MSG, save==1 ? "提现成功" : save==-2 ? "账户余额不足，无法提现":save==-3?"非vip会员每次提现不能超过"+Global.getDouble("cash_amount_limit")+"元！vip会员不受此限制":"提现失败");
         JsonUtil.writeJson(result,response);
     }
 
