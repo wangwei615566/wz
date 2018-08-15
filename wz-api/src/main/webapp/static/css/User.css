@@ -33,3 +33,14 @@ ul{list-style:none;}
 
 @media (min-width:801px){.ewm{width: 20%; margin:2% 0 0 0}}
 @media (min-width:760px){.ewm{width: 20%; margin:2% auto 0}}
+.reg-btn1 {
+    display: block;
+    width: 50%;
+    background: #108ee9;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 10px;
+    margin: auto;
+}

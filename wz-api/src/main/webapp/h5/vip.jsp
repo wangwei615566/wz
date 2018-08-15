@@ -1,13 +1,9 @@
 <%@ page import="tool.util.BeanUtil" %>
-<%@ page import="com.wz.cashloan.core.service.UserChargeLogService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 	String zh= request.getParameter("zh");
 	String je= request.getParameter("je");
 	String bz= request.getParameter("bz");
-	UserChargeLogService userChargeLogService = (UserChargeLogService)BeanUtil.getBean("userChargeLogService");
-	userChargeLogService.insertSelective(zh,je,bz);
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0061)http://enok2.cn/chongzhi/vip.php?zh=2931143404&je=216&bz=wanf -->
@@ -15,7 +11,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<title>VIP开通</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/User.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/User.css">
 	<link href="/static/css/css.css" rel="stylesheet" type="text/css">
 	<script src="/static/js/jquery1.4.2.js"></script>
 </head>
@@ -55,8 +51,22 @@
 	</div>
 	<div class="clear"></div>
 </div>
-<div class="clear"></div>
-   <div class="help">
-    <img src="../static/pay/1.png" width="100%">
-   </div>
-</body></html>
+<div class="pay">
+	<div class="pay_mess">
+		<div style="margin-left:0;border-bottom:0px;">
+			<p><span style="font-size:16px;color:#666; line-height:30px;">①付款金额为：<%=je %>元，如填写其他金额系统将不能自动开通VIP。</span></p>
+		</div>
+		<div  style="margin-left:0;border-bottom:0px;">
+			<span style="font-size:16px;color:#666;line-height:30px;">②请在转账留言中填写你在我们软件中注册的用户名，如果填错或乱填，系统将不能自动开通。</span>
+		</div>
+		<div style="margin-left:0;border-bottom:0px;">
+			<span style="font-size:16px;color:#666;line-height:30px;">③付款成功后，自动开通VIP会员，如需免费获取VIP会员，可以通过推广APP任务获取。</span>
+		</div>
+		<div style="margin-left:0;border-bottom:0px; margin-top:30px;">
+			<span style="font-size:16px;color:#666;line-height:60px;"><a href="/pay/cashVip.htm?zh=<%=zh %>&je=<%=je %>&bz=<%=bz %>" id="btn-reg" class="reg-btn1">提交订单</a></span>
+		</div>
+		<span style="display:block;line-height:50px;"></span>
+	</div>
+</div>
+</body>
+</html>

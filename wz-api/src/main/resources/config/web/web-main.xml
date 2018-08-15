@@ -33,7 +33,7 @@
 
 	<!-- 配置freeMarker视图解析器 -->
 	<!-- FreeMarker视图解析 如返回student,在这里配置后缀名ftl和视图解析器 -->
-	 <bean id="freemarkerResolver"
+	 <!-- <bean id="freemarkerResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
@@ -41,12 +41,12 @@
 		<property name="suffix" value=".ftl" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
 		<property name="requestContextAttribute" value="request" />
-		<!-- 将请求和会话属性作为变量暴露给FreeMarker模板使用。要做到这一点，可以设置exposeRequestAttributes或者exposeSessionAttributes为true -->
+		将请求和会话属性作为变量暴露给FreeMarker模板使用。要做到这一点，可以设置exposeRequestAttributes或者exposeSessionAttributes为true
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
-		<!-- 使用这些宏，必须设置FreeMarkerViewResolver的exposeMacroHelpers属性为true -->
+		使用这些宏，必须设置FreeMarkerViewResolver的exposeMacroHelpers属性为true
 		<property name="exposeSpringMacroHelpers" value="true" />
-	</bean> 
+	</bean>  -->
  
 	<!-- URL分布式缓存处理示例 -->
 	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
@@ -75,26 +75,11 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-	<!--<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/api/**/*"/>
-			<mvc:exclude-mapping path="/api/qianchenNotify.htm"/>
-            <mvc:exclude-mapping path="/api/operatorCallbacktest.htm"/>
-            <mvc:exclude-mapping path="/api/operatorCallback.htm"/>
-            <mvc:exclude-mapping path="/api/operatorReturnback.htm"/>
-            <mvc:exclude-mapping path="/api/actzm/mine/zhima/AuthCallBack.htm"/>
-            <mvc:exclude-mapping path="/api/user/h5SendSms.htm"/>
-            <mvc:exclude-mapping path="/api/h5/imgCode/generate.htm"/>
-            <mvc:exclude-mapping path="/api/user/wxRegister.htm"/>
-            <mvc:exclude-mapping path="/api/user/isPhoneExists.htm"/>
-            <mvc:exclude-mapping path="/api/kn/*"/>
-            <mvc:exclude-mapping path="/api/act/borrow/juheRepay/alipay/repaymentNotify.htm"/>
-            <mvc:exclude-mapping path="/api/saiceCallback.htm"/>
-            <mvc:exclude-mapping path="/pay/jd/repaymentNotify.htm"/>
-            <mvc:exclude-mapping path="/api/archiveContract.htm"/>
-
 			<bean class="com.pos.api.interceptor.ApiInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
 </beans>

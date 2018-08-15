@@ -162,10 +162,10 @@ public class LoginController {
 				Map result = userService.registerUser(request, loginName,
 						loginPwd, invitationName,
 						 client,registerIp,deviceId,null);
-				if ((Boolean) result.get("success")) {
-					result = userService.login(request, loginName, loginPwd);
-					result.put("msg", result.get("msg"));
-				}
+//				if ((Boolean) result.get("success")) {
+//					result = userService.login(request, loginName, loginPwd);
+//					result.put("msg", result.get("msg"));
+//				}
 				return result;
 			}
 		};
