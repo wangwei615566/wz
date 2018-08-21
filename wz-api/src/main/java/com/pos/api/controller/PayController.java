@@ -34,19 +34,25 @@ public class PayController extends BaseController{
     @RequestMapping("/pay/cashVip.htm")
     public ModelAndView saveCashLog(@RequestParam("zh") String zh,@RequestParam("je") String je,@RequestParam("bz") String bz){
     	String url = null;
-    	
-    	if(Global.payImageIndex == 0){
-    		url = "/static/pay/1.png";
-    		Global.payImageIndex = 1;
-    	}else{
-    		Object o = Global.payImageIndex;
-    		int index = Integer.parseInt(o.toString());
-    		String realPath = request.getSession().getServletContext().getRealPath("/static/pay/"+index+".png");
+    	synchronized (Global.payImageIndex) {
+    		/*String realPath = request.getSession().getServletContext().getRealPath("/static/pay/"+(Global.payImageIndex == 0 ? 1 : Global.payImageIndex)+".png");
     		File file = new File(realPath);
-    		file.delete();
-    		url = "/static/pay/"+(index+1)+".png";
-    		Global.payImageIndex = (index+1);
-    	}
+    		while(!file.exists()){
+    			realPath = request.getSession().getServletContext().getRealPath("/static/pay/"+(++Global.payImageIndex)+".png");
+    			file = new File(realPath);
+    		}*/
+    		if(Global.payImageIndex == 0){
+        		url = "/static/pay/1.png";
+        		Global.payImageIndex = 1;
+        	}else{
+        		int index = Global.payImageIndex;
+        		String realPath = request.getSession().getServletContext().getRealPath("/static/pay/"+index+".png");
+        		File file = new File(realPath);
+        		file.delete();
+        		url = "/static/pay/"+(index+1)+".png";
+        		Global.payImageIndex = (index+1);
+        	}
+		}
     	userChargeLogService.insertSelective(zh, je, bz);
     	ModelAndView mv = new ModelAndView("/h5/vip1.jsp");
     	mv.addObject("url", url);

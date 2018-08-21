@@ -40,7 +40,7 @@ public class UserChargeLogServiceImpl implements UserChargeLogService{
             UserChargeLog userChargeLog = new UserChargeLog();
             userChargeLog.setAmount(BigDecimal.valueOf(Double.parseDouble(je)));
             userChargeLog.setRecAccount(zh);
-            userChargeLog.setPayAccount(bz);
+            userChargeLog.setPayAccount(user.getLoginName());
             userChargeLog.setState((byte)2);
             userChargeLog.setCreateTime(new Date());
             userChargeLog.setUpdateTime(new Date());

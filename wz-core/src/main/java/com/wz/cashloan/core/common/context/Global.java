@@ -1,7 +1,5 @@
 package com.wz.cashloan.core.common.context;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import tool.util.NumberUtil;
@@ -14,7 +12,7 @@ public class Global {
 
 	public static Map<String, Object> msg_template_Map;
 	
-	public static int payImageIndex  = 0;
+	public static Integer payImageIndex  = 0;
 
 	public static int getInt(String key){
 		return NumberUtil.getInt(StringUtil.isNull(configMap.get(key)));

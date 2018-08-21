@@ -36,7 +36,7 @@ public class UserInviteServiceImpl implements UserInviteService {
         Map<String, Object> result = new HashMap<>();
         Integer extensionCount = Integer.parseInt(Global.getValue("extension_count"));
         Integer inviteCount = Integer.parseInt(Global.getValue("invite_count"));
-        if (countIp>=extensionCount || countInvite>=inviteCount){
+        if (countIp>=inviteCount || countInvite>=extensionCount){
             //开通成功把用户改为禁用
             User user = new User();
             user.setId(userId);

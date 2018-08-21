@@ -1,9 +1,9 @@
 <%@ page import="tool.util.BeanUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-	String zh= request.getParameter("zh");
-	String je= request.getParameter("je");
-	String bz= request.getParameter("bz");
+	String zh= request.getParameter("zh").trim();
+	String je= request.getParameter("je").trim();
+	String bz= request.getParameter("bz").trim();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0061)http://enok2.cn/chongzhi/vip.php?zh=2931143404&je=216&bz=wanf -->
